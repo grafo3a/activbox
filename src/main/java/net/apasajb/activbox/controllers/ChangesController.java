@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 
 
 /**
- * Controleur pour les problemes
+ * Controleur pour les changements
  */
 @Controller
-public class ControleurProblemes {
+public class ChangesController {
 
 }

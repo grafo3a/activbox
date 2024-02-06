@@ -7,6 +7,6 @@ import org.springframework.stereotype.Controller;
  * Controleur pour les incidents
  */
 @Controller
-public class ControleurIncidents {
+public class IncidentsController {
 
 }
