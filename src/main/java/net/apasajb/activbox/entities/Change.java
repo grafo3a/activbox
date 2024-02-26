@@ -27,6 +27,7 @@ public class Change {
 	private String numeroChangement;
 	
 	
+	
 	// Constructeurs par defaut et parametrique
 	
 	
@@ -34,5 +35,24 @@ public class Change {
 	
 	
 	//======================================= GETTERS & SETTERS //
+	
+	public Integer getIdChangement() {
+		return idChangement;
+	}
+	
+	
+	public void setIdChangement(Integer idChangement) {
+		this.idChangement = idChangement;
+	}
+	
+	
+	public String getNumeroChangement() {
+		return numeroChangement;
+	}
+	
+	
+	public void setNumeroChangement(String numeroChangement) {
+		this.numeroChangement = numeroChangement;
+	}
 	//===========================================================//
 }

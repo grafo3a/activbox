@@ -34,5 +34,24 @@ public class Problem {
 	
 	
 	//======================================= GETTERS & SETTERS //
+	
+	public Integer getIdProbleme() {
+		return idProbleme;
+	}
+	
+	
+	public void setIdProbleme(Integer idProbleme) {
+		this.idProbleme = idProbleme;
+	}
+	
+	
+	public String getNumeroProbleme() {
+		return numeroProbleme;
+	}
+	
+	
+	public void setNumeroProbleme(String numeroProbleme) {
+		this.numeroProbleme = numeroProbleme;
+	}
 	//===========================================================//
 }
