@@ -62,7 +62,7 @@ public class Incident implements Serializable {
 	@Column(name="description", length=1000, nullable=false)
 	private String col12Description;
 	
-	@Column(name="moment_creation", length=100) //nullable=false
+	@Column(name="moment_creation", length=30)
 	private LocalDateTime col13MomentCreation;
 	
 	@Column(name="moment_sla", length=100)

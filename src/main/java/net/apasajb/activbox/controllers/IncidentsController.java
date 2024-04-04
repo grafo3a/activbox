@@ -1,5 +1,7 @@
 package net.apasajb.activbox.controllers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,9 @@ public class IncidentsController {
 	@ResponseBody    // Ici on retourne des donnees brutes (au lieu d'un template)
 	public String ajouterIncident(Model model, @ModelAttribute("incidentRetour") Incident newIncident) {
 		
+		LocalDateTime momentCreation = LocalDateTime.now();
+		newIncident.setCol13MomentCreation(momentCreation);
+		
 		// On ecrit l'entiteh en BDD
 		incidentRepository.save(newIncident);
 		System.out.println("\nAjout nouvel incident OK");
@@ -58,7 +63,8 @@ public class IncidentsController {
 				+ "\n-- Agent en charge: " + p.getCol09AgentEnCharge()
 				+ "\n-- Nom produit: " + p.getCol10NomProduit()
 				+ "\n-- Sujet: " + p.getCol11Sujet()
-				+ "\n-- Description: " + p.getCol12Description())
+				+ "\n-- Description: " + p.getCol12Description()
+				+ "\n-- Moment creation: " + p.getCol13MomentCreation())
 		);
 		System.out.println("---------------------------------------------\n");
 		
