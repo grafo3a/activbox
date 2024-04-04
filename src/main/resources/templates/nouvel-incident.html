@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Formulaire ThymeLeaf</title>
+</head>
+
+<body>
+
+<!-- On precise l'objet qui sera constituee par les donnees du formulaire.
+	Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "pax" du modele.
+	Ici le modele envoyee par la methode get est present. -->
+
+<form action="#" th:action="@{/nouvel-incident}" th:object="${incidentAller}" method="post">
+    <table border="1">
+        <tr>
+        	<!--
+        	//Utilisation de messages d'un paquet de ressources:
+            <td><label th:text="#{msg_Prioriteh}"></label></td>
+             -->
+            <td><label th:text="Prioriteh"></label></td>
+            <td><input type="text" th:field="*{col03Prioriteh}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="Agent-initial"></label></td>
+            <td><input type="text" th:field="*{col04AgentInitial}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="Demandeur"></label></td>
+            <td><input type="text" th:field="*{col05Demandeur}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="Etat"></label></td>
+            <td><input type="text" th:field="*{col06Etat}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="Categorie"></label></td>
+            <td><input type="text" th:field="*{col07Categorie}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="Equipe-en-charge"></label></td>
+            <td><input type="text" th:field="*{col08EquipeEnCharge}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="Sujet"></label></td>
+            <td><input type="text" th:field="*{col11Sujet}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="Description"></label></td>
+            <td><input type="text" th:field="*{col12Description}"></input></td>
+        </tr>
+        
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+
+</body>
+</html>

@@ -23,89 +23,95 @@ import jakarta.persistence.Table;
 public class Incident implements Serializable {
 	
 	private static final long serialVersionUID = -2201437939013157749L;
-
+	
 	@Id
-	@Column(name="id_incident")
+	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer col01IdIncident;
 	
-	@Column(name="numero_incident", length=20, nullable=false, unique=true)
+	@Column(name="numero", length=20, unique=true)
 	private String col02NumeroIncident;
 	
+	@Column(name="prioriteh", length=1, nullable=false)
+	private String col03Prioriteh;
+	
 	@Column(name="agent_initial", length=50, nullable=false)
-	private String col03AgentInitial;
+	private String col04AgentInitial;
 	
 	@Column(name="demandeur", length=50, nullable=false)
-	private String col04Demandeur;
+	private String col05Demandeur;
 	
 	@Column(name="etat", length=20, nullable=false)
-	private String col05Etat;
+	private String col06Etat;
 	
 	@Column(name="categorie", length=50, nullable=false)
-	private String col06Categorie;
+	private String col07Categorie;
 	
 	@Column(name="equipe_en_charge", length=20, nullable=false)
-	private String col07EquipeEnCharge;
+	private String col08EquipeEnCharge;
 	
-	@Column(name="agent_en_charge", length=50, nullable=false)
-	private String col08AgentEnCharge;
+	@Column(name="agent_en_charge", length=50)
+	private String col09AgentEnCharge;
 	
-	@Column(name="produit", length=20, nullable=false)
-	private String col09Produit;
+	@Column(name="nom_produit", length=20)
+	private String col10NomProduit;
 	
 	@Column(name="sujet", length=100, nullable=false)
-	private String col10Sujet;
+	private String col11Sujet;
 	
 	@Column(name="description", length=1000, nullable=false)
-	private String col11Description;
+	private String col12Description;
 	
-	@Column(name="moment_creation", length=100, nullable=false)
-	private LocalDateTime col12MomentCreation;
+	@Column(name="moment_creation", length=100) //nullable=false
+	private LocalDateTime col13MomentCreation;
 	
-	@Column(name="moment_sla", length=100, nullable=false)
-	private LocalDateTime col13MomentSLA;
+	@Column(name="moment_sla", length=100)
+	private LocalDateTime col14MomentSLA;
 	
-	@Column(name="moment_fin", length=100, nullable=false)
-	private LocalDateTime col14MomentFin;
+	@Column(name="moment_fin", length=100)
+	private LocalDateTime col15MomentFin;
 	
-	@Column(name="notes", length=100, nullable=false)
-	private String col15Notes;
-	
-	@Column(name="message_resolution", length=100, nullable=false)
+	@Column(name="message_resolution", length=100)
 	private String col16MessageResolution;
 	
-	
-	/* Constructeurs par defaut et parametrique */
+	// ==== CONSTRUCTEURS PAR DEFAUT & PARAMETRIQUE ====
 	public Incident() {
 		super();
 	}
 	
-	public Incident(String col03AgentInitial, String col04Demandeur, String col06Categorie, String col09Produit,
-			String col10Sujet, String col11Description) {
+	public Incident(
+			String col03Prioriteh,
+			String col04AgentInitial, String col05Demandeur, String col06Etat, String col07Categorie,
+			String col08EquipeEnCharge, String col11Sujet, String col12Description) {
 		
 		super();
-		this.col03AgentInitial = col03AgentInitial;
-		this.col04Demandeur = col04Demandeur;
-		this.col06Categorie = col06Categorie;
-		this.col09Produit = col09Produit;
-		this.col10Sujet = col10Sujet;
-		this.col11Description = col11Description;
+		this.col01IdIncident = null;
+		//this.col02NumeroIncident = col02NumeroIncident;
+		this.col03Prioriteh = col03Prioriteh;
+		this.col04AgentInitial = col04AgentInitial;
+		this.col05Demandeur = col05Demandeur;
+		this.col06Etat = col06Etat;
+		this.col07Categorie = col07Categorie;
+		this.col08EquipeEnCharge = col08EquipeEnCharge;
+		this.col11Sujet = col11Sujet;
+		this.col12Description = col12Description;
+		this.col13MomentCreation = null;
 	}
 	
+	// ==== LA METHODE TOSTRING ====
 	@Override
 	public String toString() {
-		
 		return "Incident [col01IdIncident=" + col01IdIncident + ", col02NumeroIncident=" + col02NumeroIncident
-				+ ", col03AgentInitial=" + col03AgentInitial + ", col04Demandeur=" + col04Demandeur + ", col05Etat="
-				+ col05Etat + ", col06Categorie=" + col06Categorie + ", col07EquipeEnCharge=" + col07EquipeEnCharge
-				+ ", col08AgentEnCharge=" + col08AgentEnCharge + ", col09Produit=" + col09Produit + ", col10Sujet="
-				+ col10Sujet + ", col11Description=" + col11Description + ", col12MomentCreation=" + col12MomentCreation
-				+ ", col13MomentSLA=" + col13MomentSLA + ", col14MomentFin=" + col14MomentFin + ", col15Notes="
-				+ col15Notes + ", col16MessageResolution=" + col16MessageResolution + "]";
+				+ ", col03Prioriteh=" + col03Prioriteh + ", col04AgentInitial=" + col04AgentInitial
+				+ ", col05Demandeur=" + col05Demandeur + ", col06Etat=" + col06Etat + ", col07Categorie="
+				+ col07Categorie + ", col08EquipeEnCharge=" + col08EquipeEnCharge + ", col09AgentEnCharge="
+				+ col09AgentEnCharge + ", col10NomProduit=" + col10NomProduit + ", col11Sujet=" + col11Sujet
+				+ ", col12Description=" + col12Description + ", col13MomentCreation=" + col13MomentCreation
+				+ ", col14MomentSLA=" + col14MomentSLA + ", col15MomentFin=" + col15MomentFin
+				+ ", col16MessageResolution=" + col16MessageResolution + "]";
 	}
 	
-	
-	//======================================= GETTERS & SETTERS //
+	// ==== GETTERS & SETTERS ====
 	public Integer getCol01IdIncident() {
 		return col01IdIncident;
 	}
@@ -122,108 +128,108 @@ public class Incident implements Serializable {
 		this.col02NumeroIncident = col02NumeroIncident;
 	}
 	
-	public String getCol03AgentInitial() {
-		return col03AgentInitial;
+	public String getCol03Prioriteh() {
+		return col03Prioriteh;
 	}
 	
-	public void setCol03AgentInitial(String col03AgentInitial) {
-		this.col03AgentInitial = col03AgentInitial;
+	public void setCol03Prioriteh(String col03Prioriteh) {
+		this.col03Prioriteh = col03Prioriteh;
 	}
 	
-	public String getCol04Demandeur() {
-		return col04Demandeur;
+	public String getCol04AgentInitial() {
+		return col04AgentInitial;
 	}
 	
-	public void setCol04Demandeur(String col04Demandeur) {
-		this.col04Demandeur = col04Demandeur;
+	public void setCol04AgentInitial(String col04AgentInitial) {
+		this.col04AgentInitial = col04AgentInitial;
 	}
 	
-	public String getCol05Etat() {
-		return col05Etat;
+	public String getCol05Demandeur() {
+		return col05Demandeur;
 	}
 	
-	public void setCol05Etat(String col05Etat) {
-		this.col05Etat = col05Etat;
+	public void setCol05Demandeur(String col05Demandeur) {
+		this.col05Demandeur = col05Demandeur;
 	}
 	
-	public String getCol06Categorie() {
-		return col06Categorie;
+	public String getCol06Etat() {
+		return col06Etat;
 	}
 	
-	public void setCol06Categorie(String col06Categorie) {
-		this.col06Categorie = col06Categorie;
+	public void setCol06Etat(String col06Etat) {
+		this.col06Etat = col06Etat;
 	}
 	
-	public String getCol07EquipeEnCharge() {
-		return col07EquipeEnCharge;
+	public String getCol07Categorie() {
+		return col07Categorie;
 	}
 	
-	public void setCol07EquipeEnCharge(String col07EquipeEnCharge) {
-		this.col07EquipeEnCharge = col07EquipeEnCharge;
+	public void setCol07Categorie(String col07Categorie) {
+		this.col07Categorie = col07Categorie;
 	}
 	
-	public String getCol08AgentEnCharge() {
-		return col08AgentEnCharge;
+	public String getCol08EquipeEnCharge() {
+		return col08EquipeEnCharge;
 	}
 	
-	public void setCol08AgentEnCharge(String col08AgentEnCharge) {
-		this.col08AgentEnCharge = col08AgentEnCharge;
+	public void setCol08EquipeEnCharge(String col08EquipeEnCharge) {
+		this.col08EquipeEnCharge = col08EquipeEnCharge;
 	}
 	
-	public String getCol09Produit() {
-		return col09Produit;
+	public String getCol09AgentEnCharge() {
+		return col09AgentEnCharge;
 	}
 	
-	public void setCol09Produit(String col09Produit) {
-		this.col09Produit = col09Produit;
+	public void setCol09AgentEnCharge(String col09AgentEnCharge) {
+		this.col09AgentEnCharge = col09AgentEnCharge;
 	}
 	
-	public String getCol10Sujet() {
-		return col10Sujet;
+	public String getCol10NomProduit() {
+		return col10NomProduit;
 	}
 	
-	public void setCol10Sujet(String col10Sujet) {
-		this.col10Sujet = col10Sujet;
+	public void setCol10NomProduit(String col10NomProduit) {
+		this.col10NomProduit = col10NomProduit;
 	}
 	
-	public String getCol11Description() {
-		return col11Description;
+	public String getCol11Sujet() {
+		return col11Sujet;
 	}
 	
-	public void setCol11Description(String col11Description) {
-		this.col11Description = col11Description;
+	public void setCol11Sujet(String col11Sujet) {
+		this.col11Sujet = col11Sujet;
 	}
 	
-	public LocalDateTime getCol12MomentCreation() {
-		return col12MomentCreation;
+	public String getCol12Description() {
+		return col12Description;
 	}
 	
-	public void setCol12MomentCreation(LocalDateTime col12MomentCreation) {
-		this.col12MomentCreation = col12MomentCreation;
+	public void setCol12Description(String col12Description) {
+		this.col12Description = col12Description;
 	}
 	
-	public LocalDateTime getCol13MomentSLA() {
-		return col13MomentSLA;
+	public LocalDateTime getCol13MomentCreation() {
+		return col13MomentCreation;
 	}
 	
-	public void setCol13MomentSLA(LocalDateTime col13MomentSLA) {
-		this.col13MomentSLA = col13MomentSLA;
+	public void setCol13MomentCreation(LocalDateTime col13MomentCreation) {
+		this.col13MomentCreation = col13MomentCreation;
 	}
 	
-	public LocalDateTime getCol14MomentFin() {
-		return col14MomentFin;
+	public LocalDateTime getCol14MomentSLA() {
+		return col14MomentSLA;
 	}
 	
-	public void setCol14MomentFin(LocalDateTime col14MomentFin) {
-		this.col14MomentFin = col14MomentFin;
+	public void setCol14MomentSLA(LocalDateTime col14MomentSLA) {
+		this.col14MomentSLA = col14MomentSLA;
 	}
 	
-	public String getCol15Notes() {
-		return col15Notes;
+	public LocalDateTime getCol15MomentFin() {
+		return col15MomentFin;
 	}
 	
-	public void setCol15Notes(String col15Notes) {
-		this.col15Notes = col15Notes;
+	public void setCol15MomentFin(LocalDateTime col15MomentFin) {
+		this.col15MomentFin = col15MomentFin;
 	}
 	
 	public String getCol16MessageResolution() {
@@ -233,5 +239,4 @@ public class Incident implements Serializable {
 	public void setCol16MessageResolution(String col16MessageResolution) {
 		this.col16MessageResolution = col16MessageResolution;
 	}
-	//===========================================================//
 }
