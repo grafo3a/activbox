@@ -1,7 +1,7 @@
 package net.apasajb.activbox.controllers;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +43,7 @@ public class IncidentsController {
 	public String ajouterIncident(Model model, @ModelAttribute("incidentRetour") Incident newIncident) {
 		
 		LocalDateTime momentCreation = LocalDateTime.now();
+		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
 		newIncident.setCol13MomentCreation(momentCreation);
 		
 		// On ecrit l'entiteh en BDD
