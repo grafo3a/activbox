@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.apasajb.activbox.entities.Incident;
 import net.apasajb.activbox.repositories.IncidentRepository;
@@ -26,8 +25,8 @@ public class IncidentsController {
 	@Autowired
 	IncidentRepository incidentRepository;
 	
-	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE
-	 * ------------------------------------------------ */
+	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST
+	 * ---------------------------------------------------------- */
 	
 	@GetMapping("/nouvel-incident")
 	public String initIncidentForm(Model model) {
@@ -37,10 +36,9 @@ public class IncidentsController {
 		return "nouvel-incident.html";
 	}
 	
-	// Ici les donnees proviennent d'un formulaire qui provient aussi de la methode get ci-dessus.
+	/* Ici les donnees proviennent d'un formulaire qui provient aussi de la methode get ci-dessus. */
 	@PostMapping("/nouvel-incident")
-	@ResponseBody    // Ici on retourne des donnees brutes (au lieu d'un template)
-	public String ajouterIncident(Model model, @ModelAttribute("incidentRetour") Incident newIncident) {
+	public String ajouterIncident(Model model, @ModelAttribute("incidentAller") Incident newIncident) {
 		
 		LocalDateTime momentCreation = LocalDateTime.now();
 		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
@@ -69,6 +67,6 @@ public class IncidentsController {
 		);
 		System.out.println("---------------------------------------------\n");
 		
-		return "Super, tout s'est bien passé.";
+		return "affichage-incident.html";
 	}
 }
