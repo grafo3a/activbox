@@ -2,8 +2,6 @@ package net.apasajb.activbox.controllers;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import net.apasajb.activbox.entities.Incident;
 import net.apasajb.activbox.repositories.IncidentRepository;
+import net.apasajb.activbox.services.IncidentsService;
 
 
 /**
@@ -24,6 +23,9 @@ public class IncidentsController {
 	
 	@Autowired
 	IncidentRepository incidentRepository;
+	
+	@Autowired
+	IncidentsService incidentsService;
 	
 	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST
 	 * ---------------------------------------------------------- */
@@ -45,14 +47,25 @@ public class IncidentsController {
 		newIncident.setCol13MomentCreation(momentCreation);
 		
 		// On ecrit l'entiteh en BDD
-		incidentRepository.save(newIncident);
-		System.out.println("\nAjout nouvel incident OK");
+		Incident incidentEnBdd = incidentRepository.save(newIncident);
 		
+		System.out.println("\nAjout nouvel incident OK. ID: " + incidentEnBdd.getCol01IdIncident());
+		
+		// On met a jour du numero de ticket
+		int idIncident = incidentEnBdd.getCol01IdIncident();
+		String numeroIncident = incidentsService.genererNumeroIncident(idIncident);
+		incidentEnBdd.setCol02NumeroIncident(numeroIncident);
+		incidentRepository.save(incidentEnBdd);
+		
+		System.out.println("\n-> Numero nouvel incident: " + incidentEnBdd.getCol02NumeroIncident());
+		
+		/*
 		List<Incident> listeIncidents = new ArrayList<Incident>();
 		listeIncidents = incidentRepository.findAll();
 		
 		listeIncidents.forEach((p) -> System.out.println(
 				"\n---------------------------------------------"
+				+ "\n-- Numero: " + p.getCol01IdIncident()
 				+ "\n-- Prioriteh: " + p.getCol03Prioriteh()
 				+ "\n-- Agent: " + p.getCol04AgentInitial()
 				+ "\n-- Demandeur: " + p.getCol05Demandeur()
@@ -66,6 +79,7 @@ public class IncidentsController {
 				+ "\n-- Moment creation: " + p.getCol13MomentCreation())
 		);
 		System.out.println("---------------------------------------------\n");
+		*/
 		
 		return "affichage-incident.html";
 	}
