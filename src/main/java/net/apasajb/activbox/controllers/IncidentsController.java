@@ -81,6 +81,6 @@ public class IncidentsController {
 		System.out.println("---------------------------------------------\n");
 		*/
 		
-		return "affichage-incident.html";
+		return "details-incident.html";
 	}
 }
