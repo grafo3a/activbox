@@ -3,15 +3,23 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Formulaire ThymeLeaf</title>
+<meta charset="UTF-8"></meta>
+<title>[ActivBox] Nouvel incident</title>
+
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/bootstrap-icons.css" />
+<link rel="stylesheet" href="css/main.css" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<!--
+<script type="text/javascript" src="js/main.js"></script>
+-->
 </head>
 
 <body>
 
 <!--==== FORMULAIRE D'UN NOUVEL INCIDENT ====-->
 <!-- On precise l'objet qui sera constituee par les donnees du formulaire.
-	Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "pax" du modele.
+	Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "incidentAller" du modele.
 	Ici le modele envoyee par la methode get est present. -->
 
 <form action="#" th:action="@{/nouvel-incident}" th:object="${incidentAller}" method="post">
@@ -65,6 +73,11 @@
         </tr>
     </table>
 </form>
+
+
+<p>
+<a href="/">Retour à l'accueil</a>
+</p>
 
 
 </body>

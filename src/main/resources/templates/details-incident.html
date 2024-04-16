@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8"></meta>
-<title>Details incident</title>
+<title>[ActivBox] Details incident</title>
 
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/bootstrap-icons.css" />
@@ -16,7 +16,35 @@
 </head>
 
 <body>
-<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
+
+<!--==== RECHERCHE D'UN INCIDENT ====-->
+
+<h1>Bienvenue sur ActivBox</h1>
+
+
+<form action="details-incident" method="post">
+
+<label>Numero de ticket: </label>
+
+<input type="text" id="numeroTicket" name="numeroTicket" />
+
+<input type="submit" value="Submit" />
+
+</form>
+
+<div th:if="${messageErreur} != null">
+<span class="text-danger" th:text="${messageErreur}"></span>
+</div>
+<div th:if="${messageSucces} != null">
+<span class="text-success" th:text="${messageSucces}"></span>
+</div>
+
+
+<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====
+
+<div th:unless="${incidentAller} == null">
+-->
+<div th:if="${incidentAller} != null">
 
 <div class="container row m-4">
 <h1>Details d'un incident</h1>
@@ -104,10 +132,12 @@
 <div class="cadre" th:text="${incidentAller.col16MessageResolution}"></div>
 </div>
 
-
-<div class="container row m-4">
-<a href="nouvel-incident">Recommencer</a>
 </div>
+
+
+<p>
+<a href="/">Retour à l'accueil</a>
+</p>
 
 
 </body>

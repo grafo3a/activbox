@@ -2,13 +2,14 @@ package net.apasajb.activbox.controllers;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import net.apasajb.activbox.entities.Incident;
 import net.apasajb.activbox.repositories.IncidentRepository;
@@ -27,60 +28,72 @@ public class IncidentsController {
 	@Autowired
 	IncidentsService incidentsService;
 	
-	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST
-	 * ---------------------------------------------------------- */
+	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
 	
 	@GetMapping("/nouvel-incident")
-	public String initIncidentForm(Model model) {
+	public ModelAndView afficherFormulaireNouvelIncident() {
 		
-		model.addAttribute("incidentAller", new Incident());
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("nouvel-incident.html");
+		modelAndView.addObject("incidentAller", new Incident());
 		
-		return "nouvel-incident.html";
+		return modelAndView;
 	}
 	
-	/* Ici les donnees proviennent d'un formulaire qui provient aussi de la methode get ci-dessus. */
 	@PostMapping("/nouvel-incident")
-	public String ajouterIncident(Model model, @ModelAttribute("incidentAller") Incident newIncident) {
+	public ModelAndView ajouterIncident(Incident newIncident) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("details-incident.html");
 		
 		LocalDateTime momentCreation = LocalDateTime.now();
 		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
 		newIncident.setCol13MomentCreation(momentCreation);
 		
-		// On ecrit l'entiteh en BDD
+		// On ecrit l'entité en BDD
 		Incident incidentEnBdd = incidentRepository.save(newIncident);
 		
-		System.out.println("\nAjout nouvel incident OK. ID: " + incidentEnBdd.getCol01IdIncident());
-		
-		// On met a jour du numero de ticket
+		/* On met à jour le numero de ticket en BDD */
 		int idIncident = incidentEnBdd.getCol01IdIncident();
 		String numeroIncident = incidentsService.genererNumeroIncident(idIncident);
 		incidentEnBdd.setCol02NumeroIncident(numeroIncident);
 		incidentRepository.save(incidentEnBdd);
 		
-		System.out.println("\n-> Numero nouvel incident: " + incidentEnBdd.getCol02NumeroIncident());
+		modelAndView.addObject("incidentAller", incidentEnBdd);
+		modelAndView.addObject("messageSucces", "-- Incident créé correctement: " + numeroIncident);
 		
-		/*
-		List<Incident> listeIncidents = new ArrayList<Incident>();
-		listeIncidents = incidentRepository.findAll();
+		return modelAndView;
+	}
+	
+	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
+	
+	@GetMapping("/details-incident")
+	public ModelAndView afficherFormulaireDetailsIncident() {
 		
-		listeIncidents.forEach((p) -> System.out.println(
-				"\n---------------------------------------------"
-				+ "\n-- Numero: " + p.getCol01IdIncident()
-				+ "\n-- Prioriteh: " + p.getCol03Prioriteh()
-				+ "\n-- Agent: " + p.getCol04AgentInitial()
-				+ "\n-- Demandeur: " + p.getCol05Demandeur()
-				+ "\n-- Etat: " + p.getCol06Etat()
-				+ "\n-- Categorie: " + p.getCol07Categorie()
-				+ "\n-- Equipe en charge: " + p.getCol08EquipeEnCharge()
-				+ "\n-- Agent en charge: " + p.getCol09AgentEnCharge()
-				+ "\n-- Nom produit: " + p.getCol10NomProduit()
-				+ "\n-- Sujet: " + p.getCol11Sujet()
-				+ "\n-- Description: " + p.getCol12Description()
-				+ "\n-- Moment creation: " + p.getCol13MomentCreation())
-		);
-		System.out.println("---------------------------------------------\n");
-		*/
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("details-incident.html");
 		
-		return "details-incident.html";
+		return modelAndView;
+	}
+	
+	@PostMapping("/details-incident")
+	public ModelAndView trouver1Ticket(
+			@RequestParam("numeroTicket") String paramNumeroTicket) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		try {
+			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroIncident(paramNumeroTicket);
+			Incident incidentTrouveh = listeIncidents.get(0);
+			modelAndView.addObject("incidentAller", incidentTrouveh);
+			
+		} catch (Exception ex) {
+			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + paramNumeroTicket);
+			
+		} finally {
+			modelAndView.setViewName("details-incident.html");
+		}
+		
+		return modelAndView;
 	}
 }
