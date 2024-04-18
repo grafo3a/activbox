@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<title>[ActivBox] Details incident</title>
+
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/bootstrap-icons.css" />
+<link rel="stylesheet" href="css/main.css" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<!--
+<script type="text/javascript" src="js/main.js"></script>
+-->
+</head>
+
+<body>
+
+<!--==== RECHERCHE D'UN INCIDENT ====-->
+
+<h1>Bienvenue sur ActivBox</h1>
+<p>
+<b>Liste d'incidents</b>
+</p>
+
+<form action="liste-incidents" method="post">
+
+<label>Mot clef incidents: </label>
+
+<input type="text" id="motClef" name="motClef" />
+
+<input type="submit" value="Submit" />
+</form>
+
+<div th:if="${messageErreur} != null">
+<span class="text-danger" th:text="${messageErreur}"></span>
+</div>
+<div th:if="${messageSucces} != null">
+<span class="text-success" th:text="${messageSucces}"></span>
+</div>
+
+
+<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
+<div th:if="${listeIncidents} != null">
+
+<div class="container row m-4">
+
+<!--==== Colonne A ====-->
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+<table class="table table-striped table-sm">
+<tbody>
+    <tr th:each="inc: ${listeIncidents}">
+        <td th:text="${inc.col02NumeroIncident}" />
+        <td th:text="${inc.col03Prioriteh}" />
+        <td th:text="${inc.col04AgentInitial}" />
+        <td th:text="${inc.col05Demandeur}" />
+        
+    </tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+
+<p>
+<a href="/">Retour à l'accueil</a>
+</p>
+
+
+</body>
+</html>

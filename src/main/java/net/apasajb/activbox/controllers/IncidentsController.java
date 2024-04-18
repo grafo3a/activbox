@@ -77,10 +77,11 @@ public class IncidentsController {
 	}
 	
 	@PostMapping("/details-incident")
-	public ModelAndView trouver1Ticket(
+	public ModelAndView rechercher1Incident(
 			@RequestParam("numeroTicket") String paramNumeroTicket) {
 		
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("details-incident.html");
 		
 		try {
 			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroIncident(paramNumeroTicket);
@@ -89,9 +90,37 @@ public class IncidentsController {
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + paramNumeroTicket);
+		}
+		
+		return modelAndView;
+	}
+	
+	
+	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
+	
+	@GetMapping("/liste-incidents")
+	public ModelAndView afficherFormulaireListeIncidents() {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("liste-incidents.html");
+		
+		return modelAndView;
+	}
+	
+	@PostMapping("/liste-incidents")
+	public ModelAndView rechercherListeIncidents(
+			@RequestParam("motClef") String paramMotClef) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("liste-incidents.html");
+		
+		try {
+			// A adater
+			List<Incident> listeIncidents = incidentRepository.findAll();
+			modelAndView.addObject("listeIncidents", listeIncidents);
 			
-		} finally {
-			modelAndView.setViewName("details-incident.html");
+		} catch (Exception ex) {
+			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + paramMotClef);
 		}
 		
 		return modelAndView;
