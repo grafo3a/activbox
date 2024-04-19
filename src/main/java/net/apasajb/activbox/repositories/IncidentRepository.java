@@ -3,6 +3,7 @@ package net.apasajb.activbox.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import net.apasajb.activbox.entities.Incident;
 
 
@@ -21,4 +22,9 @@ public interface IncidentRepository extends JpaRepository<Incident, Integer> {
 	 */
 	List<Incident> findByCol02NumeroIncident(String col02NumeroIncident);
 	
+	/**
+	 * Recherche une liste d'incidents sur base d'un mot-clef.<br/>
+	 * La recherche s'effectue sur la colonne du sujet.
+	 */
+	List<Incident> findByCol11SujetContaining(String motClef);
 }

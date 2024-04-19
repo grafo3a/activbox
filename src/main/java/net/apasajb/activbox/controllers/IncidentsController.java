@@ -115,8 +115,8 @@ public class IncidentsController {
 		modelAndView.setViewName("liste-incidents.html");
 		
 		try {
-			// A adater
-			List<Incident> listeIncidents = incidentRepository.findAll();
+			List<Incident> listeIncidents = incidentRepository.findByCol11SujetContaining(paramMotClef);
+			
 			modelAndView.addObject("listeIncidents", listeIncidents);
 			
 		} catch (Exception ex) {
