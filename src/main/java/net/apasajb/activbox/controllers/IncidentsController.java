@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.apasajb.activbox.entities.Incident;
 import net.apasajb.activbox.repositories.IncidentRepository;
+import net.apasajb.activbox.services.IncidentNotesService;
 import net.apasajb.activbox.services.IncidentsService;
 
 
@@ -27,6 +28,9 @@ public class IncidentsController {
 	
 	@Autowired
 	IncidentsService incidentsService;
+	
+	@Autowired
+	IncidentNotesService incidentNotesService;
 	
 	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
 	
@@ -60,8 +64,26 @@ public class IncidentsController {
 		incidentRepository.save(incidentEnBdd);
 		
 		/* On enregistre une note initiale
-		 * -------------------------------
-		 * --------------------------------*/
+		 * -------------------------------- */
+		String messageEventInitial = "* Nouvel incident creeh: " + numeroIncident
+				+ "\nAuteur: " + incidentEnBdd.getCol04AgentInitial()
+				+ "\nDate de creation: " + incidentEnBdd.getCol13MomentCreation();
+		
+		/* Pour test: on enregistre la note 2 fois automatiquement */
+		incidentNotesService.addIncidentNote(numeroIncident, messageEventInitial);
+		incidentNotesService.addIncidentNote(numeroIncident, messageEventInitial);
+		
+		List<String> listeNotes = incidentNotesService.getToutesNotesPourIncident(numeroIncident);
+		
+		System.out.println("\n-----------------------------------");
+		
+		for (String note : listeNotes) {
+			System.out.println("-> note: " + note);
+		}
+		
+		System.out.println("-----------------------------------\n");
+		
+		/* -------------------------------- */
 		
 		modelAndView.addObject("incidentAller", incidentEnBdd);
 		modelAndView.addObject("messageSucces", "-- Incident créé correctement: " + numeroIncident);
