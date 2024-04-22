@@ -3,6 +3,9 @@ package net.apasajb.activbox.services;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * Comporte des methodes pour les incidents.
+ */
 @Component
 public class IncidentsService {
 	

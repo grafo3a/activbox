@@ -17,7 +17,7 @@ import net.apasajb.activbox.services.IncidentsService;
 
 
 /**
- * Controleur pour les incidents
+ * Controleur pour les incidents.
  */
 @Controller
 public class IncidentsController {
@@ -58,6 +58,10 @@ public class IncidentsController {
 		String numeroIncident = incidentsService.genererNumeroIncident(idIncident);
 		incidentEnBdd.setCol02NumeroIncident(numeroIncident);
 		incidentRepository.save(incidentEnBdd);
+		
+		/* On enregistre une note initiale
+		 * -------------------------------
+		 * --------------------------------*/
 		
 		modelAndView.addObject("incidentAller", incidentEnBdd);
 		modelAndView.addObject("messageSucces", "-- Incident créé correctement: " + numeroIncident);
@@ -116,7 +120,6 @@ public class IncidentsController {
 		
 		try {
 			List<Incident> listeIncidents = incidentRepository.findByCol11SujetContaining(paramMotClef);
-			
 			modelAndView.addObject("listeIncidents", listeIncidents);
 			
 		} catch (Exception ex) {
