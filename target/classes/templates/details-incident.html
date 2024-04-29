@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8"></meta>
-<title>[ActivBox] Details incident</title>
+<title>[ActivBox] Détails incident</title>
 
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/bootstrap-icons.css" />
@@ -24,7 +24,7 @@
 
 <form action="details-incident" method="post">
 
-<label>Numero de ticket: </label>
+<label>Numéro de ticket: </label>
 
 <input type="text" id="numeroTicket" name="numeroTicket" />
 
@@ -47,7 +47,7 @@
 <div th:if="${incidentAller} != null">
 
 <div class="container row m-4">
-<h1>Details d'un incident</h1>
+<h1>Détails d'un incident</h1>
 </div>
 
 
@@ -57,8 +57,8 @@
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 <div class="row">
-<span class="col-5 cadre">Numero de ticket</span>
-<span class="col-5 cadre" th:text="${incidentAller.col02NumeroIncident}"></span>
+<span class="col-5 cadre">Numéro de ticket</span>
+<span class="col-5 cadre" th:text="${incidentAller.col02NumeroTicket}"></span>
 
 
 <span class="col-5 cadre">Agent initial</span>
@@ -68,14 +68,14 @@
 <span class="col-5 cadre" th:text="${incidentAller.col05Demandeur}"></span>
 
 <span class="col-5 cadre">Equipe-en-charge</span>
-<span class="col-5 cadre" th:text="${incidentAller.col08EquipeEnCharge}"></span>
+<span class="col-5 cadre" th:text="${incidentAller.col12EquipeEnCharge}"></span>
 
 
 <span class="col-5 cadre">Agent-en-charge</span>
-<span class="col-5 cadre" th:text="${incidentAller.col09AgentEnCharge}"></span>
+<span class="col-5 cadre" th:text="${incidentAller.col13AgentEnCharge}"></span>
 
-<span class="col-5 cadre">Moment-de-creation</span>
-<span class="col-5 cadre" th:text="${incidentAller.col13MomentCreation}"></span>
+<span class="col-5 cadre">Moment-de-création</span>
+<span class="col-5 cadre" th:text="${incidentAller.col09MomentCreation}"></span>
 </div>
 </div>
 
@@ -85,17 +85,17 @@
 
 <div class="row">
 
-<span class="col-5 cadre">Prioriteh</span>
-<span class="col-5 cadre" th:text="${incidentAller.col03Prioriteh}"></span>
+<span class="col-5 cadre">Priorité</span>
+<span class="col-5 cadre" th:text="${incidentAller.col10Prioriteh}"></span>
 
 <span class="col-5 cadre">Etat</span>
-<span class="col-5 cadre" th:text="${incidentAller.col06Etat}"></span>
+<span class="col-5 cadre" th:text="${incidentAller.col11Etat}"></span>
 
-<span class="col-5 cadre">Categorie</span>
+<span class="col-5 cadre">Catégorie</span>
 <span class="col-5 cadre" th:text="${incidentAller.col07Categorie}"></span>
 
 <span class="col-5 cadre">Code-produit</span>
-<span class="col-5 cadre" th:text="${incidentAller.col10NomProduit}"></span>
+<span class="col-5 cadre" th:text="${incidentAller.col08Produit}"></span>
 
 <span class="col-5 cadre">Moment-SLA</span>
 <span class="col-5 cadre" th:text="${incidentAller.col14MomentSLA}"></span>
@@ -107,12 +107,12 @@
 
 <div class="container row m-4">
 <div class="cadre">Sujet</div>
-<div class="cadre" th:text="${incidentAller.col11Sujet}"></div>
+<div class="cadre" th:text="${incidentAller.col15Sujet}"></div>
 </div>
 
 <div class="container row m-4">
 <div class="cadre">Description</div>
-<div class="cadre" th:text="${incidentAller.col12Description}"></div>
+<div class="cadre" th:text="${incidentAller.col16Description}"></div>
 </div>
 
 
@@ -121,18 +121,55 @@
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 <div class="row">
 <span class="col-5 cadre">Moment-fin</span>
-<span class="col-5 cadre" th:text="${incidentAller.col15MomentFin}"></span>
+<span class="col-5 cadre" th:text="${incidentAller.col17MomentFin}"></span>
 </div>
 </div>
 </div>
 
 
 <div class="container row m-4">
-<div class="cadre">Message-de-resolution</div>
-<div class="cadre" th:text="${incidentAller.col16MessageResolution}"></div>
+<div class="cadre">Message-de-résolution</div>
+<div class="cadre" th:text="${incidentAller.col18MessageResolution}"></div>
 </div>
 
+
+
+
+<!--==== MANIP DE NOTES ====-->
+
+<div>
+<form action="new-note-incident" method="post">
+
+<label>Ajoutez une note: </label>
+<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
+		th:value="${incidentAller.col02NumeroTicket}">
+
+<input type="hidden" id="col04Auteur" name="col04Auteur"
+		th:value="${auteurActuel}">
+
+<input type="text" id="col05Message" name="col05Message" />
+
+<input type="submit" value="Valider" />
+
+</form>
 </div>
+
+
+<!--==== AFFICHAGE DE NOTES ====-->
+<h2>Notes</h2>
+<table class="table table-striped table-sm mt-4">
+<tbody>
+    <tr th:each="tableauNote: ${listeNotes}">
+        <td th:text="${tableauNote[0]}" />
+        <td th:text="${tableauNote[1]}" />
+    </tr>
+</tbody>
+</table>
+
+</div>
+
+
+
 
 
 <p>

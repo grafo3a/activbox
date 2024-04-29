@@ -20,11 +20,11 @@ public interface IncidentRepository extends JpaRepository<Incident, Integer> {
 	/**
 	 * Recherche un incident sur base d'un numero de ticket.
 	 */
-	List<Incident> findByCol02NumeroIncident(String col02NumeroIncident);
+	List<Incident> findByCol02NumeroTicket(String col02NumeroTicket);
 	
 	/**
 	 * Recherche une liste d'incidents sur base d'un mot-clef.<br/>
 	 * La recherche s'effectue sur la colonne du sujet.
 	 */
-	List<Incident> findByCol11SujetContaining(String motClef);
+	List<Incident> findByCol15SujetContaining(String motClef);
 }

@@ -29,7 +29,7 @@ public class IncidentNote implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer col01IdNoteIncident;
 	
-	@Column(name="numero", length=20)
+	@Column(name="numero", length=20, nullable=false)
 	private String col02NumeroIncident;
 	
 	@Column(name="moment_creation", length=30)

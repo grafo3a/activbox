@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.apasajb.activbox.entities.Incident;
+import net.apasajb.activbox.entities.IncidentNote;
 import net.apasajb.activbox.repositories.IncidentRepository;
 import net.apasajb.activbox.services.IncidentNotesService;
 import net.apasajb.activbox.services.IncidentsService;
@@ -50,41 +51,32 @@ public class IncidentsController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("details-incident.html");
 		
+		/* On ajoute la date & l'heure de création */
 		LocalDateTime momentCreation = LocalDateTime.now();
 		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
-		newIncident.setCol13MomentCreation(momentCreation);
+		newIncident.setCol09MomentCreation(momentCreation);
 		
-		// On ecrit l'entité en BDD
+		// On écrit l'entité en BDD
 		Incident incidentEnBdd = incidentRepository.save(newIncident);
 		
-		/* On met à jour le numero de ticket en BDD */
-		int idIncident = incidentEnBdd.getCol01IdIncident();
+		/* On met à jour le numéro de ticket en BDD */
+		int idIncident = incidentEnBdd.getCol01Id();
 		String numeroIncident = incidentsService.genererNumeroIncident(idIncident);
-		incidentEnBdd.setCol02NumeroIncident(numeroIncident);
+		incidentEnBdd.setCol02NumeroTicket(numeroIncident);
 		incidentRepository.save(incidentEnBdd);
 		
-		/* On enregistre une note initiale
-		 * -------------------------------- */
-		String messageEventInitial = "* Nouvel incident creeh: " + numeroIncident
-				+ "\nAuteur: " + incidentEnBdd.getCol04AgentInitial()
-				+ "\nDate de creation: " + incidentEnBdd.getCol13MomentCreation();
+		/* On enregistre une note initiale */
+		String auteurNote = incidentEnBdd.getCol04AgentInitial();
+		String messageNoteInitial = "Nouvel incident [" + numeroIncident
+				+ "] créé par " + auteurNote;
 		
-		/* Pour test: on enregistre la note 2 fois automatiquement */
-		incidentNotesService.addIncidentNote(numeroIncident, messageEventInitial);
-		incidentNotesService.addIncidentNote(numeroIncident, messageEventInitial);
+		IncidentNote incidentNote = new IncidentNote(numeroIncident, momentCreation, auteurNote, messageNoteInitial);
+		incidentNotesService.ajouterNoteIncident(incidentNote);
+		List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(numeroIncident);
+		modelAndView.addObject("listeNotes", listeNotes);
 		
-		List<String> listeNotes = incidentNotesService.getToutesNotesPourIncident(numeroIncident);
-		
-		System.out.println("\n-----------------------------------");
-		
-		for (String note : listeNotes) {
-			System.out.println("-> note: " + note);
-		}
-		
-		System.out.println("-----------------------------------\n");
-		
-		/* -------------------------------- */
-		
+		/* On informe l'utilisateur */
+		modelAndView.addObject("auteurActuel", "Grafo55");
 		modelAndView.addObject("incidentAller", incidentEnBdd);
 		modelAndView.addObject("messageSucces", "-- Incident créé correctement: " + numeroIncident);
 		
@@ -110,9 +102,13 @@ public class IncidentsController {
 		modelAndView.setViewName("details-incident.html");
 		
 		try {
-			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroIncident(paramNumeroTicket);
+			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(paramNumeroTicket);
 			Incident incidentTrouveh = listeIncidents.get(0);
 			modelAndView.addObject("incidentAller", incidentTrouveh);
+			
+			List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramNumeroTicket);
+			modelAndView.addObject("listeNotes", listeNotes);
+			modelAndView.addObject("auteurActuel", "Grafo55");
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + paramNumeroTicket);
@@ -120,7 +116,6 @@ public class IncidentsController {
 		
 		return modelAndView;
 	}
-	
 	
 	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
 	
@@ -141,11 +136,49 @@ public class IncidentsController {
 		modelAndView.setViewName("liste-incidents.html");
 		
 		try {
-			List<Incident> listeIncidents = incidentRepository.findByCol11SujetContaining(paramMotClef);
+			List<Incident> listeIncidents = incidentRepository.findByCol15SujetContaining(paramMotClef);
 			modelAndView.addObject("listeIncidents", listeIncidents);
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + paramMotClef);
+		}
+		
+		return modelAndView;
+	}
+	
+	/* MANIPULATION DE NOTES */
+	
+	@PostMapping("/new-note-incident")
+	public ModelAndView ajouterNoteIncident(IncidentNote incidentNote) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("details-incident.html");
+		
+		String numeroIncident = incidentNote.getCol02NumeroIncident();
+		boolean isIncidentPresent = false;
+		int idIncident = 0;
+		
+		// Vérif si incident présent en BDD
+		try {
+			idIncident = incidentRepository.findByCol02NumeroTicket(numeroIncident).get(0).getCol01Id();
+			isIncidentPresent = (idIncident > 0) ? true : false;
+			
+		} catch (Exception ignore) {}
+		
+		if (isIncidentPresent) {
+			/* Si l'entité est présente en BDD */
+			
+			incidentNotesService.ajouterNoteIncident(incidentNote);
+			List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(numeroIncident);
+			modelAndView.addObject("listeNotes", listeNotes);
+			
+			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(numeroIncident);
+			Incident incidentTrouveh = listeIncidents.get(0);
+			modelAndView.addObject("incidentAller", incidentTrouveh);
+			modelAndView.addObject("auteurActuel", "Grafo55");
+			
+		} else {
+			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + numeroIncident);
 		}
 		
 		return modelAndView;

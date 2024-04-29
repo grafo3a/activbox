@@ -21,13 +21,13 @@ public class IncidentNotesService {
 	@Autowired
 	IncidentNoteRepository incidentNoteRepository;
 	
-	public void addIncidentNote(String numeroIncident, String message) {
+	public void ajouterNoteIncident(IncidentNote incidentNote) {
 		
-		IncidentNote incidentNote = new IncidentNote();
-		incidentNote.setCol02NumeroIncident(numeroIncident);
+		//IncidentNote incidentNote = new IncidentNote();
+		//incidentNote.setCol02NumeroIncident(numeroIncident);
 		
-		incidentNote.setCol04Auteur("Auteur Grafo");    // A faire evoluer
-		incidentNote.setCol05Message(message);
+		//incidentNote.setCol04Auteur("Auteur Grafo");    // A faire evoluer
+		//incidentNote.setCol05Message(message);
 		
 		LocalDateTime momentCreation = LocalDateTime.now();
 		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
@@ -36,18 +36,20 @@ public class IncidentNotesService {
 		incidentNoteRepository.save(incidentNote);
 	}
 	
-	public List<String> getToutesNotesPourIncident(String numeroIncident){
+	public List<String[]> getToutesNotesPourIncident(String numeroIncident){
 		
-		String messageAffichable = null;
-		List<String> listeMessagesAffichables = new ArrayList<String>();
+		//String[] messageAffichable = new String[2];
+		List<String[]> listeMessagesAffichables = new ArrayList<String[]>();
 		List<IncidentNote> listeNotesIncident = incidentNoteRepository.findByCol02NumeroIncidentIgnoreCase(numeroIncident);
 		
 		/* Formattage des notes dans un message exploitable */
 		for (IncidentNote incidentNote : listeNotesIncident) {
 			
-			messageAffichable = incidentNote.getCol03MomentCreation()
-					+ " (" + incidentNote.getCol04Auteur() + ")\n"
-					+ incidentNote.getCol05Message();
+			String[] messageAffichable = new String[2];
+			
+			messageAffichable[0] = incidentNote.getCol03MomentCreation()
+					+ " " + incidentNote.getCol04Auteur();
+			messageAffichable[1] = incidentNote.getCol05Message();
 			
 			listeMessagesAffichables.add(messageAffichable);
 		}
