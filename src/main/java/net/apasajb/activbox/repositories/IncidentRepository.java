@@ -3,6 +3,7 @@ package net.apasajb.activbox.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import net.apasajb.activbox.entities.Incident;
 
@@ -27,4 +28,10 @@ public interface IncidentRepository extends JpaRepository<Incident, Integer> {
 	 * La recherche s'effectue sur la colonne du sujet.
 	 */
 	List<Incident> findByCol15SujetContaining(String motClef);
+	
+	/**
+	 * Recherche la liste des incidents actifs dans une equipe.
+	 */
+	@Query("FROM Incident WHERE col12EquipeEnCharge =?1 AND col11Etat != 'clos'")
+	List<Incident> findListeIncidentsEtatOuvert(String equipeEnCharge);
 }
