@@ -33,6 +33,8 @@ public class IncidentsController {
 	@Autowired
 	IncidentNotesService incidentNotesService;
 	
+	String statutInitial = "Nouveau";
+	
 	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
 	
 	@GetMapping("/nouvel-incident")
@@ -56,6 +58,9 @@ public class IncidentsController {
 		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
 		newIncident.setCol09MomentCreation(momentCreation);
 		
+		// On ajoute un statut initial
+		newIncident.setCol11Etat(statutInitial);
+		 
 		// On écrit l'entité en BDD
 		Incident incidentEnBdd = incidentRepository.save(newIncident);
 		
