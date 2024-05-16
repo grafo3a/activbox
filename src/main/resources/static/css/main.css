@@ -1,9 +1,13 @@
-
+/*
 .affichage {
 	color: green;
 }
-
+*/
 
 .cadre {
-	border: 1px solid green;
+	border-bottom: 1px solid green;
+}
+
+.editable {
+	
 }
