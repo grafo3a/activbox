@@ -187,10 +187,33 @@
 		</div>
 		
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			
 			<div class="row">
 				<div class="cadre">Message-de-résolution</div>
 				<div th:text="${incidentAller.col18MessageResolution}"></div>
 			</div>
+			
+			<form action="resolution-incident" method="post">
+				
+				<div class="form-group">
+					<!--
+					<label for="col05Message">Message-de-résolution</label>
+					 -->
+					<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
+							th:value="${incidentAller.col02NumeroTicket}">
+							
+					<input type="hidden" id="col04Auteur" name="col04Auteur"
+							th:value="${auteurActuel}">
+							
+					<textarea class="form-control" rows="1" id="col05Message" name="col05Message"></textarea>
+					
+					<div class="row">
+						<span class="col-6 border">
+							<input type="submit" value="Valider" class="plein" />
+						</span>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 	
