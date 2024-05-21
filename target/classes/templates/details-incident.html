@@ -22,15 +22,24 @@
 <div class="m-4">
 	<h1>Bienvenue sur ActivBox</h1>
 	
+	<div class="row">
+	<!--==== Colonne A ====-->
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
+	
+	<!--==== Colonne A ====-->
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 	<form action="details-incident" method="post">
 	
-	<label>Numéro de ticket: </label>
-	
-	<input type="text" id="numeroTicket" name="numeroTicket" />
-	
-	<input type="submit" value="Submit" />
-	
+		<div class="form-group row">
+			<label for="numeroTicket" class="col text-end">Numéro de ticket: </label>
+			
+			<input type="text" id="numeroTicket" name="numeroTicket" class="col" />
+			
+			<input type="submit" value="Submit" class="col" />
+		</div>
 	</form>
+	</div>
+	</div>
 	
 	<div th:if="${messageErreur} != null">
 	<span class="text-danger" th:text="${messageErreur}"></span>
