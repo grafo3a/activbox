@@ -16,6 +16,7 @@ import net.apasajb.activbox.entities.IncidentNote;
 import net.apasajb.activbox.repositories.IncidentRepository;
 import net.apasajb.activbox.services.IncidentNotesService;
 import net.apasajb.activbox.services.IncidentsService;
+import net.apasajb.activbox.services.TicketService;
 
 
 /**
@@ -32,6 +33,9 @@ public class IncidentsController {
 	
 	@Autowired
 	IncidentNotesService incidentNotesService;
+	
+	@Autowired
+	TicketService ticketService;
 	
 	String statutInitial = "Nouveau";
 	
@@ -60,7 +64,7 @@ public class IncidentsController {
 		
 		// On ajoute un statut initial
 		newIncident.setCol11Etat(statutInitial);
-		 
+		
 		// On écrit l'entité en BDD
 		Incident incidentEnBdd = incidentRepository.save(newIncident);
 		
@@ -83,7 +87,7 @@ public class IncidentsController {
 		/* On informe l'utilisateur */
 		modelAndView.addObject("auteurActuel", "Grafo55");
 		modelAndView.addObject("incidentAller", incidentEnBdd);
-		modelAndView.addObject("messageSucces", "-- Incident créé correctement: " + numeroIncident);
+		modelAndView.addObject("messageSucces", "Incident créé correctement: " + numeroIncident);
 		
 		return modelAndView;
 	}
@@ -116,7 +120,7 @@ public class IncidentsController {
 			modelAndView.addObject("auteurActuel", "Grafo55");
 			
 		} catch (Exception ex) {
-			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + paramNumeroTicket);
+			modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + paramNumeroTicket);
 		}
 		
 		return modelAndView;
@@ -145,11 +149,83 @@ public class IncidentsController {
 			modelAndView.addObject("listeIncidents", listeIncidents);
 			
 		} catch (Exception ex) {
-			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + paramMotClef);
+			modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + paramMotClef);
 		}
 		
 		return modelAndView;
 	}
+	
+	/* MODIFICATION DE DONNEES D'UN INCIDENT */
+	
+	@PostMapping("/modif-incident")
+	public ModelAndView modifierDonneesIncident(
+			@RequestParam("col02NumeroIncident") String paramNumeroIncident,
+			@RequestParam("col04Auteur") String paramAuteur,
+			@RequestParam("col10Prioriteh") String paramPrioriteh,
+			@RequestParam("col11Etat") String paramEtat,
+			@RequestParam("col12EquipeEnCharge") String paramEquipeEnCharge,
+			@RequestParam("col13AgentEnCharge") String paramAgentEnCharge) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("details-incident.html");
+		
+		String messageNote = "Modifications:";
+		
+		try {
+			Incident incident = incidentRepository.findByCol02NumeroTicket(paramNumeroIncident).get(0);
+			
+			if (!paramPrioriteh.isBlank() && !incident.getCol10Prioriteh().equals(paramPrioriteh)) {
+				
+				messageNote = messageNote + " Priorité [" + incident.getCol10Prioriteh() + " -> " + paramPrioriteh + "];";
+				incident.setCol10Prioriteh(paramPrioriteh);
+			}
+			
+			if (!paramEtat.isBlank() && !incident.getCol11Etat().equals(paramEtat)) {
+				
+				messageNote = messageNote + " Etat [" + incident.getCol11Etat() + " -> " + paramEtat + "];";
+				incident.setCol11Etat(paramEtat);
+			}
+			
+			if (!paramEquipeEnCharge.isBlank() && !incident.getCol12EquipeEnCharge().equals(paramEquipeEnCharge)) {
+				
+				messageNote = messageNote + " Equipe en Charge [" + incident.getCol12EquipeEnCharge() + " -> " + paramEquipeEnCharge + "];";
+				incident.setCol12EquipeEnCharge(paramEquipeEnCharge);
+			}
+			
+			if (!paramAgentEnCharge.isBlank() & incident.getCol13AgentEnCharge() != paramAgentEnCharge) {
+				
+				messageNote = messageNote + " Agent en charge [" + incident.getCol13AgentEnCharge() + " -> " + paramAgentEnCharge + "];";
+				incident.setCol13AgentEnCharge(paramAgentEnCharge);
+			}
+			
+			/* Si au moins une donnée change, on enregistre la modification
+			 * et on ajoute une note en BDD.
+			 */
+			if (!paramPrioriteh.isBlank() || !paramEquipeEnCharge.isBlank() ||
+					!paramAgentEnCharge.isBlank() || !paramEtat.isBlank()) {
+				
+				incidentRepository.save(incident);
+				LocalDateTime momentActuel = ticketService.getMomentActuel();
+				String utilisateurActuel = ticketService.getUtilisateurActuel();
+				
+				IncidentNote incidentNote = new IncidentNote(paramNumeroIncident, momentActuel, utilisateurActuel, messageNote);
+				incidentNotesService.ajouterNoteIncident(incidentNote);
+			}
+			
+			modelAndView.addObject("incidentAller", incident);
+			
+		} catch (Exception ex) {
+			modelAndView.addObject("messageErreur", "ERREUR: " + ex.getMessage());
+		}
+		
+		/* On affiche toutes les notes du ticket actuel */
+		List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramNumeroIncident);
+		modelAndView.addObject("listeNotes", listeNotes);
+		
+		return modelAndView;
+	}
+	
+	// @PostMapping("/cloture-incident")
 	
 	/* MANIPULATION DE NOTES */
 	
@@ -163,7 +239,7 @@ public class IncidentsController {
 		boolean isIncidentPresent = false;
 		int idIncident = 0;
 		
-		// Vérif si incident présent en BDD
+		/* Vérif si incident présent en BDD */
 		try {
 			idIncident = incidentRepository.findByCol02NumeroTicket(numeroIncident).get(0).getCol01Id();
 			isIncidentPresent = (idIncident > 0) ? true : false;
@@ -183,7 +259,7 @@ public class IncidentsController {
 			modelAndView.addObject("auteurActuel", "Grafo55");
 			
 		} else {
-			modelAndView.addObject("messageErreur", "-- INFO: Aucun ticket trouvé pour " + numeroIncident);
+			modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + numeroIncident);
 		}
 		
 		return modelAndView;

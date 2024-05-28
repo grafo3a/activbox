@@ -23,31 +23,31 @@
 	<h1>Bienvenue sur ActivBox</h1>
 	
 	<div class="row">
-	<!--==== Colonne A ====-->
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
-	
-	<!--==== Colonne A ====-->
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-	<form action="details-incident" method="post">
-	
-		<div class="form-group row">
-			<label for="numeroTicket" class="col text-end">Numéro de ticket: </label>
-			
-			<input type="text" id="numeroTicket" name="numeroTicket" class="col" />
-			
-			<input type="submit" value="Submit" class="col" />
+		<!--==== Colonne A ====-->
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
+		
+		<!--==== Colonne A ====-->
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<form action="details-incident" method="post">
+		
+			<div class="form-group row">
+				<label for="numeroTicket" class="col-12">Numéro de ticket</label>
+				
+				<input type="text" id="numeroTicket" name="numeroTicket" class="col" />
+				
+				<input type="submit" value="Submit" class="col" />
+			</div>
+		</form>
+		
+		<div th:if="${messageErreur} != null" class="text-end">
+		<span class="text-danger" th:text="${messageErreur}"></span>
 		</div>
-	</form>
+		<div th:if="${messageSucces} != null" class="text-end">
+		<span class="text-success" th:text="${messageSucces}"></span>
+		</div>
+		
+		</div>
 	</div>
-	</div>
-	
-	<div th:if="${messageErreur} != null">
-	<span class="text-danger" th:text="${messageErreur}"></span>
-	</div>
-	<div th:if="${messageSucces} != null">
-	<span class="text-success" th:text="${messageSucces}"></span>
-	</div>
-
 </div>
 
 <!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
@@ -83,8 +83,6 @@
 		
 		<span class="col-5 cadre">Code-produit</span>
 		<span class="col-5 cadre" th:text="${incidentAller.col08Produit}"></span>
-		
-		
 		
 		<span class="col-5 cadre">Moment-de-création</span>
 		<span class="col-5 cadre" th:text="${incidentAller.col09MomentCreation}"></span>
@@ -134,7 +132,7 @@
 	
 	<!-- Colonne B -->
 	<form action="modif-incident" method="post" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-	
+		
 		<div class="row">
 		
 		<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
@@ -181,7 +179,6 @@
 	
 	<div class="row mt-4">
 		
-		
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			
 			<div class="row">
@@ -189,7 +186,7 @@
 				<div th:text="${incidentAller.col18MessageResolution}"></div>
 			</div>
 			
-			<form action="resolution-incident" method="post">
+			<form action="cloture-incident" method="post">
 				
 				<div class="form-group">
 					<!--
@@ -210,6 +207,10 @@
 					</div>
 				</div>
 			</form>
+			
+			<div th:if="${messageErreurCloture} != null" class="text-end">
+				<span class="text-danger" th:text="${messageErreurCloture}"></span>
+			</div>
 		</div>
 		
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -220,7 +221,7 @@
 			</div>
 			<div class="row">
 				<span class="col-5 cadre">Moment-SLA</span>
-				<span class="col-5 cadre" th:text="${incidentAller.col17MomentFin}"></span>
+				<span class="col-5 cadre" th:text="${incidentAller.col14MomentSLA}"></span>
 			</div>
 			<div class="row">
 				<span class="col-5 cadre">Temps-restant-SLA</span>

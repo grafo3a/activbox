@@ -23,12 +23,6 @@ public class IncidentNotesService {
 	
 	public void ajouterNoteIncident(IncidentNote incidentNote) {
 		
-		//IncidentNote incidentNote = new IncidentNote();
-		//incidentNote.setCol02NumeroIncident(numeroIncident);
-		
-		//incidentNote.setCol04Auteur("Auteur Grafo");    // A faire evoluer
-		//incidentNote.setCol05Message(message);
-		
 		LocalDateTime momentCreation = LocalDateTime.now();
 		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
 		incidentNote.setCol03MomentCreation(momentCreation);
@@ -38,7 +32,6 @@ public class IncidentNotesService {
 	
 	public List<String[]> getToutesNotesPourIncident(String numeroIncident){
 		
-		//String[] messageAffichable = new String[2];
 		List<String[]> listeMessagesAffichables = new ArrayList<String[]>();
 		List<IncidentNote> listeNotesIncident = incidentNoteRepository.findByCol02NumeroIncidentIgnoreCase(numeroIncident);
 		
