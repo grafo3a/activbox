@@ -225,7 +225,47 @@ public class IncidentsController {
 		return modelAndView;
 	}
 	
-	// @PostMapping("/cloture-incident")
+	@PostMapping("/cloture-incident")
+	public ModelAndView cloreIncident(
+			@RequestParam("col02NumeroIncident") String paramNumeroIncident,
+			@RequestParam("col04Auteur") String paramAuteur,
+			@RequestParam("col05Message") String paramMessage) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("details-incident.html");
+		
+		Incident incident = incidentRepository.findByCol02NumeroTicket(paramNumeroIncident).get(0);
+		
+		if (!paramMessage.isBlank()) {
+			
+			incident.setCol18MessageResolution(paramMessage);
+			incident.setCol11Etat("Clos");
+			
+		} else {
+			modelAndView.addObject("messageErreurCloture", "Un message de fin est necessaire pour cloturer ce ticket!");
+		}
+		
+		LocalDateTime momentActuel = ticketService.getMomentActuel();
+		
+		/* on enregistre les modifications dans la BDD */
+		incident.setCol18MessageResolution(paramMessage);
+		incident.setCol17MomentFin(momentActuel);
+		incidentRepository.save(incident);
+		modelAndView.addObject("incidentAller", incident);
+		
+		/* On ajoute une note */
+		String messageNote = "[Cloture du ticket] " + paramMessage;
+		
+		String utilisateurActuel = ticketService.getUtilisateurActuel();
+		IncidentNote incidentNote = new IncidentNote(paramNumeroIncident, momentActuel, utilisateurActuel, messageNote);
+		incidentNotesService.ajouterNoteIncident(incidentNote);
+		
+		/* On affiche toutes les notes du ticket actuel */
+		List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramNumeroIncident);
+		modelAndView.addObject("listeNotes", listeNotes);
+		
+		return modelAndView;
+	}
 	
 	/* MANIPULATION DE NOTES */
 	
