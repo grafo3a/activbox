@@ -186,7 +186,8 @@
 				<div th:text="${incidentAller.col18MessageResolution}"></div>
 			</div>
 			
-			<form action="cloture-incident" method="post">
+			<form action="cloture-incident" method="post"
+					th:if="${incidentAller.col18MessageResolution} == null">
 				
 				<div class="form-group">
 					<!--
