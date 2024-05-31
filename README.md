@@ -1,7 +1,10 @@
 # ActivBox
-When completed, this app will be a user-friendly open-source service ticketing tool.
 
-## Tech stack
+## Presentation
+When completed, this app will be a user-friendly open-source IT service ticketing tool.
+
+## Technical aspects
+### Tech stack
 The following technologies are used in this project:
 
 - Java 17
