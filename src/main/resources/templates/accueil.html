@@ -10,26 +10,17 @@
 <link rel="stylesheet" href="css/bootstrap-icons.css" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="icon" type="image/png" href="favicon.png" />
-<!--
-<script type="text/javascript" src="js/main.js"></script>
--->
+<!-- <script type="text/javascript" src="js/main.js"></script> -->
 </head>
 
-<body>
-<!--==== RECHERCHE D'UN INCIDENT ====-->
+<body class="bg-light">
 
-<h1>Bienvenue sur ActivBox</h1>
+<header th:insert="fragments/entete.html">
+<!-- <div th:replace="fragments/entete.html :: footer"></div> -->
+</header>
 
-<h5>Incidents</h5>
 
-<p>
-<a href="nouvel-incident">Nouvel incident</a>
-<br/>
-<a href="details-incident">Details d'un incident</a>
-<br/>
-<a href="liste-incidents">Rechercher incidents</a>
-</p>
-
+<main>
 
 <!--==== AFFICHAGE D'UNE LISTE D'INCIDENTS OUVERTS ====-->
 
@@ -64,6 +55,9 @@
 <div th:if="${listeIncidents} == null">
 <i>Aucun incident trouvé</i>
 </div>
+</main>
 
+
+<footer class="text-center" th:insert="fragments/pied-de-page.html"></footer>
 
 </body>

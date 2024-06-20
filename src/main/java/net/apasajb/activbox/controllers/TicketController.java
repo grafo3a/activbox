@@ -22,7 +22,7 @@ public class TicketController {
 	@GetMapping("/")
 	public ModelAndView commencer() {
 		
-		ModelAndView modelAndView = new ModelAndView("/accueil.html");
+		ModelAndView modelAndView = new ModelAndView("accueil.html");
 		
 		// A adapter
 		equipeUtilisateur = "Linux";
