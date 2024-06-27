@@ -21,54 +21,67 @@
 	/* background-color:#D9EEE1;
 	color:black!important; */
 	
-	background-color: #D9EEE1;
+	/*background-color: rgb(245, 250, 240);    // gris clair jaunatre */
 }
 
-/*
-.bg-vert-moyen {
-	// background-color: deepskyblue; //
-	// background-color: #a8d8bd; vert moyen
-	background-color: #D9EEE1;//
+
+.paddings-standard {
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 10px;
 }
 
-.bg-bleu-moyen {
-	//background-color: #edc9af; // desert sand	
-	background-color: #e8e4c9;  //
-	background-color: #edc9af;
-}
-
-.bg-orangeatre {
-	background-color: #fdf6f1; // desert sand light //
-}
-*/
 
 footer {
 	/*background-color: #d8e4bc;
 	background-color: #D9EEE1;
-
+	*/
+	
+	background-color: #cbe5f5;    /* bleu clair light corn flower */
 }
+
 
 .actif {
 	color: tomato;
 }
 
 .menu01 {
-	background-color: #8bbe1b;   /* dark lemon lime */
-	
+	background-color: rgb(100, 200, 100);
 }
+
+
+.height50pc {
+	position: relative;
+	height: 50%;
+}
+
+.height60pc {
+	position: relative;
+	height: 45%;
+}
+
 
 .entete {
-	background-color: white;
+	
+	/* background-color: rgb(245, 250, 240);    // gris clair jaunatre */
+	background-color: #D9EEE1;
+	border-bottom: 2px solid white;
+	overflow: visible;
 }
 
+.bg-gris-claire {
+	background-color: rgb(255, 255, 255);
+}
+
+
 .left-rounded {
-	border-top-left-radius: 30px;
-	border-bottom-left-radius: 30px;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
 }
 
 .right-rounded {
-	border-top-right-radius: 30px;
-	border-bottom-right-radius: 30px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
 }
 
 /* POSITIONNEMENT PIED-DE-PAGE EN BAS
