@@ -92,7 +92,8 @@ public class IncidentsController {
 		return modelAndView;
 	}
 	
-	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
+	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST
+	//================================================
 	
 	@GetMapping("/details-incident")
 	public ModelAndView afficherFormulaireDetailsIncident() {
@@ -125,8 +126,11 @@ public class IncidentsController {
 		
 		return modelAndView;
 	}
+	================================================//
+	*/
 	
-	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
+	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST
+	//=============================================================
 	
 	@GetMapping("/liste-incidents")
 	public ModelAndView afficherFormulaireListeIncidents() {
@@ -154,6 +158,85 @@ public class IncidentsController {
 		
 		return modelAndView;
 	}
+	=========================================================//
+	*/
+	
+	@PostMapping("/recherche-incident")
+	public ModelAndView rechercherTicket(
+			@RequestParam("motClef") String paramMotClef) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		String regexIncident = "^[Ii][Nn][0-9]{8}$";			//=> IN00000000
+		String regexDemandeChangement = "^[Dd][Cc][0-9]{8}$";	//=> DC00000000
+		String regexDemandeInfo = "^[Dd][Ii][0-9]{8}$";			//=> DI00000000
+		String regexDemandeSolution = "^[Dd][Ss][0-9]{8}$";		//=> DS00000000
+		String regexTache = "^[Tt][Aa][0-9]{8}$";				//=> TA00000000
+		String regexProjet = "^[Pp][Rr][0-9]{8}$";				//=> PR00000000
+		
+		if (paramMotClef.isBlank()) {
+			
+			modelAndView.setViewName("details-incident.html");
+			modelAndView.addObject("messageErreur", "Aucun numero ou mot-clef fourni!");
+			
+		} else if (paramMotClef.matches(regexIncident)) {
+			// Cas d'un incident
+			
+			modelAndView.setViewName("details-incident.html");
+			
+			try {
+				List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(paramMotClef);
+				Incident incidentTrouveh = listeIncidents.get(0);
+				modelAndView.addObject("incidentAller", incidentTrouveh);
+				
+				List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramMotClef);
+				modelAndView.addObject("listeNotes", listeNotes);
+				// A FAIRE EVOLUER
+				modelAndView.addObject("auteurActuel", "Grafo55");
+				
+			} catch (Exception ex) {
+				modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour le numero: " + paramMotClef);
+			}
+			
+			
+		/*
+		 * ==== AUTRES CAS A ACTIVER SUR BESOIN ====
+		
+		} else if (paramMotClef.matches(regexDemandeChangement)) {
+			// Cas d'une demande
+			
+		} else if (paramMotClef.matches(regexDemandeInfo)) {
+			// Cas d'une demande d'info
+			
+		} else if (paramMotClef.matches(regexDemandeSolution)) {
+			// Cas d'une demande d'une solution durable
+			
+		} else if (paramMotClef.matches(regexTache)) {
+			// Cas d'une tache
+			
+		} else if (paramMotClef.matches(regexProjet)) {
+			// cas d'un projet
+		*
+		*/
+			
+		} else {
+			// Cas d'un mot-clef quelconque
+			
+			modelAndView.setViewName("liste-incidents.html");
+			
+			try {
+				List<Incident> listeIncidents = incidentRepository.findByCol15SujetContaining(paramMotClef);
+				modelAndView.addObject("listeIncidents", listeIncidents);
+				
+			} catch (Exception ex) {
+				modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + paramMotClef);
+			}
+		}
+		
+		return modelAndView;
+	}
+	
+	
 	
 	/* MODIFICATION DE DONNEES D'UN INCIDENT */
 	

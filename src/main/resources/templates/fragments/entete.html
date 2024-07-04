@@ -1,38 +1,60 @@
-<div class="row entete">
+<div class="row entete" xmlns:th="http://www.thymeleaf.org">
 	
-	<!--// Le logo //-->
+	<!--// Colonne A (logo) //-->
 	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 paddings-standard">
 		
 		<h1>ActivBox</h1>
 		
 	</div>
 	 
-	
-	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 paddings-standard">
+	<!--// Colonne B (menus) //-->
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 text-center paddings-standard">
 		
 		<!--// Zone menus Ligne 01 //-->
-		<div class="row text-center height60pc">
+		<div class="row">
 			
-			<!-- une zone vide -->
+			<!-- Une zone vide -->
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
 			
-			<a href="/" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 border border-success">Connexion</a>
-			<a href="/" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 border border-success">Contact</a>
-			<a href="/" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 border border-success">Info</a>
+			<!-- zone infos compte -->
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-end">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 pb-2">grafo_tria@pax.com</div>
+					<a href="liste-incidents" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 pb-2">Déconnexion</a>
+				</div>
+			</div>
 		</div>
-		
 		
 		<!--// Zone menus Ligne 02 //-->
-		<div class="row height50pc">
-			<a href="/" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 menu01 left-rounded border border-success">Accueil</a>
+		<div class="row mt-1">
 			
-			<a href="details-incident" class="col-xs-12 col-sm-12 col-md-2 menu01 col-lg-2 border border-success">Details d'un ticket</a>
+			<!-- La recherche d'un ticket -->
+			<form action="recherche-incident" method="post" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 p-0">
+				<table class="form-group width100pc">
+					<tr>
+						<td>
+							<input type="text" id="motClef" name="motClef" placeholder="Numero ou mot-clef" class="form-control" />
+						</td>
+						<td>
+							<input type="submit" value="Rechercher" class="btn menu02 left-rounded right-rounded border width100pc" />
+						</td>
+					</tr>
+				</table>
+			</form>
 			
-			<a href="nouvel-incident" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 menu01 border border-success">Creation d'un ticket</a>
-			
-			<a href="liste-incidents" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 menu01 right-rounded border border-success">Recherche de tickets</a>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-end text-success">
+				
+				<div class="row height100pc">
+					
+					<!-- Une zone vide -->
+					<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+					
+					<a href="/" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 left-rounded border border-success">Accueil</a>
+					<a href="nouvel-incident" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 border border-success">Nouveau</a>
+					<a href="details-incident" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 right-rounded border border-success">Filtres</a>
+				</div>
+			</div>
 		</div>
-		
 	</div>
 </div>
 
