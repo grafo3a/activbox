@@ -13,18 +13,20 @@
 <!-- <script type="text/javascript" src="js/main.js"></script> -->
 </head>
 
-<body class="bg-light-green">
+<body>
+<div class="contenu">
 
 <header th:insert="fragments/entete.html">
-<!-- <div th:replace="fragments/entete.html :: footer"></div> -->
+<!-- <div th:replace="fragments/entete.html :: header"></div> -->
 </header>
 
 
-<main>
+<main class="paddings-standard">
 
 <!--==== AFFICHAGE D'UNE LISTE D'INCIDENTS OUVERTS ====-->
 
 <h5>Liste des incidents ouverts</h5>
+
 
 <div th:if="${listeIncidents} != null">
 
@@ -58,6 +60,8 @@
 </main>
 
 
+
 <footer th:insert="fragments/pied-de-page.html"></footer>
 
+</div>
 </body>

@@ -9,12 +9,14 @@
 }
 
 .editable {
-	
+	/* background-color: rgb(240, 240, 240); */
 }
 
+/*
 .plein {
 	width: 100%;
 }
+*/
 
 .paddings-standard {
 	padding-left: 40px;
@@ -22,16 +24,11 @@
 	padding-top: 10px;
 }
 
-footer {
-	background-color: #cbe5f5;    /* bleu clair light corn flower */
-}
-
 .actif {
 	color: tomato;
 }
 
 .menu01 {
-	
 	background-color: #cbe5f5;    /* bleu clair light corn flower */
 }
 
@@ -55,6 +52,11 @@ footer {
 .height100pc {
 	position: relative;
 	height: 100%;
+}
+
+.height100pc-menu {
+	position: relative;
+	height: 100%;
 	padding-top: 2px;
 	padding-bottom: 2px;
 }
@@ -64,12 +66,21 @@ footer {
 	width: 100%;
 }
 
+/* L'ENTETE */
+
+header {
+	position: relative;
+}
+
 .entete {
-	
 	/* background-color: rgb(245, 250, 240);    // gris clair jaunatre */
 	background-color: #D9EEE1;
 	border-bottom: 2px solid white;
 	overflow: visible;
+	
+	position: relative;
+	margin: 0px;
+	padding: 0px;
 }
 
 .bg-gris-claire {
@@ -86,23 +97,93 @@ footer {
 	border-bottom-right-radius: 25px;
 }
 
-/* POSITIONNEMENT PIED-DE-PAGE EN BAS
+/* CORPS */
+main {
+	border: 1px solid orange;
+}
+
+/* PIED DE PAGE */
+
+.bg-bleu-clair {
+	background-color: #cbe5f5;    /* bleu clair light corn flower */
+}
+
+/*
+.paddings-footer {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+*/
+
+.menu-footer {
+	position: relative;
+	min-height: 50%;
+}
+
+/* 
+.pied-de-page {
+	//background-color: #cbe5f5;    bleu clair light corn flower //
+	
+	height: 90%;
+}
+*/
+ 
+.zone10px {
+	padding-bottom: 10px;
+	
+	border: 1px solid red;
+}
+
+/* DISPOSITION EN 3 BLOCS
 -------------------------------------- */
 
 html {
-	position: relative;
-	min-height: 100%;
+	height: 100%;    /* occuppe tout l'espace disponible de la page*/
+	width: 100%;
 }
 
 body {
-	margin-bottom: 120px;    /* La hauteur du pied-de-page */
+	position: relative;
+	min-height: 100%;
+	margin-left: 20px;
+	margin-right: 20px;
+	
+	/* padding-bottom: 160px;    La hauteur du pied-de-page */
 }
+
+
+.contenu {
+	
+	position: relative;
+	width: 100%;
+	min-height: 100svh;
+	min-height: 100vh;
+	
+	padding-bottom: 160px;    /* La hauteur du pied-de-page */
+	
+	margin-top: 10px;
+	
+	background-color: rgb(240, 240, 240);    /* gris faible */
+	
+	border: 1px solid green;
+}
+
 
 footer {
 	position: absolute;
 	bottom: 0;
+	
 	width: 100%;
-	height: 120px;    /* La hauteur du pied-de-page */
-	/* line-height: 120px; // Vertically centers the text */
+	
+	height: 160px;    /* La hauteur du pied-de-page */
+	/* line-height: 120px; // Centrage vertical du texte */
+	
+	
+	
+	border: 1px solid blue;
 }
+
+
 /* ----------------------------------------- */
+
+/* CLASSES GENERIQUES */
