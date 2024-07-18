@@ -1,8 +1,123 @@
-/*
-.affichage {
-	color: green;
+
+/* L'ENTETE
+----------------------------*/
+
+.zone-top {
+	padding-bottom: 30px;
+	background-color: #48bf91;    /* Ocean green */
+	border-bottom: 1px solid lightGrey;
 }
-*/
+
+header {
+	position: relative;
+}
+
+.entete {
+	/* background-color: rgb(245, 250, 240);    // gris clair jaunatre */
+	background-color: #D9EEE1;
+	border-bottom: 1px solid green;
+	overflow: visible;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+}
+
+.bg-gris-claire {
+	background-color: rgb(255, 255, 255);
+}
+
+
+.left-rounded {
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+}
+
+.right-rounded {
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+}
+
+
+/* LE CORPS
+----------------------------*/
+
+main {}
+
+
+/* LE PIED DE PAGE
+----------------------------*/
+
+.bg-bleu-clair {
+	background-color: #cbe5f5;    /* bleu clair light corn flower */
+}
+
+.menu-footer {
+	position: relative;
+	min-height: 50%;
+	margin: 0px;
+	border-top: 1px solid green;
+	border-bottom: 1px solid green;
+}
+
+.zone-signature {
+	margin: 0px;
+}
+
+.zone10px {
+	padding-bottom: 15px;
+}
+
+
+/* DISPOSITION EN 3 BLOCS
+-------------------------------------- */
+
+html {
+	height: 100%;    /* occuppe tout l'espace disponible de la page */
+	width: 100%;
+}
+
+body {
+	position: relative;
+	min-height: 100%;
+	/* padding-bottom: 160px;    // La hauteur du pied-de-page */
+}
+
+.contenu {
+	position: relative;
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
+	
+	min-height: 100svh;
+	min-height: 100vh;
+	padding-bottom: 160px;    /* La hauteur du pied-de-page */
+	margin-top: -20px;    /* La partie noyee dans zone-top */
+	
+	background-color: rgb(240, 240, 240);    /* gris faible */
+	border: 1px solid grey;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 160px;    /* La hauteur du pied-de-page */
+	/* line-height: 120px; // Centrage vertical du texte */
+}
+
+
+/* CLASSES GENERIQUES
+------------------------------------------*/
+
+.border-top-radius-10px {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.border-bottom-radius-10px {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
 
 .cadre {
 	border-bottom: 1px solid green;
@@ -11,12 +126,6 @@
 .editable {
 	/* background-color: rgb(240, 240, 240); */
 }
-
-/*
-.plein {
-	width: 100%;
-}
-*/
 
 .paddings-standard {
 	padding-left: 40px;
@@ -44,7 +153,6 @@
 .width80pc {
 	position: relative;
 	width: 100%;
-	
 	display: inline-block;
 	padding-left: 0px;
 }
@@ -65,125 +173,3 @@
 	position: relative;
 	width: 100%;
 }
-
-/* L'ENTETE */
-
-header {
-	position: relative;
-}
-
-.entete {
-	/* background-color: rgb(245, 250, 240);    // gris clair jaunatre */
-	background-color: #D9EEE1;
-	border-bottom: 2px solid white;
-	overflow: visible;
-	
-	position: relative;
-	margin: 0px;
-	padding: 0px;
-}
-
-.bg-gris-claire {
-	background-color: rgb(255, 255, 255);
-}
-
-.left-rounded {
-	border-top-left-radius: 25px;
-	border-bottom-left-radius: 25px;
-}
-
-.right-rounded {
-	border-top-right-radius: 25px;
-	border-bottom-right-radius: 25px;
-}
-
-/* CORPS */
-main {
-	border: 1px solid orange;
-}
-
-/* PIED DE PAGE */
-
-.bg-bleu-clair {
-	background-color: #cbe5f5;    /* bleu clair light corn flower */
-}
-
-/*
-.paddings-footer {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-*/
-
-.menu-footer {
-	position: relative;
-	min-height: 50%;
-}
-
-/* 
-.pied-de-page {
-	//background-color: #cbe5f5;    bleu clair light corn flower //
-	
-	height: 90%;
-}
-*/
- 
-.zone10px {
-	padding-bottom: 10px;
-	
-	border: 1px solid red;
-}
-
-/* DISPOSITION EN 3 BLOCS
--------------------------------------- */
-
-html {
-	height: 100%;    /* occuppe tout l'espace disponible de la page*/
-	width: 100%;
-}
-
-body {
-	position: relative;
-	min-height: 100%;
-	margin-left: 20px;
-	margin-right: 20px;
-	
-	/* padding-bottom: 160px;    La hauteur du pied-de-page */
-}
-
-
-.contenu {
-	
-	position: relative;
-	width: 100%;
-	min-height: 100svh;
-	min-height: 100vh;
-	
-	padding-bottom: 160px;    /* La hauteur du pied-de-page */
-	
-	margin-top: 10px;
-	
-	background-color: rgb(240, 240, 240);    /* gris faible */
-	
-	border: 1px solid green;
-}
-
-
-footer {
-	position: absolute;
-	bottom: 0;
-	
-	width: 100%;
-	
-	height: 160px;    /* La hauteur du pied-de-page */
-	/* line-height: 120px; // Centrage vertical du texte */
-	
-	
-	
-	border: 1px solid blue;
-}
-
-
-/* ----------------------------------------- */
-
-/* CLASSES GENERIQUES */
