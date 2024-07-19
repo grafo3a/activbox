@@ -16,98 +16,90 @@
 </head>
 
 <body>
-
-<!--==== RECHERCHE D'UN INCIDENT ====-->
-
-<div class="m-4">
-	<h1>Bienvenue sur ActivBox</h1>
+	<div class="zone-top"></div>
 	
-	<div class="row">
-		<!--==== Colonne A ====-->
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
+	<div class="contenu border-top-radius-10px border-bottom-radius-10px">
+	
+		<header th:insert="fragments/entete.html">
+		<!-- <div th:replace="fragments/entete.html :: header"></div> -->
+		</header>
 		
-		<!--==== Colonne B ====-->
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-		<form action="details-incident" method="post">
-		
-			<div class="form-group row">
-				<label for="numeroTicket" class="col-12">Numéro de ticket</label>
-				
-				<input type="text" id="numeroTicket" name="numeroTicket" class="col" />
-				
-				<input type="submit" value="Submit" class="col" />
+		<main class="paddings-standard">
+			
+			<!-- Si ticket present -->
+			<div th:if="${messageErreur} == null" class="text-end">
+			<span class="h3" th:text="${titreTicket}"></span>
 			</div>
-		</form>
-		
-		<div th:if="${messageErreur} != null" class="text-end">
-		<span class="text-danger" th:text="${messageErreur}"></span>
-		</div>
-		<div th:if="${messageSucces} != null" class="text-end">
-		<span class="text-success" th:text="${messageSucces}"></span>
-		</div>
-		
-		</div>
-	</div>
-</div>
-
-<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
-<div th:if="${incidentAller} != null" class="m-4">
-	
-	<!--==== ZONE DETAILS ====-->
-	
-	<h5>Détails de l'incident</h5>
-	
-	<div class="row">
-		
+			
+			<!-- Si ticket absent -->
+			<div th:if="${messageErreur} != null" class="text-end">
+			<span class="text-danger" th:text="${messageErreur}"></span>
+			</div>
+			
+			<!--
+			<div th:if="${messageSucces} != null" class="text-end">
+			<span class="text-success" th:text="${messageSucces}"></span>
+			</div>
+			 -->
+			 
+			<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
+			<div th:if="${incidentAller} != null" class="m-4">
+			
+			<!--==== ZONE DETAILS ====-->
+			
+			<h5>Détails de l'incident</h5>
+			
+			<div class="row">
+			
 		<!--==== Colonne A ====-->
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 		
-		<div class="row">
-		<span class="col-5 cadre">Numéro de ticket</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col02NumeroTicket}"></span>
-		
-		<span class="col-5 cadre">Type de ticket</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col03TypeTicket}"></span>
-		
-		<span class="col-5 cadre">Agent initial</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col04AgentInitial}"></span>
-		
-		<span class="col-5 cadre">Demandeur</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col05Demandeur}"></span>
-		
-		<span class="col-5 cadre">Entreprise</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col06Entreprise}"></span>
-		
-		<span class="col-5 cadre">Catégorie</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col07Categorie}"></span>
-		
-		<span class="col-5 cadre">Code-produit</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col08Produit}"></span>
-		
-		<span class="col-5 cadre">Moment-de-création</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col09MomentCreation}"></span>
-		</div>
-		</div>
-		
-		
-		<!--==== Colonne B ====-->
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-		
-		<div class="row">
-		
-		<span class="col-5 cadre">Priorité</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col10Prioriteh}"></span>
-		
-		<span class="col-5 cadre">Etat</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col11Etat}"></span>
-		
-		<span class="col-5 cadre">Equipe-en-charge</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col12EquipeEnCharge}"></span>
-		
-		<span class="col-5 cadre">Agent-en-charge</span>
-		<span class="col-5 cadre" th:text="${incidentAller.col13AgentEnCharge}"></span>
-		
-		</div>
+			<div class="row">
+			<span class="col-5 cadre">Numéro de ticket</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col02NumeroTicket}"></span>
+			
+			<span class="col-5 cadre">Type de ticket</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col03TypeTicket}"></span>
+			
+			<span class="col-5 cadre">Agent initial</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col04AgentInitial}"></span>
+			
+			<span class="col-5 cadre">Demandeur</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col05Demandeur}"></span>
+			
+			<span class="col-5 cadre">Entreprise</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col06Entreprise}"></span>
+			
+			<span class="col-5 cadre">Catégorie</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col07Categorie}"></span>
+			
+			<span class="col-5 cadre">Code-produit</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col08Produit}"></span>
+			
+			<span class="col-5 cadre">Moment-de-création</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col09MomentCreation}"></span>
+			</div>
+			</div>
+			
+			
+			<!--==== Colonne B ====-->
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			
+			<div class="row">
+			
+			<span class="col-5 cadre">Priorité</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col10Prioriteh}"></span>
+			
+			<span class="col-5 cadre">Etat</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col11Etat}"></span>
+			
+			<span class="col-5 cadre">Equipe-en-charge</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col12EquipeEnCharge}"></span>
+			
+			<span class="col-5 cadre">Agent-en-charge</span>
+			<span class="col-5 cadre" th:text="${incidentAller.col13AgentEnCharge}"></span>
+			
+			</div>
 		</div>
 	</div>
 	
@@ -274,9 +266,12 @@
 	</table>
 	
 </div>
-	
-<div class="m-4">
-<a href="/">Retour à l'accueil</a>
+
+</main>
+
+
+<footer th:insert="fragments/pied-de-page.html"></footer>
+
 </div>
 
 </body>

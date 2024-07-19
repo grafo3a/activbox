@@ -191,8 +191,9 @@ public class IncidentsController {
 				
 				List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramMotClef);
 				modelAndView.addObject("listeNotes", listeNotes);
-				// A FAIRE EVOLUER
+				/* A FAIRE EVOLUER */
 				modelAndView.addObject("auteurActuel", "Grafo55");
+				modelAndView.addObject("titreTicket", "Ticket Incident " + incidentTrouveh.getCol02NumeroTicket());
 				
 			} catch (Exception ex) {
 				modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour le numero: " + paramMotClef);

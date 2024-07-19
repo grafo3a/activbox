@@ -17,6 +17,19 @@
 
 <body>
 
+<div class="zone-top"></div>
+
+<div class="contenu border-top-radius-10px border-bottom-radius-10px">
+
+<header th:insert="fragments/entete.html">
+<!-- <div th:replace="fragments/entete.html :: header"></div> -->
+</header>
+
+
+<main class="paddings-standard">
+
+<div class="h3">Creation d'un nouveau ticket</div>
+
 <!--==== FORMULAIRE D'UN NOUVEL INCIDENT ====-->
 <!-- On precise l'objet qui sera constituee par les donnees du formulaire.
 	Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "incidentAller" du modele.
@@ -74,11 +87,12 @@
     </table>
 </form>
 
+</main>
 
-<p>
-<a href="/">Retour à l'accueil</a>
-</p>
 
+<footer th:insert="fragments/pied-de-page.html"></footer>
+
+</div>
 
 </body>
 </html>
