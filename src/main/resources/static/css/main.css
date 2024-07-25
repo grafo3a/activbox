@@ -22,11 +22,6 @@ header {
 	padding: 0px;
 }
 
-.bg-gris-claire {
-	background-color: rgb(255, 255, 255);
-}
-
-
 .left-rounded {
 	border-top-left-radius: 25px;
 	border-bottom-left-radius: 25px;
@@ -37,11 +32,48 @@ header {
 	border-bottom-right-radius: 25px;
 }
 
+.gris-moyen {
+	background: rgb(220, 220, 220);
+}
+
+.menu-top {
+	border-top: 1px solid rgb(200, 200, 200);
+	border-bottom: 1px solid rgb(200, 200, 200);
+	
+	text-decoration: none;
+	padding-top: 3px;
+}
+
+.menu-top-left {
+	border-left: 1px solid rgb(200, 200, 200);
+}
+
+.menu-top-right {
+	border-right: 1px solid rgb(200, 200, 200);
+}
+
 
 /* LE CORPS
 ----------------------------*/
 
 main {}
+
+.titre-page {
+	border-bottom: 5px solid #48bf91;    /* Ocean Green */
+	text-align: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+
+.zone-infos {
+	border: 1px solid blue;    /*===============================TEMP */
+	margin-top: 20px;
+	min-height: 200px;
+}
+
 
 
 /* LE PIED DE PAGE
@@ -80,6 +112,10 @@ body {
 	position: relative;
 	min-height: 100%;
 	/* padding-bottom: 160px;    // La hauteur du pied-de-page */
+	
+	background-color: white;
+	
+	
 }
 
 .contenu {
@@ -93,8 +129,9 @@ body {
 	padding-bottom: 160px;    /* La hauteur du pied-de-page */
 	margin-top: -20px;    /* La partie noyee dans zone-top */
 	
-	background-color: rgb(240, 240, 240);    /* gris faible */
-	border: 1px solid grey;
+	background-color: rgb(245, 245, 245);    /* gris faible */
+	
+	
 }
 
 footer {
@@ -119,6 +156,16 @@ footer {
 	border-bottom-right-radius: 10px;
 }
 
+.not-rounded-left {
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.not-rounded-right {
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
 .cadre {
 	border-bottom: 1px solid green;
 }
@@ -128,8 +175,8 @@ footer {
 }
 
 .paddings-standard {
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
 	padding-top: 10px;
 }
 
@@ -137,13 +184,16 @@ footer {
 	color: tomato;
 }
 
+/*
 .menu01 {
-	background-color: #cbe5f5;    /* bleu clair light corn flower */
+	background-color: #cbe5f5;    // bleu clair light corn flower //
 }
 
 .menu02 {
 	background-color: rgb(100, 200, 100);
 }
+*/
+
 
 .height50pc {
 	position: relative;

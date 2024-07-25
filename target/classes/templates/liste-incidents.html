@@ -17,21 +17,25 @@
 
 <body>
 
+
 <div class="zone-top"></div>
 
 <div class="contenu border-top-radius-10px border-bottom-radius-10px">
 
-	<header th:insert="fragments/entete.html">
-	<!-- <div th:replace="fragments/entete.html :: header"></div> -->
-	</header>
-	
-	
-	<main class="paddings-standard">
-	
+<header th:insert="fragments/entete.html">
+<!-- <div th:replace="fragments/entete.html :: header"></div> -->
+</header>
+
+
+<main class="paddings-standard">
+
+<div class="border border-danger text-end pt-2 pb-2">
+	<span class="titre-page h3">Liste d'incidents</span>
+</div>
+
+<div class="zone-infos">
 	
 	<!--==== RECHERCHE D'UN INCIDENT ====-->
-	
-	<div class="h3">Liste d'incidents</div>
 	
 	<div th:if="${messageErreur} != null">
 	<span class="text-danger" th:text="${messageErreur}"></span>
@@ -68,8 +72,8 @@
 	</div>
 	</div>
 	
+	</div>
 	</main>
-	
 	
 	<footer th:insert="fragments/pied-de-page.html"></footer>
 

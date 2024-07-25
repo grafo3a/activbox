@@ -17,19 +17,27 @@
 
 <body>
 	<div class="zone-top"></div>
+
+<div class="contenu border-top-radius-10px border-bottom-radius-10px">
+
+<header th:insert="fragments/entete.html">
+<!-- <div th:replace="fragments/entete.html :: header"></div> -->
+</header>
+
+
+<main class="paddings-standard">
 	
-	<div class="contenu border-top-radius-10px border-bottom-radius-10px">
+	<!-- Si ticket present -->
+	<div th:if="${messageErreur} == null" class="border border-danger text-end pt-2 pb-2">
+		<span class="titre-page h3" th:text="${titreTicket}"></span>
+	</div>
 	
-		<header th:insert="fragments/entete.html">
-		<!-- <div th:replace="fragments/entete.html :: header"></div> -->
-		</header>
-		
-		<main class="paddings-standard">
-			
-			<!-- Si ticket present -->
-			<div th:if="${messageErreur} == null" class="text-end">
-			<span class="h3" th:text="${titreTicket}"></span>
-			</div>
+	<!-- Si ticket absent -->
+	<div th:if="${messageErreur} != null" class="border border-danger text-end pt-2 pb-2">
+		<span class="titre-page h3">Numéro de ticket inconnu</span>
+	</div>
+	
+<div class="zone-infos">
 			
 			<!-- Si ticket absent -->
 			<div th:if="${messageErreur} != null" class="text-end">
@@ -265,6 +273,9 @@
 		</tbody>
 	</table>
 	
+</div>
+
+
 </div>
 
 </main>
