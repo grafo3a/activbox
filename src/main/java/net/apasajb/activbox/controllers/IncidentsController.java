@@ -85,6 +85,9 @@ public class IncidentsController {
 		modelAndView.addObject("listeNotes", listeNotes);
 		
 		/* On informe l'utilisateur */
+		String titreTicket = "Ticket créé: incident " + incidentEnBdd.getCol02NumeroTicket();
+		modelAndView.addObject("titreTicket", titreTicket);
+		
 		modelAndView.addObject("auteurActuel", "Grafo55");
 		modelAndView.addObject("incidentAller", incidentEnBdd);
 		modelAndView.addObject("messageSucces", "Incident créé correctement: " + numeroIncident);

@@ -28,12 +28,12 @@
 <main class="paddings-standard">
 	
 	<!-- Si ticket present -->
-	<div th:if="${messageErreur} == null" class="border border-danger text-end pt-2 pb-2">
+	<div th:if="${messageErreur} == null" class="text-end pt-2 pb-2">
 		<span class="titre-page h3" th:text="${titreTicket}"></span>
 	</div>
 	
 	<!-- Si ticket absent -->
-	<div th:if="${messageErreur} != null" class="border border-danger text-end pt-2 pb-2">
+	<div th:if="${messageErreur} != null" class="text-end pt-2 pb-2">
 		<span class="titre-page h3">Numéro de ticket inconnu</span>
 	</div>
 	
@@ -55,7 +55,7 @@
 			
 			<!--==== ZONE DETAILS ====-->
 			
-			<h5>Détails de l'incident</h5>
+			<div class="h5">Détails de l'incident</div>
 			
 			<div class="row">
 			
@@ -125,7 +125,7 @@
 	
 	<div class="row mt-4">
 	
-	<h5>Modifications</h5>
+	<div class="h5">Modifications</div>
 	
 	<!-- Colonne A -->
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
@@ -175,7 +175,7 @@
 	
 	<!--==== ZONE RESOLUTION ====-->
 	
-	<h5>Resolution</h5>
+	<div class="h5">Resolution</div>
 	
 	<div class="row mt-4">
 		
@@ -233,7 +233,7 @@
 	
 	<!--==== AJOUT D'UNE NOTE ====-->
 	<div class="mt-4">
-		<h5>Notes</h5>
+		<div class="h5">Notes</div>
 		
 		<form action="new-note-incident" method="post">
 		

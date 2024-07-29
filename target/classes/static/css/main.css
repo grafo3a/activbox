@@ -15,11 +15,13 @@ header {
 .entete {
 	/* background-color: rgb(245, 250, 240);    // gris clair jaunatre */
 	background-color: #D9EEE1;
-	border-bottom: 1px solid green;
+	border-bottom: 1px solid grey;
 	overflow: visible;
 	position: relative;
 	margin: 0px;
 	padding: 0px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 .left-rounded {
@@ -39,7 +41,6 @@ header {
 .menu-top {
 	border-top: 1px solid rgb(200, 200, 200);
 	border-bottom: 1px solid rgb(200, 200, 200);
-	
 	text-decoration: none;
 	padding-top: 3px;
 }
@@ -59,21 +60,22 @@ header {
 main {}
 
 .titre-page {
-	border-bottom: 5px solid #48bf91;    /* Ocean Green */
 	text-align: right;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	color: rgb(0, 150, 0);   /* Ocean Green */
 	margin-top: 10px;
 	margin-bottom: 10px;
-	
 }
 
 .zone-infos {
-	border: 1px solid blue;    /*===============================TEMP */
-	margin-top: 20px;
-	min-height: 200px;
+	margin-top: 0px;
+	min-height: 400px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	padding: 10px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	
 }
-
 
 
 /* LE PIED DE PAGE
@@ -87,8 +89,9 @@ main {}
 	position: relative;
 	min-height: 50%;
 	margin: 0px;
-	border-top: 1px solid green;
-	border-bottom: 1px solid green;
+	padding-top: 10px;
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
 }
 
 .zone-signature {
@@ -112,10 +115,7 @@ body {
 	position: relative;
 	min-height: 100%;
 	/* padding-bottom: 160px;    // La hauteur du pied-de-page */
-	
 	background-color: white;
-	
-	
 }
 
 .contenu {
@@ -123,15 +123,11 @@ body {
 	width: 96%;
 	margin-left: 2%;
 	margin-right: 2%;
-	
 	min-height: 100svh;
 	min-height: 100vh;
 	padding-bottom: 160px;    /* La hauteur du pied-de-page */
 	margin-top: -20px;    /* La partie noyee dans zone-top */
-	
-	background-color: rgb(245, 245, 245);    /* gris faible */
-	
-	
+	background-color: rgb(240, 240, 240);    /* gris 240 */
 }
 
 footer {
