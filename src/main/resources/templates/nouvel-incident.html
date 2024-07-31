@@ -40,55 +40,43 @@
 	Ici le modele envoyee par la methode get est present. -->
 
 <form action="#" th:action="@{/nouvel-incident}" th:object="${incidentAller}" method="post">
-    <table border="1">
-        <tr>
-        	<!--
-        	//Utilisation de messages d'un paquet de ressources:
-            <td><label th:text="#{msg_Prioriteh}"></label></td>
-             -->
-            <td><label th:text="Prioriteh"></label></td>
-            <td><input type="text" th:field="*{col10Prioriteh}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><label th:text="Agent-initial"></label></td>
-            <td><input type="text" th:field="*{col04AgentInitial}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><label th:text="Demandeur"></label></td>
-            <td><input type="text" th:field="*{col05Demandeur}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><label th:text="Entreprise"></label></td>
-            <td><input type="text" th:field="*{col06Entreprise}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><label th:text="Categorie"></label></td>
-            <td><input type="text" th:field="*{col07Categorie}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><label th:text="Equipe-en-charge"></label></td>
-            <td><input type="text" th:field="*{col12EquipeEnCharge}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><label th:text="Sujet"></label></td>
-            <td><input type="text" th:field="*{col15Sujet}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><label th:text="Description"></label></td>
-            <td><input type="text" th:field="*{col16Description}"></input></td>
-        </tr>
-        
-        <tr>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
+	
+	<div class="form-group">
+		<!--
+		//Utilisation de messages d'un paquet de ressources:
+		<td><label th:text="#{msg_Prioriteh}"></label></td>
+		-->
+		
+		<label for="col10Prioriteh" th:text="Prioriteh"></label>
+		<input type="text" class="form-control" th:field="*{col10Prioriteh}" id="col10Prioriteh" name="col10Prioriteh"></input>
+		
+		<label for="col04AgentInitial" th:text="Agent-initial"></label>
+		<input type="text" class="form-control" th:field="*{col04AgentInitial}" id="col04AgentInitial" name="col04AgentInitial"></input>
+		
+		<label for="col05Demandeur" th:text="Demandeur"></label>
+		<input type="text" class="form-control" th:field="*{col05Demandeur}" id="col05Demandeur" name="col05Demandeur"></input>
+		
+        <label for="col06Entreprise" th:text="Entreprise"></label>
+		<input type="text" class="form-control" th:field="*{col06Entreprise}" id="col06Entreprise" name="col06Entreprise"></input>
+		
+		<label for="col07Categorie" th:text="Categorie"></label>
+		<input type="text" class="form-control" th:field="*{col07Categorie}" id="col07Categorie" name="col07Categorie"></input>
+		
+		<label for="col12EquipeEnCharge" th:text="Equipe-en-charge"></label>
+		<input type="text" class="form-control"
+				th:field="*{col12EquipeEnCharge}" id="col12EquipeEnCharge" name="col12EquipeEnCharge"></input>
+		
+		<label for="col15Sujet" th:text="Sujet"></label>
+		<input type="text" class="form-control"
+				th:field="*{col15Sujet}" id="col15Sujet" name="col15Sujet"></input>
+		
+		<label for="col16Description" th:text="Description"></label>
+		<input type="text" class="form-control"
+				th:field="*{col16Description}" id="col16Description" name="col16Description"></input>
+		
+		<input type="submit" value="Submit" class="width100pc" />
+		
+	</div>
 </form>
 
 </div>
