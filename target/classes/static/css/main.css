@@ -2,11 +2,24 @@
 /* L'ENTETE
 ----------------------------*/
 
+/*
 .zone-top {
 	padding-bottom: 30px;
-	background-color: #48bf91;    /* Ocean green */
+	// background-color: #48bf91;    Ocean green //
 	border-bottom: 1px solid lightGrey;
 }
+*/
+
+/*
+.zone-verte {
+	background-color: #48bf91;    // Ocean green //
+	padding-top: 5px;
+	
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+*/
+
 
 header {
 	position: relative;
@@ -15,7 +28,7 @@ header {
 .entete {
 	/* background-color: rgb(245, 250, 240);    // gris clair jaunatre */
 	background-color: #D9EEE1;
-	border-bottom: 1px solid grey;
+	border-bottom: 7px solid rgb(160, 220, 160);    /* gris 200 */
 	overflow: visible;
 	position: relative;
 	margin: 0px;
@@ -34,17 +47,22 @@ header {
 	border-bottom-right-radius: 25px;
 }
 
+/*
 .gris-moyen {
 	background: rgb(220, 220, 220);
 }
+*/
 
 .menu-top {
+	/*
 	border-top: 1px solid rgb(200, 200, 200);
 	border-bottom: 1px solid rgb(200, 200, 200);
+	*/
 	text-decoration: none;
 	padding-top: 3px;
 }
 
+/*
 .menu-top-left {
 	border-left: 1px solid rgb(200, 200, 200);
 }
@@ -52,7 +70,7 @@ header {
 .menu-top-right {
 	border-right: 1px solid rgb(200, 200, 200);
 }
-
+*/
 
 /* LE CORPS
 ----------------------------*/
@@ -71,11 +89,9 @@ main {}
 	min-height: 400px;
 	border: 1px solid grey;
 	border-radius: 5px;
-	padding: 10px;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	padding: 20px;
 	background-color: white;
-	box-shadow: 8px 5px #8dd5b5;    /* Ocean green faible */
+	/* box-shadow: 8px 5px #8dd5b5;    Ocean green faible */
 }
 
 
@@ -91,7 +107,7 @@ main {}
 	min-height: 50%;
 	margin: 0px;
 	padding-top: 10px;
-	background-color: #93ccea;    /* CornFlower */
+	background-color: #a0dde5;    /* Crystal +25% */
 }
 
 .zone-signature {
@@ -123,10 +139,11 @@ body {
 	width: 96%;
 	margin-left: 2%;
 	margin-right: 2%;
+	margin-top: 10px;
 	min-height: 100svh;
 	min-height: 100vh;
 	padding-bottom: 160px;    /* La hauteur du pied-de-page */
-	margin-top: -20px;    /* La partie noyee dans zone-top */
+	/* margin-top: -20px;    // La partie noyee dans zone-top */
 	background-color: rgb(240, 240, 240);    /* gris 240 */
 }
 
