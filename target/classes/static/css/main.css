@@ -2,25 +2,6 @@
 /* L'ENTETE
 ----------------------------*/
 
-/*
-.zone-top {
-	padding-bottom: 30px;
-	// background-color: #48bf91;    Ocean green //
-	border-bottom: 1px solid lightGrey;
-}
-*/
-
-/*
-.zone-verte {
-	background-color: #48bf91;    // Ocean green //
-	padding-top: 5px;
-	
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-}
-*/
-
-
 header {
 	position: relative;
 }
@@ -32,7 +13,7 @@ header {
 	overflow: visible;
 	position: relative;
 	margin: 0px;
-	padding: 0px;    /* #################################### */
+	padding: 0px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
@@ -47,12 +28,6 @@ header {
 	border-bottom-right-radius: 25px;
 }
 
-/*
-.gris-moyen {
-	background: rgb(220, 220, 220);
-}
-*/
-
 .menu-top {
 	/*
 	border-top: 1px solid rgb(200, 200, 200);
@@ -62,15 +37,6 @@ header {
 	padding-top: 3px;
 }
 
-/*
-.menu-top-left {
-	border-left: 1px solid rgb(200, 200, 200);
-}
-
-.menu-top-right {
-	border-right: 1px solid rgb(200, 200, 200);
-}
-*/
 
 /* LE CORPS
 ----------------------------*/
