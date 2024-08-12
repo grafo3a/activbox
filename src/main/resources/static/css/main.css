@@ -28,11 +28,11 @@ header {
 .entete {
 	/* background-color: rgb(245, 250, 240);    // gris clair jaunatre */
 	background-color: #D9EEE1;
-	border-bottom: 7px solid rgb(160, 220, 160);    /* gris 200 */
+	border-bottom: 7px solid rgb(160, 220, 160);    /**/
 	overflow: visible;
 	position: relative;
 	margin: 0px;
-	padding: 0px;
+	padding: 0px;    /* #################################### */
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
@@ -87,7 +87,7 @@ main {}
 .zone-infos {
 	margin-top: 0px;
 	min-height: 400px;
-	border: 1px solid grey;
+	border: 1px solid lightGrey;
 	border-radius: 5px;
 	padding: 20px;
 	background-color: white;
@@ -224,4 +224,8 @@ footer {
 .width100pc {
 	position: relative;
 	width: 100%;
+}
+
+.mr-10px {
+	margin-right: 10px;
 }
