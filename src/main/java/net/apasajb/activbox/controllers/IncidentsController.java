@@ -95,75 +95,6 @@ public class IncidentsController {
 		return modelAndView;
 	}
 	
-	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST
-	//================================================
-	
-	@GetMapping("/details-incident")
-	public ModelAndView afficherFormulaireDetailsIncident() {
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("details-incident.html");
-		
-		return modelAndView;
-	}
-	
-	@PostMapping("/details-incident")
-	public ModelAndView rechercher1Incident(
-			@RequestParam("numeroTicket") String paramNumeroTicket) {
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("details-incident.html");
-		
-		try {
-			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(paramNumeroTicket);
-			Incident incidentTrouveh = listeIncidents.get(0);
-			modelAndView.addObject("incidentAller", incidentTrouveh);
-			
-			List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramNumeroTicket);
-			modelAndView.addObject("listeNotes", listeNotes);
-			modelAndView.addObject("auteurActuel", "Grafo55");
-			
-		} catch (Exception ex) {
-			modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + paramNumeroTicket);
-		}
-		
-		return modelAndView;
-	}
-	================================================//
-	*/
-	
-	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST
-	//=============================================================
-	
-	@GetMapping("/liste-incidents")
-	public ModelAndView afficherFormulaireListeIncidents() {
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("liste-incidents.html");
-		
-		return modelAndView;
-	}
-	
-	@PostMapping("/liste-incidents")
-	public ModelAndView rechercherListeIncidents(
-			@RequestParam("motClef") String paramMotClef) {
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("liste-incidents.html");
-		
-		try {
-			List<Incident> listeIncidents = incidentRepository.findByCol15SujetContaining(paramMotClef);
-			modelAndView.addObject("listeIncidents", listeIncidents);
-			
-		} catch (Exception ex) {
-			modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + paramMotClef);
-		}
-		
-		return modelAndView;
-	}
-	=========================================================//
-	*/
-	
 	@PostMapping("/recherche-incident")
 	public ModelAndView rechercherTicket(
 			@RequestParam("motClef") String paramMotClef) {
@@ -183,7 +114,7 @@ public class IncidentsController {
 			modelAndView.addObject("messageErreur", "Aucun numero ou mot-clef fourni!");
 			
 		} else if (paramMotClef.matches(regexIncident)) {
-			// Cas d'un incident
+			// Cas d'un numero de ticket valide
 			
 			modelAndView.setViewName("details-incident.html");
 			
