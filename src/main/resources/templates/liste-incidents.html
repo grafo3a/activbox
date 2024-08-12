@@ -47,26 +47,31 @@
 	<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
 	<div th:if="${listeIncidents} != null">
 	
-	<div class="container row m-4">
-	
 	<!--==== Colonne A ====-->
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 	
 	<table class="table table-striped table-sm">
+	<thead>
+		<tr>
+			<th>Numéro</th>
+			<th>Moment création</th>
+			<th>Priorité</th>
+			<th>Statut</th>
+			<th>Equipe en charge</th>
+			<th>Sujet</th>
+		</tr>
+	</thead>
 	<tbody>
-	    <tr th:each="inc: ${listeIncidents}">
-	        <td th:text="${inc.col02NumeroTicket}" />
-	        <td th:text="${inc.col10Prioriteh}" />
-	        <td th:text="${inc.col04AgentInitial}" />
-	        <td th:text="${inc.col05Demandeur}" />
-	        
-	    </tr>
+		<tr th:each="inc: ${listeIncidents}">
+			<td th:text="${inc.col02NumeroTicket}" />
+			<td th:text="${inc.col09MomentCreation}" />
+			<td th:text="${inc.col10Prioriteh}" />
+			<td th:text="${inc.col11Etat}" />
+			<td th:text="${inc.col12EquipeEnCharge}" />
+			<td th:text="${inc.col15Sujet}" />
+		</tr>
 	</tbody>
 	</table>
 	
-	
-	</div>
-	</div>
 	</div>
 	
 	</div>
