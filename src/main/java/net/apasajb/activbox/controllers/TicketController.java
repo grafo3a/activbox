@@ -24,12 +24,16 @@ public class TicketController {
 		
 		ModelAndView modelAndView = new ModelAndView("accueil.html");
 		
-		// A adapter
+		/*
+		// A ADAPTER: l'equipe de l'utilisateur actuel.
 		equipeUtilisateur = "Linux";
 		List<Incident> listeIncidentsOuvertsEquipeActuelle = incidentRepository.findListeIncidentsEtatOuvert(equipeUtilisateur);
+		*/
 		
-		if (listeIncidentsOuvertsEquipeActuelle.size() > 0) {
-			modelAndView.addObject("listeIncidents", listeIncidentsOuvertsEquipeActuelle);
+		List<Incident> listeIncidentsOuverts = incidentRepository.findListeIncidentsEtatOuvert();
+		
+		if (listeIncidentsOuverts.size() > 0) {
+			modelAndView.addObject("listeIncidents", listeIncidentsOuverts);
 		}
 		
 		return modelAndView;

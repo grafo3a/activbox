@@ -122,6 +122,16 @@ footer {
 }
 
 
+/* BALISES GENERIQUES
+----------------------*/
+
+th {
+	font-weight: bold;
+	color: rgb(125, 125, 125);
+}
+
+
+
 /* CLASSES GENERIQUES
 ------------------------------------------*/
 
@@ -194,4 +204,13 @@ footer {
 
 .mr-10px {
 	margin-right: 10px;
+}
+
+.rubrique {
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+
+.titre-rubrique {
+	border-bottom: 4px solid rgb(160, 220, 160);
 }

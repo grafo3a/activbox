@@ -30,8 +30,14 @@ public interface IncidentRepository extends JpaRepository<Incident, Integer> {
 	List<Incident> findByCol15SujetContaining(String motClef);
 	
 	/**
+	 * Recherche la liste des incidents actifs.
+	 */
+	@Query("FROM Incident WHERE col11Etat != 'clos'")
+	List<Incident> findListeIncidentsEtatOuvert();
+	
+	/**
 	 * Recherche la liste des incidents actifs dans une equipe.
 	 */
 	@Query("FROM Incident WHERE col12EquipeEnCharge =?1 AND col11Etat != 'clos'")
-	List<Incident> findListeIncidentsEtatOuvert(String equipeEnCharge);
+	List<Incident> findListeIncidentsEtatOuvertEquipeActuelle(String equipeEnCharge);
 }
