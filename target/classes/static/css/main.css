@@ -122,18 +122,19 @@ footer {
 }
 
 
-/* BALISES GENERIQUES
-----------------------*/
+/* STYLES GENERIQUES
+------------------------------------------*/
 
-th {
-	font-weight: bold;
-	color: rgb(125, 125, 125);
+@font-face {
+	/* On importe la police Ubuntu */
+	font-family: 'Ubuntu';
+	src: local('Ubuntu'), url(./fonts/Ubuntu/Ubuntu-Regular.ttf) format('woff');
 }
 
-
-
-/* CLASSES GENERIQUES
-------------------------------------------*/
+body {
+	/* On utilise la police Ubuntu */
+	font-family: Ubuntu;
+}
 
 .border-top-radius-10px {
 	border-top-left-radius: 10px;
@@ -213,4 +214,9 @@ th {
 
 .titre-rubrique {
 	border-bottom: 4px solid rgb(160, 220, 160);
+}
+
+th {
+	font-weight: normal;
+	color: rgb(125, 125, 125);
 }
