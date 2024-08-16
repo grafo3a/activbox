@@ -15,6 +15,7 @@ import net.apasajb.activbox.entities.Incident;
 import net.apasajb.activbox.entities.IncidentNote;
 import net.apasajb.activbox.repositories.IncidentRepository;
 import net.apasajb.activbox.services.IncidentNotesService;
+import net.apasajb.activbox.services.IncidentValidation;
 import net.apasajb.activbox.services.IncidentsService;
 import net.apasajb.activbox.services.TicketService;
 
@@ -37,6 +38,9 @@ public class IncidentsController {
 	@Autowired
 	TicketService ticketService;
 	
+	@Autowired
+	IncidentValidation incidentValidation;
+	
 	String statutInitial = "Nouveau";
 	
 	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
@@ -56,6 +60,14 @@ public class IncidentsController {
 		
 		// D'abord validation
 		String messageErreur;
+		boolean isincidentValid = incidentValidation.isNewIncidentValid(newIncident);
+		
+		if (isincidentValid) {
+			System.out.println("\n==== BONNE NOUVELLE, L'INCIDENT EST VALIDE ====\n");
+			
+		} else {
+			System.out.println("\n**** MAUVAISE NOUVELLE, L'INCIDENT EST NON VALIDE ****\n");
+		}
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("details-incident.html");
