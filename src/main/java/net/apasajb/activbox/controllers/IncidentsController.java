@@ -54,6 +54,9 @@ public class IncidentsController {
 	@PostMapping("/nouvel-incident")
 	public ModelAndView ajouterIncident(Incident newIncident) {
 		
+		// D'abord validation
+		String messageErreur;
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("details-incident.html");
 		
