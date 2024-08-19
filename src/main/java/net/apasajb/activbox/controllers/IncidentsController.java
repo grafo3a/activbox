@@ -38,9 +38,6 @@ public class IncidentsController {
 	@Autowired
 	TicketService ticketService;
 	
-	@Autowired
-	IncidentValidation incidentValidation;
-	
 	String statutInitial = "Nouveau";
 	
 	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
@@ -50,7 +47,7 @@ public class IncidentsController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("nouvel-incident.html");
-		modelAndView.addObject("incidentAller", new Incident());
+		modelAndView.addObject("objetIncident", new Incident());
 		
 		return modelAndView;
 	}
@@ -58,54 +55,66 @@ public class IncidentsController {
 	@PostMapping("/nouvel-incident")
 	public ModelAndView ajouterIncident(Incident newIncident) {
 		
-		// D'abord validation
+		/* D'abord validation */
 		String messageErreur;
+		
+		IncidentValidation incidentValidation = new IncidentValidation();
 		boolean isincidentValid = incidentValidation.isNewIncidentValid(newIncident);
+		
+		messageErreur = incidentValidation.getMessageErreurValidation();
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
 		
 		if (isincidentValid) {
 			System.out.println("\n==== BONNE NOUVELLE, L'INCIDENT EST VALIDE ====\n");
 			
+			modelAndView.setViewName("details-incident.html");
+			
+			/* On ajoute la date & l'heure de création */
+			LocalDateTime momentCreation = LocalDateTime.now();
+			momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
+			newIncident.setCol09MomentCreation(momentCreation);
+			
+			// On ajoute un statut initial
+			newIncident.setCol11Etat(statutInitial);
+			
+			// On écrit l'entité en BDD
+			Incident incidentEnBdd = incidentRepository.save(newIncident);
+			
+			/* On met à jour le numéro de ticket en BDD */
+			int idIncident = incidentEnBdd.getCol01Id();
+			String numeroIncident = incidentsService.genererNumeroIncident(idIncident);
+			incidentEnBdd.setCol02NumeroTicket(numeroIncident);
+			incidentRepository.save(incidentEnBdd);
+			
+			/* On enregistre une note initiale */
+			String auteurNote = incidentEnBdd.getCol04AgentInitial();
+			String messageNoteInitial = "Nouvel incident [" + numeroIncident + "] créé par " + auteurNote;
+			
+			IncidentNote incidentNote = new IncidentNote(numeroIncident, momentCreation, auteurNote, messageNoteInitial);
+			incidentNotesService.ajouterNoteIncident(incidentNote);
+			List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(numeroIncident);
+			modelAndView.addObject("listeNotes", listeNotes);
+			
+			/* On informe l'utilisateur */
+			String titreTicket = "Ticket créé: incident " + incidentEnBdd.getCol02NumeroTicket();
+			String messageSucces = "Incident créé correctement";
+			
+			modelAndView.addObject("titreTicket", titreTicket);
+			modelAndView.addObject("auteurActuel", "Grafo55");
+			modelAndView.addObject("objetIncident", incidentEnBdd);
+			modelAndView.addObject("messageSucces", messageSucces);
+			
 		} else {
+			
 			System.out.println("\n**** MAUVAISE NOUVELLE, L'INCIDENT EST NON VALIDE ****\n");
+			
+			modelAndView.setViewName("nouvel-incident.html");
+			
+			modelAndView.addObject("objetIncident", newIncident);
+			modelAndView.addObject("messageErreur", messageErreur);
 		}
-		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("details-incident.html");
-		
-		/* On ajoute la date & l'heure de création */
-		LocalDateTime momentCreation = LocalDateTime.now();
-		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
-		newIncident.setCol09MomentCreation(momentCreation);
-		
-		// On ajoute un statut initial
-		newIncident.setCol11Etat(statutInitial);
-		
-		// On écrit l'entité en BDD
-		Incident incidentEnBdd = incidentRepository.save(newIncident);
-		
-		/* On met à jour le numéro de ticket en BDD */
-		int idIncident = incidentEnBdd.getCol01Id();
-		String numeroIncident = incidentsService.genererNumeroIncident(idIncident);
-		incidentEnBdd.setCol02NumeroTicket(numeroIncident);
-		incidentRepository.save(incidentEnBdd);
-		
-		/* On enregistre une note initiale */
-		String auteurNote = incidentEnBdd.getCol04AgentInitial();
-		String messageNoteInitial = "Nouvel incident [" + numeroIncident
-				+ "] créé par " + auteurNote;
-		
-		IncidentNote incidentNote = new IncidentNote(numeroIncident, momentCreation, auteurNote, messageNoteInitial);
-		incidentNotesService.ajouterNoteIncident(incidentNote);
-		List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(numeroIncident);
-		modelAndView.addObject("listeNotes", listeNotes);
-		
-		/* On informe l'utilisateur */
-		String titreTicket = "Ticket créé: incident " + incidentEnBdd.getCol02NumeroTicket();
-		modelAndView.addObject("titreTicket", titreTicket);
-		
-		modelAndView.addObject("auteurActuel", "Grafo55");
-		modelAndView.addObject("incidentAller", incidentEnBdd);
-		modelAndView.addObject("messageSucces", "Incident créé correctement: " + numeroIncident);
 		
 		return modelAndView;
 	}
@@ -124,9 +133,10 @@ public class IncidentsController {
 		String regexProjet = "^[Pp][Rr][0-9]{8}$";				//=> PR00000000
 		
 		if (paramMotClef.isBlank()) {
+			// Cas d'un mot-clef vide
 			
 			modelAndView.setViewName("details-incident.html");
-			modelAndView.addObject("messageErreur", "Aucun numero ou mot-clef fourni!");
+			modelAndView.addObject("messageWarning", "Avertissement: Aucun numero ou mot-clef fourni!");
 			
 		} else if (paramMotClef.matches(regexIncident)) {
 			// Cas d'un numero de ticket valide
@@ -135,8 +145,10 @@ public class IncidentsController {
 			
 			try {
 				List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(paramMotClef);
+				
+				
 				Incident incidentTrouveh = listeIncidents.get(0);
-				modelAndView.addObject("incidentAller", incidentTrouveh);
+				modelAndView.addObject("objetIncident", incidentTrouveh);
 				
 				List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramMotClef);
 				modelAndView.addObject("listeNotes", listeNotes);
@@ -145,7 +157,7 @@ public class IncidentsController {
 				modelAndView.addObject("titreTicket", "Ticket Incident " + incidentTrouveh.getCol02NumeroTicket());
 				
 			} catch (Exception ex) {
-				modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour le numero: " + paramMotClef);
+				modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramMotClef + "\"");
 			}
 			
 			
@@ -173,19 +185,28 @@ public class IncidentsController {
 			// Cas d'un mot-clef quelconque
 			
 			modelAndView.setViewName("liste-incidents.html");
+			String messageInfo;
+			List<Incident> listeIncidents = null;
 			
 			try {
-				List<Incident> listeIncidents = incidentRepository.findByCol15SujetContaining(paramMotClef);
-				modelAndView.addObject("listeIncidents", listeIncidents);
+				listeIncidents = incidentRepository.findByCol15SujetContaining(paramMotClef);
+				
+				if (listeIncidents.isEmpty() == false) {
+					modelAndView.addObject("listeIncidents", listeIncidents);
+				
+				} else {
+					messageInfo = "Info: Aucun ticket trouvé pour le mot \"" + paramMotClef + "\"";
+					modelAndView.addObject("messageInfo", messageInfo);
+				}
 				
 			} catch (Exception ex) {
-				modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + paramMotClef);
+				modelAndView.addObject(
+						"messageErreur", "Erreur: Impossible d'afficher la liste. Message d'erreur: " + ex.getMessage());
 			}
 		}
 		
 		return modelAndView;
 	}
-	
 	
 	
 	/* MODIFICATION DE DONNEES D'UN INCIDENT */
@@ -245,7 +266,7 @@ public class IncidentsController {
 				incidentNotesService.ajouterNoteIncident(incidentNote);
 			}
 			
-			modelAndView.addObject("incidentAller", incident);
+			modelAndView.addObject("objetIncident", incident);
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageErreur", "ERREUR: " + ex.getMessage());
@@ -284,7 +305,7 @@ public class IncidentsController {
 		incident.setCol18MessageResolution(paramMessage);
 		incident.setCol17MomentFin(momentActuel);
 		incidentRepository.save(incident);
-		modelAndView.addObject("incidentAller", incident);
+		modelAndView.addObject("objetIncident", incident);
 		
 		/* On ajoute une note */
 		String messageNote = "[Cloture du ticket] " + paramMessage;
@@ -328,7 +349,7 @@ public class IncidentsController {
 			
 			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(numeroIncident);
 			Incident incidentTrouveh = listeIncidents.get(0);
-			modelAndView.addObject("incidentAller", incidentTrouveh);
+			modelAndView.addObject("objetIncident", incidentTrouveh);
 			modelAndView.addObject("auteurActuel", "Grafo55");
 			
 		} else {

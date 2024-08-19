@@ -32,19 +32,16 @@
 
 <div class="zone-infos">
 	
-	<!--==== RECHERCHE D'UN INCIDENT ====-->
-	
-	<div th:if="${messageErreur} != null">
-	<span class="text-danger" th:text="${messageErreur}"></span>
+	<!-- En cas d'erreur -->
+	<div th:if="${messageErreur} != null"
+		class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
 	</div>
 	
-	<!--
-	<div th:if="${messageSucces} != null">
-	<span class="text-success" th:text="${messageSucces}"></span>
+	<!-- En cas de liste vide -->
+	<div th:if="${messageInfo} != null"
+		class="alert alert-info text-center p-1 message-alert" th:text="${messageInfo}">
 	</div>
-	 -->
 	
-	<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
 	<div th:if="${listeIncidents} != null">
 	
 	<!--==== Colonne A ====-->
@@ -52,12 +49,12 @@
 	<table class="table table-striped table-sm">
 	<thead>
 		<tr>
-			<th>Numéro</th>
-			<th>Moment création</th>
-			<th>Priorité</th>
-			<th>Statut</th>
-			<th>Equipe en charge</th>
-			<th>Sujet</th>
+			<th class="pb-2"><span>Numéro</span></th>
+			<th class="pb-2"><span>Moment création</span></th>
+			<th class="pb-2"><span>Priorité</span></th>
+			<th class="pb-2"><span>Statut</span></th>
+			<th class="pb-2"><span>Equipe en charge</span></th>
+			<th class="pb-2"><span>Sujet</span></th>
 		</tr>
 	</thead>
 	<tbody>

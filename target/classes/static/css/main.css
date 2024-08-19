@@ -60,6 +60,16 @@ main {}
 	/* box-shadow: 8px 5px #8dd5b5;    Ocean green faible */
 }
 
+.message-alert {
+	margin-top: -20px;
+	margin-left: -20px;
+	margin-right: -20px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border: 2px solid white;
+}
 
 /* LE PIED DE PAGE
 ----------------------------*/
@@ -216,7 +226,9 @@ body {
 	border-bottom: 4px solid rgb(160, 220, 160);
 }
 
-th {
+th span {
 	font-weight: normal;
 	color: rgb(125, 125, 125);
+	font-style: italic;
+	text-decoration: underline;
 }

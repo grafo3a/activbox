@@ -26,65 +26,73 @@
 
 <main class="paddings-standard">
 	
-	<!-- Si ticket present -->
-	<div th:if="${messageErreur} == null" class="text-end pt-2 pb-2">
-		<span class="titre-page h3" th:text="${titreTicket}"></span>
-	</div>
-	
-	<!-- Si ticket absent -->
-	<div th:if="${messageErreur} != null" class="text-end pt-2 pb-2">
-		<span class="titre-page h3">Numéro de ticket inconnu</span>
-	</div>
-	
+<!-- Si ticket present -->
+<div th:if="${titreTicket} != null" class="text-end pt-2 pb-2">
+	<span class="titre-page h3" th:text="${titreTicket}"></span>
+</div>
+
+<!-- Si ticket absent -->
+<div th:if="${titreTicket} == null" class="text-end pt-2 pb-2">
+	<span class="titre-page h3">Recherche de tickets</span>
+</div>
+
 <div class="zone-infos">
-			
-			<!-- Si ticket absent -->
-			<div th:if="${messageErreur} != null" class="text-end">
-			<span class="text-danger" th:text="${messageErreur}"></span>
-			</div>
-			
-			<!--
-			<div th:if="${messageSucces} != null" class="text-end">
-			<span class="text-success" th:text="${messageSucces}"></span>
-			</div>
-			 -->
-			 
-			<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
-			<div th:if="${incidentAller} != null" class="m-4">
-			
-			<!--==== ZONE DETAILS ====-->
-			
-			<div class="h5">Détails de l'incident</div>
-			
-			<div class="row">
-			
+	
+	<!-- Si infos non valid -->
+	<div th:if="${messageSucces} != null"
+			class="alert alert-success text-center p-1 message-alert" th:text="${messageSucces}">
+	</div>
+	
+	<!-- Si infos non valid -->
+	<div th:if="${messageInfo} != null"
+			class="alert alert-info text-center p-1 message-alert" th:text="${messageInfo}">
+	</div>
+	
+	<!-- Si mot-clef vide -->
+	<div th:if="${messageWarning} != null"
+			class="alert alert-warning text-center p-1 message-alert" th:text="${messageWarning}">
+	</div>
+	
+	<!-- En cas de message d'erreur -->
+	<div th:if="${messageErreur} != null"
+			class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
+	</div>
+	
+	<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
+	<div th:if="${objetIncident} != null" class="m-4">
+	
+	<!--==== ZONE DETAILS ====-->
+	<div class="h5">Détails de l'incident</div>
+	
+	<div class="row">
+		
 		<!--==== Colonne A ====-->
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 		
 			<div class="row">
 			<span class="col-5 cadre">Numéro de ticket</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col02NumeroTicket}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col02NumeroTicket}"></span>
 			
 			<span class="col-5 cadre">Type de ticket</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col03TypeTicket}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col03TypeTicket}"></span>
 			
 			<span class="col-5 cadre">Agent initial</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col04AgentInitial}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col04AgentInitial}"></span>
 			
 			<span class="col-5 cadre">Demandeur</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col05Demandeur}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col05Demandeur}"></span>
 			
 			<span class="col-5 cadre">Entreprise</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col06Entreprise}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col06Entreprise}"></span>
 			
 			<span class="col-5 cadre">Catégorie</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col07Categorie}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col07Categorie}"></span>
 			
 			<span class="col-5 cadre">Code-produit</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col08Produit}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col08Produit}"></span>
 			
 			<span class="col-5 cadre">Moment-de-création</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col09MomentCreation}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col09MomentCreation}"></span>
 			</div>
 			</div>
 			
@@ -95,16 +103,16 @@
 			<div class="row">
 			
 			<span class="col-5 cadre">Priorité</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col10Prioriteh}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col10Prioriteh}"></span>
 			
 			<span class="col-5 cadre">Etat</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col11Etat}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col11Etat}"></span>
 			
 			<span class="col-5 cadre">Equipe-en-charge</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col12EquipeEnCharge}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col12EquipeEnCharge}"></span>
 			
 			<span class="col-5 cadre">Agent-en-charge</span>
-			<span class="col-5 cadre" th:text="${incidentAller.col13AgentEnCharge}"></span>
+			<span class="col-5 cadre" th:text="${objetIncident.col13AgentEnCharge}"></span>
 			
 			</div>
 		</div>
@@ -112,12 +120,12 @@
 	
 	<div class="row mt-4">
 		<div class="cadre">Sujet</div>
-		<div class="cadre" th:text="${incidentAller.col15Sujet}"></div>
+		<div class="cadre" th:text="${objetIncident.col15Sujet}"></div>
 	</div>
 	
 	<div class="row mt-4">
 		<div class="cadre">Description</div>
-		<div class="cadre" th:text="${incidentAller.col16Description}"></div>
+		<div class="cadre" th:text="${objetIncident.col16Description}"></div>
 	</div>
 	
 	<!--==== ZONE MODIFICATIONS ====-->
@@ -135,7 +143,7 @@
 		<div class="row">
 		
 		<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
-				th:value="${incidentAller.col02NumeroTicket}">
+				th:value="${objetIncident.col02NumeroTicket}">
 		
 		<input type="hidden" id="col04Auteur" name="col04Auteur"
 				th:value="${auteurActuel}">
@@ -144,26 +152,26 @@
 		<label>Priorité</label>
 		</span>
 		<input type="text" id="col10Prioriteh" name="col10Prioriteh"
-				class="col-5 editable" th:value="${incidentAller.col10Prioriteh}" />
+				class="col-5 editable" th:value="${objetIncident.col10Prioriteh}" />
 		
 		<span class="col-5 cadre">
 		<label>Etat</label>
 		</span>
 		<input type="text" id="col11Etat" name="col11Etat"
-				class="col-5 editable" th:value="${incidentAller.col11Etat}" />
+				class="col-5 editable" th:value="${objetIncident.col11Etat}" />
 		
 		<span class="col-5 cadre">
 		<label>Equipe-en-charge</label>
 		</span>
 		<input type="text" id="col12EquipeEnCharge" name="col12EquipeEnCharge"
-				class="col-5 editable" th:value="${incidentAller.col12EquipeEnCharge}" />
+				class="col-5 editable" th:value="${objetIncident.col12EquipeEnCharge}" />
 		
 		<span class="col-5 cadre">
 		<label>Agent-en-charge</label>
 		</span>
 		
 		<input type="text" id="col13AgentEnCharge" name="col13AgentEnCharge"
-				class="col-5 editable" th:value="${incidentAller.col13AgentEnCharge}" />
+				class="col-5 editable" th:value="${objetIncident.col13AgentEnCharge}" />
 		
 		<span class="col-5"></span>
 		<input type="submit" value="Valider" class="col-5 btn btn-sm btn-success" />
@@ -182,18 +190,18 @@
 			
 			<div class="row">
 				<div class="cadre">Message-de-résolution</div>
-				<div th:text="${incidentAller.col18MessageResolution}"></div>
+				<div th:text="${objetIncident.col18MessageResolution}"></div>
 			</div>
 			
 			<form action="cloture-incident" method="post"
-					th:if="${incidentAller.col18MessageResolution} == null">
+					th:if="${objetIncident.col18MessageResolution} == null">
 				
 				<div class="form-group">
 					<!--
 					<label for="col05Message">Message-de-résolution</label>
 					 -->
 					<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
-							th:value="${incidentAller.col02NumeroTicket}">
+							th:value="${objetIncident.col02NumeroTicket}">
 							
 					<input type="hidden" id="col04Auteur" name="col04Auteur"
 							th:value="${auteurActuel}">
@@ -217,11 +225,11 @@
 			
 			<div class="row">
 				<span class="col-5 cadre">Moment-fin</span>
-				<span class="col-5 cadre" th:text="${incidentAller.col17MomentFin}"></span>
+				<span class="col-5 cadre" th:text="${objetIncident.col17MomentFin}"></span>
 			</div>
 			<div class="row">
 				<span class="col-5 cadre">Moment-SLA</span>
-				<span class="col-5 cadre" th:text="${incidentAller.col14MomentSLA}"></span>
+				<span class="col-5 cadre" th:text="${objetIncident.col14MomentSLA}"></span>
 			</div>
 			<div class="row">
 				<span class="col-5 cadre">Temps-restant-SLA</span>
@@ -241,7 +249,7 @@
 				<label for="col05Message">Ajoutez une note:</label>
 				
 				<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
-						th:value="${incidentAller.col02NumeroTicket}">
+						th:value="${objetIncident.col02NumeroTicket}">
 						
 				<input type="hidden" id="col04Auteur" name="col04Auteur"
 						th:value="${auteurActuel}">

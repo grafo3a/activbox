@@ -34,14 +34,12 @@ public class IncidentValidation {
 				isPrioritehValid = true;
 				
 			} else {
-				messageErreurValidation = "ERREUR. Priorité non valide!";
-				System.out.println("\nERREUR. Priorité non valide!\n");
+				messageErreurValidation = "Priorité non valide!";
 			}
 			
 		} catch (Exception ex) {
 			
-			messageErreurValidation = "ERREUR. Priorité non valide!";
-			System.out.println("\nERREUR. Priorité non valide! (" + ex.getMessage() + ")\n");
+			messageErreurValidation = "Priorité non valide!";
 			ex.printStackTrace();
 		}
 		
@@ -99,9 +97,22 @@ public class IncidentValidation {
 			isIncidentValid = true;
 			
 		} else {
-			messageErreurValidation = "ERREUR. Incident non valide!";
+			messageErreurValidation = "Erreur. Infos non valides. " + messageErreurValidation;
+			System.out.println("\n" + messageErreurValidation);
 		}
 		
 		return isIncidentValid;
 	}
+	
+	
+	/*==== GETTERS & SETTERS ====*/
+	
+	public String getMessageErreurValidation() {
+		return messageErreurValidation;
+	}
+	
+	public void setMessageErreurValidation(String messageErreurValidation) {
+		this.messageErreurValidation = messageErreurValidation;
+	}
+	/*===============================*/
 }

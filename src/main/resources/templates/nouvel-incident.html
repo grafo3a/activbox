@@ -32,12 +32,17 @@
 
 <div class="zone-infos">
 
+<!-- Si infos non valides -->
+<div th:if="${messageErreur} != null"
+		class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
+</div>
+
 <!--==== FORMULAIRE D'UN NOUVEL INCIDENT ====-->
 <!-- On precise l'objet qui sera constituee par les donnees du formulaire.
-	Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "incidentAller" du modele.
+	Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "objetIncident" du modele.
 	Ici le modele envoyee par la methode get est present. -->
-
-<form action="#" th:action="@{/nouvel-incident}" th:object="${incidentAller}" method="post">
+	
+<form action="#" th:action="@{/nouvel-incident}" th:object="${objetIncident}" method="post">
 	
 		<!--
 		//Utilisation de messages d'un paquet de ressources:
