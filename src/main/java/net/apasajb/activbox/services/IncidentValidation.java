@@ -12,6 +12,7 @@ import net.apasajb.activbox.entities.Incident;
 public class IncidentValidation {
 	
 	String messageErreurValidation;
+	String infosIncorrectes;
 	
 	public boolean isNewIncidentValid(Incident newIncident) {
 		
@@ -34,55 +35,70 @@ public class IncidentValidation {
 				isPrioritehValid = true;
 				
 			} else {
-				messageErreurValidation = "Priorité non valide!";
+				//messageErreurValidation = "Priorité";
+				infosIncorrectes = (infosIncorrectes == null)? "Priorité" : infosIncorrectes + ", Priorité";
 			}
 			
 		} catch (Exception ex) {
 			
-			messageErreurValidation = "Priorité non valide!";
+			infosIncorrectes = (infosIncorrectes == null)? "Priorité" : infosIncorrectes + ", Priorité";
 			ex.printStackTrace();
 		}
 		
 		/* Validation de l'Agent Initial */
-		if (messageErreurValidation == null &&
-				newIncident.getCol04AgentInitial().isBlank() == false) {
+		if (newIncident.getCol04AgentInitial().isBlank() == false) {
 			isAgentInitialValid = true;
+			
+		} else {
+			infosIncorrectes = (infosIncorrectes == null)? "Agent initial" : infosIncorrectes + ", Agent initial";
 		}
 		
 		/* Validation du demandeur */
-		if (messageErreurValidation == null &&
-				newIncident.getCol05Demandeur().isBlank() == false) {
+		if (newIncident.getCol05Demandeur().isBlank() == false) {
 			isDemandeurValid = true;
+			
+		} else {
+			infosIncorrectes = (infosIncorrectes == null)? "Demandeur" : infosIncorrectes + ", Demandeur";
 		}
 		
 		/* Validation de l'entreprise */
-		if (messageErreurValidation == null &&
-				newIncident.getCol06Entreprise().isBlank() == false) {
+		if (newIncident.getCol06Entreprise().isBlank() == false) {
 			isEntrepriseValid = true;
+			
+		} else {
+			infosIncorrectes = (infosIncorrectes == null)? "Entreprise" : infosIncorrectes + ", Entreprise";
 		}
 		
 		/* Validation de la categorie */
-		if (messageErreurValidation == null &&
-				newIncident.getCol07Categorie().isBlank() == false) {
+		if (newIncident.getCol07Categorie().isBlank() == false) {
 			isCategorieValid = true;
+			
+		} else {
+			infosIncorrectes = (infosIncorrectes == null)? "Categorie" : infosIncorrectes + ", Categorie";
 		}
 		
 		/* Validation de l'equipe en charge */
-		if (messageErreurValidation == null &&
-				newIncident.getCol12EquipeEnCharge().isBlank() == false) {
+		if (newIncident.getCol12EquipeEnCharge().isBlank() == false) {
 			isEquipeEnChargeValid = true;
+			
+		} else {
+			infosIncorrectes = (infosIncorrectes == null)? "Equipe en charge" : infosIncorrectes + ", Equipe en charge";
 		}
 		
 		/* Validation du sujet */
-		if (messageErreurValidation == null &&
-				newIncident.getCol15Sujet().isBlank() == false) {
+		if (newIncident.getCol15Sujet().isBlank() == false) {
 			isSujetValid = true;
+			
+		} else {
+			infosIncorrectes = (infosIncorrectes == null)? "Sujet" : infosIncorrectes + ", Sujet";
 		}
 		
 		/* Validation de la description */
-		if (messageErreurValidation == null &&
-				newIncident.getCol16Description().isBlank() == false) {
+		if (newIncident.getCol16Description().isBlank() == false) {
 			isDescriptionValid = true;
+			
+		} else {
+			infosIncorrectes = (infosIncorrectes == null)? "Description" : infosIncorrectes + ", Description";
 		}
 		
 		if (isPrioritehValid && 
@@ -97,7 +113,7 @@ public class IncidentValidation {
 			isIncidentValid = true;
 			
 		} else {
-			messageErreurValidation = "Erreur. Infos non valides. " + messageErreurValidation;
+			messageErreurValidation = "Erreur. Infos non valides: " + infosIncorrectes + ".";
 			System.out.println("\n" + messageErreurValidation);
 		}
 		
