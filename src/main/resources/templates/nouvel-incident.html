@@ -51,72 +51,104 @@
 		<div class="form-group row">
 			<label for="col10Prioriteh" th:text="Prioriteh" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+			<div class="col-xs-10 col-sm-10 col-md-5 col-lg-5 info-fournie">
 				<input type="text" th:field="*{col10Prioriteh}"
 						id="col10Prioriteh" name="col10Prioriteh" class="form-control form-control-sm bg-light"></input>
+			</div>
+			
+			<div th:if="${isPrioritehValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="col04AgentInitial" th:text="Agent-initial" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 info-fournie">
 				<input type="text" th:field="*{col04AgentInitial}"
 						id="col04AgentInitial" name="col04AgentInitial" class="form-control form-control-sm bg-light"></input>
+			</div>
+			
+			<div th:if="${isAgentInitialValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="col05Demandeur" th:text="Demandeur" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 info-fournie">
 				<input type="text" th:field="*{col05Demandeur}"
 						id="col05Demandeur" name="col05Demandeur" class="form-control form-control-sm bg-light"></input>
+			</div>
+			
+			<div th:if="${isDemandeurValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="col06Entreprise" th:text="Entreprise" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 info-fournie">
 				<input type="text" th:field="*{col06Entreprise}"
 						id="col06Entreprise" name="col06Entreprise" class="form-control form-control-sm bg-light"></input>
+			</div>
+			
+			<div th:if="${isEntrepriseValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="col07Categorie" th:text="Categorie" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 info-fournie">
 				<input type="text" th:field="*{col07Categorie}"
 						id="col07Categorie" name="col07Categorie" class="form-control form-control-sm bg-light"></input>
+			</div>
+			
+			<div th:if="${isCategorieValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="col12EquipeEnCharge" th:text="Equipe-en-charge" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 info-fournie">
 				<input type="text" th:field="*{col12EquipeEnCharge}"
 						id="col12EquipeEnCharge" name="col12EquipeEnCharge" class="form-control form-control-sm bg-light"></input>
+			</div>
+			
+			<div th:if="${isEquipeEnChargeValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="col15Sujet" th:text="Sujet" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-12">
+			<div class="col-12 info-fournie">
 				<input type="text" th:field="*{col15Sujet}"
 						id="col15Sujet" name="col15Sujet" class="form-control form-control-sm bg-light"></input>
+			</div>
+			
+			<div th:if="${isSujetValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		
 		<div class="form-group row">
 			<label for="col16Description" th:text="Description" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label"></label>
 			
-			<div class="col-12">
+			<div class="col-12 info-fournie">
 				<textarea rows="10" th:field="*{col16Description}"
 							id="col16Description" name="col16Description" class="form-control form-control-sm bg-light"></textarea>
+			</div>
+			
+			<div th:if="${isDescriptionValid} == false" class="col-1 icone-alerte">
+				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 			</div>
 		</div>
 		

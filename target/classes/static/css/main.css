@@ -232,3 +232,11 @@ th span {
 	font-style: italic;
 	text-decoration: underline;
 }
+
+.info-fournie {
+	padding-right: 0px;
+}
+
+.icone-alerte {
+	padding-left: 5px;
+}

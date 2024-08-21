@@ -56,12 +56,8 @@ public class IncidentsController {
 	public ModelAndView ajouterIncident(Incident newIncident) {
 		
 		/* D'abord validation */
-		String messageErreur;
-		
 		IncidentValidation incidentValidation = new IncidentValidation();
 		boolean isincidentValid = incidentValidation.isNewIncidentValid(newIncident);
-		
-		messageErreur = incidentValidation.getMessageErreurValidation();
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -111,6 +107,28 @@ public class IncidentsController {
 			System.out.println("\n**** MAUVAISE NOUVELLE, L'INCIDENT EST NON VALIDE ****\n");
 			
 			modelAndView.setViewName("nouvel-incident.html");
+			
+			String messageErreur = incidentValidation.getMessageErreurValidation();
+			
+			//String messageErreurValidation;
+			boolean isIncidentValid = incidentValidation.isIncidentValid();
+			boolean isPrioritehValid = incidentValidation.isPrioritehValid();    // choix multiple
+			boolean isAgentInitialValid = incidentValidation.isAgentInitialValid();
+			boolean isDemandeurValid = incidentValidation.isDemandeurValid();
+			boolean isEntrepriseValid = incidentValidation.isEntrepriseValid();
+			boolean isCategorieValid = incidentValidation.isCategorieValid();    // choix multiple
+			boolean isEquipeEnChargeValid = incidentValidation.isEquipeEnChargeValid();    // choix multiple
+			boolean isSujetValid = incidentValidation.isSujetValid();
+			boolean isDescriptionValid = incidentValidation.isDescriptionValid();
+			
+			modelAndView.addObject("isPrioritehValid", isPrioritehValid);
+			modelAndView.addObject("isAgentInitialValid", isAgentInitialValid);
+			modelAndView.addObject("isDemandeurValid", isDemandeurValid);
+			modelAndView.addObject("isEntrepriseValid", isEntrepriseValid);
+			modelAndView.addObject("isCategorieValid", isCategorieValid);
+			modelAndView.addObject("isEquipeEnChargeValid", isEquipeEnChargeValid);
+			modelAndView.addObject("isSujetValid", isSujetValid);
+			modelAndView.addObject("isDescriptionValid", isDescriptionValid);
 			
 			modelAndView.addObject("objetIncident", newIncident);
 			modelAndView.addObject("messageErreur", messageErreur);

@@ -12,20 +12,19 @@ import net.apasajb.activbox.entities.Incident;
 public class IncidentValidation {
 	
 	String messageErreurValidation;
-	String infosIncorrectes;
+	boolean isIncidentValid = false;
+	boolean isPrioritehValid = false;    // choix multiple
+	boolean isAgentInitialValid = false;
+	boolean isDemandeurValid = false;
+	boolean isEntrepriseValid = false;
+	boolean isCategorieValid = false;    // choix multiple
+	boolean isEquipeEnChargeValid = false;    // choix multiple
+	boolean isSujetValid = false;
+	boolean isDescriptionValid = false;
 	
 	public boolean isNewIncidentValid(Incident newIncident) {
 		
-		boolean isIncidentValid = false;
-		
-		boolean isPrioritehValid = false;    // choix multiple
-		boolean isAgentInitialValid = false;
-		boolean isDemandeurValid = false;
-		boolean isEntrepriseValid = false;
-		boolean isCategorieValid = false;    // choix multiple
-		boolean isEquipeEnChargeValid = false;    // choix multiple
-		boolean isSujetValid = false;
-		boolean isDescriptionValid = false;
+		String infosIncorrectes = null;
 		
 		/* Validation de la prioriteh */
 		try {
@@ -35,7 +34,6 @@ public class IncidentValidation {
 				isPrioritehValid = true;
 				
 			} else {
-				//messageErreurValidation = "Priorité";
 				infosIncorrectes = (infosIncorrectes == null)? "Priorité" : infosIncorrectes + ", Priorité";
 			}
 			
@@ -129,6 +127,78 @@ public class IncidentValidation {
 	
 	public void setMessageErreurValidation(String messageErreurValidation) {
 		this.messageErreurValidation = messageErreurValidation;
+	}
+	
+	public boolean isIncidentValid() {
+		return isIncidentValid;
+	}
+	
+	public void setIncidentValid(boolean isIncidentValid) {
+		this.isIncidentValid = isIncidentValid;
+	}
+	
+	public boolean isPrioritehValid() {
+		return isPrioritehValid;
+	}
+	
+	public void setPrioritehValid(boolean isPrioritehValid) {
+		this.isPrioritehValid = isPrioritehValid;
+	}
+	
+	public boolean isAgentInitialValid() {
+		return isAgentInitialValid;
+	}
+	
+	public void setAgentInitialValid(boolean isAgentInitialValid) {
+		this.isAgentInitialValid = isAgentInitialValid;
+	}
+	
+	public boolean isDemandeurValid() {
+		return isDemandeurValid;
+	}
+	
+	public void setDemandeurValid(boolean isDemandeurValid) {
+		this.isDemandeurValid = isDemandeurValid;
+	}
+	
+	public boolean isEntrepriseValid() {
+		return isEntrepriseValid;
+	}
+	
+	public void setEntrepriseValid(boolean isEntrepriseValid) {
+		this.isEntrepriseValid = isEntrepriseValid;
+	}
+	
+	public boolean isCategorieValid() {
+		return isCategorieValid;
+	}
+	
+	public void setCategorieValid(boolean isCategorieValid) {
+		this.isCategorieValid = isCategorieValid;
+	}
+	
+	public boolean isEquipeEnChargeValid() {
+		return isEquipeEnChargeValid;
+	}
+	
+	public void setEquipeEnChargeValid(boolean isEquipeEnChargeValid) {
+		this.isEquipeEnChargeValid = isEquipeEnChargeValid;
+	}
+	
+	public boolean isSujetValid() {
+		return isSujetValid;
+	}
+	
+	public void setSujetValid(boolean isSujetValid) {
+		this.isSujetValid = isSujetValid;
+	}
+	
+	public boolean isDescriptionValid() {
+		return isDescriptionValid;
+	}
+	
+	public void setDescriptionValid(boolean isDescriptionValid) {
+		this.isDescriptionValid = isDescriptionValid;
 	}
 	/*===============================*/
 }
