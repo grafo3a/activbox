@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -136,6 +137,39 @@ public class IncidentsController {
 		
 		return modelAndView;
 	}
+	
+	
+	//============================================
+	@GetMapping("/affichage-ticket-{numero}")
+	public ModelAndView afficherIncident(@PathVariable("numero") String paramNumero) {
+		
+		// Cas d'un numero de ticket valide
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("details-incident.html");
+		
+		try {
+			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(paramNumero);
+			
+			Incident incidentTrouveh = listeIncidents.get(0);
+			modelAndView.addObject("objetIncident", incidentTrouveh);
+			
+			List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramNumero);
+			modelAndView.addObject("listeNotes", listeNotes);
+			
+			/* A FAIRE EVOLUER */
+			
+			modelAndView.addObject("auteurActuel", "Grafo55");
+			modelAndView.addObject("titreTicket", "Ticket Incident " + incidentTrouveh.getCol02NumeroTicket());
+			
+		} catch (Exception ex) {
+			modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramNumero + "\"");
+		}
+		
+		return modelAndView;
+		
+	}
+	//============================================
+	
 	
 	@PostMapping("/recherche-incident")
 	public ModelAndView rechercherTicket(
