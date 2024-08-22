@@ -64,7 +64,7 @@ public class IncidentsController {
 		
 		
 		if (isincidentValid) {
-			System.out.println("\n==== BONNE NOUVELLE, L'INCIDENT EST VALIDE ====\n");
+			/* Si l'incident est valide */
 			
 			modelAndView.setViewName("details-incident.html");
 			
@@ -104,15 +104,11 @@ public class IncidentsController {
 			modelAndView.addObject("messageSucces", messageSucces);
 			
 		} else {
-			
-			System.out.println("\n**** MAUVAISE NOUVELLE, L'INCIDENT EST NON VALIDE ****\n");
+			/* Si l'incident n'est pas valide */
 			
 			modelAndView.setViewName("nouvel-incident.html");
 			
 			String messageErreur = incidentValidation.getMessageErreurValidation();
-			
-			//String messageErreurValidation;
-			boolean isIncidentValid = incidentValidation.isIncidentValid();
 			boolean isPrioritehValid = incidentValidation.isPrioritehValid();    // choix multiple
 			boolean isAgentInitialValid = incidentValidation.isAgentInitialValid();
 			boolean isDemandeurValid = incidentValidation.isDemandeurValid();
@@ -138,12 +134,9 @@ public class IncidentsController {
 		return modelAndView;
 	}
 	
-	
-	//============================================
-	@GetMapping("/affichage-ticket-{numero}")
+	@GetMapping("/affichage-incident-{numero}")
 	public ModelAndView afficherIncident(@PathVariable("numero") String paramNumero) {
 		
-		// Cas d'un numero de ticket valide
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("details-incident.html");
 		
@@ -156,7 +149,7 @@ public class IncidentsController {
 			List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramNumero);
 			modelAndView.addObject("listeNotes", listeNotes);
 			
-			/* A FAIRE EVOLUER */
+			// A FAIRE EVOLUER
 			
 			modelAndView.addObject("auteurActuel", "Grafo55");
 			modelAndView.addObject("titreTicket", "Ticket Incident " + incidentTrouveh.getCol02NumeroTicket());
@@ -166,10 +159,7 @@ public class IncidentsController {
 		}
 		
 		return modelAndView;
-		
 	}
-	//============================================
-	
 	
 	@PostMapping("/recherche-incident")
 	public ModelAndView rechercherTicket(

@@ -184,6 +184,12 @@ body {
 	color: tomato;
 }
 
+a {
+	
+	font-weight: normal;
+	text-decoration: none;
+}
+
 .height50pc {
 	position: relative;
 	height: 50%;

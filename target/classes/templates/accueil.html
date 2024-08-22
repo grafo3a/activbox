@@ -53,7 +53,11 @@
 	</thead>
 	<tbody>
 		<tr th:each="inc: ${listeIncidents}">
-			<td th:text="${inc.col02NumeroTicket}" />
+			<td>
+				<a th:href="@{/affichage-incident-{id}(id=${inc.col02NumeroTicket})}"
+					th:text="${inc.col02NumeroTicket}">
+				</a>
+			</td>
 			<td th:text="${inc.col09MomentCreation}" />
 			<td th:text="${inc.col10Prioriteh}" />
 			<td th:text="${inc.col11Etat}" />
