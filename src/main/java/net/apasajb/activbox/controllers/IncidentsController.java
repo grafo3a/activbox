@@ -73,6 +73,8 @@ public class IncidentsController {
 			momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
 			newIncident.setCol09MomentCreation(momentCreation);
 			
+			// momentCompact = ticketService.formatterMomentPourAffichage(momentCreation);
+			
 			// On ajoute un statut initial
 			newIncident.setCol11Etat(statutInitial);
 			
