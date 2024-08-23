@@ -47,6 +47,9 @@ public class Ticket {
 	@Column(name="moment_creation", length=30)
 	private LocalDateTime col09MomentCreation;
 	
+	@Column(name="moment_creation_affichage", length=30)
+	private String col091MomentCreationPourAffichage;
+	
 	/* ==== VALEURS VARIABLES ==== */
 	
 	@Column(name="prioriteh", length=1, nullable=false)
@@ -157,6 +160,14 @@ public class Ticket {
 	
 	public void setCol09MomentCreation(LocalDateTime col09MomentCreation) {
 		this.col09MomentCreation = col09MomentCreation;
+	}
+	
+	public String getCol091MomentCreationPourAffichage() {
+		return col091MomentCreationPourAffichage;
+	}
+	
+	public void setCol091MomentCreationPourAffichage(String col091MomentCreationPourAffichage) {
+		this.col091MomentCreationPourAffichage = col091MomentCreationPourAffichage;
 	}
 	
 	public String getCol10Prioriteh() {
