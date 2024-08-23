@@ -35,6 +35,9 @@ public class IncidentNote implements Serializable {
 	@Column(name="moment_creation", length=30)
 	private LocalDateTime col03MomentCreation;
 	
+	@Column(name="moment_creation_affichage", length=30)
+	private String col031MomentCreationPourAffichage;
+	
 	@Column(name="auteur", length=50, nullable=false)
 	private String col04Auteur;
 	
@@ -60,9 +63,10 @@ public class IncidentNote implements Serializable {
 	// ==== LA METHODE TOSTRING ====
 	@Override
 	public String toString() {
-		return "IncidentEvent [col01IdEventIncident=" + col01IdNoteIncident + ", col02NumeroIncident="
-				+ col02NumeroIncident + ", col03MomentCreation=" + col03MomentCreation + ", col04Auteur=" + col04Auteur
-				+ ", col05Message=" + col05Message + "]";
+		return "IncidentNote [col01IdNoteIncident=" + col01IdNoteIncident + ", col02NumeroIncident="
+				+ col02NumeroIncident + ", col03MomentCreation=" + col03MomentCreation
+				+ ", col031MomentCreationPourAffichage=" + col031MomentCreationPourAffichage + ", col04Auteur="
+				+ col04Auteur + ", col05Message=" + col05Message + "]";
 	}
 	
 	// ==== GETTERS & SETTERS ====
@@ -81,6 +85,14 @@ public class IncidentNote implements Serializable {
 	
 	public void setCol03MomentCreation(LocalDateTime col03MomentCreation) {
 		this.col03MomentCreation = col03MomentCreation;
+	}
+	
+	public String getCol031MomentCreationPourAffichage() {
+		return col031MomentCreationPourAffichage;
+	}
+	
+	public void setCol031MomentCreationPourAffichage(String col031MomentCreationPourAffichage) {
+		this.col031MomentCreationPourAffichage = col031MomentCreationPourAffichage;
 	}
 	
 	public String getCol04Auteur() {

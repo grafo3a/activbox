@@ -21,12 +21,18 @@ public class IncidentNotesService {
 	@Autowired
 	IncidentNoteRepository incidentNoteRepository;
 	
+	@Autowired
+	TicketService ticketService;
+	
 	public void ajouterNoteIncident(IncidentNote incidentNote) {
 		
 		LocalDateTime momentCreation = LocalDateTime.now();
 		momentCreation = momentCreation.truncatedTo(ChronoUnit.SECONDS);
-		incidentNote.setCol03MomentCreation(momentCreation);
 		
+		String momentCreationPourAffichage = ticketService.formatterDateHeurePourAffichage(momentCreation);
+		
+		incidentNote.setCol03MomentCreation(momentCreation);
+		incidentNote.setCol031MomentCreationPourAffichage(momentCreationPourAffichage);
 		incidentNoteRepository.save(incidentNote);
 	}
 	
@@ -40,7 +46,7 @@ public class IncidentNotesService {
 			
 			String[] messageAffichable = new String[2];
 			
-			messageAffichable[0] = incidentNote.getCol03MomentCreation()
+			messageAffichable[0] = incidentNote.getCol031MomentCreationPourAffichage()
 					+ " " + incidentNote.getCol04Auteur();
 			messageAffichable[1] = incidentNote.getCol05Message();
 			
