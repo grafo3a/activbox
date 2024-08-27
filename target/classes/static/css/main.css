@@ -247,6 +247,10 @@ th span {
 	padding-left: 5px;
 }
 
+.italique {
+	font-style: italic;
+}
+
 .note {
 	font-style: italic;
 	margin-right: 15px;
