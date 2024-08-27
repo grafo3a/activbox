@@ -44,11 +44,10 @@ public class IncidentNotesService {
 		/* Formattage des notes dans un message exploitable */
 		for (IncidentNote incidentNote : listeNotesIncident) {
 			
-			String[] messageAffichable = new String[2];
-			
-			messageAffichable[0] = incidentNote.getCol031MomentCreationPourAffichage()
-					+ " " + incidentNote.getCol04Auteur();
-			messageAffichable[1] = incidentNote.getCol05Message();
+			String[] messageAffichable = new String[3];
+			messageAffichable[0] = incidentNote.getCol031MomentCreationPourAffichage();
+			messageAffichable[1] = incidentNote.getCol04Auteur();
+			messageAffichable[2] = incidentNote.getCol05Message();
 			
 			listeMessagesAffichables.add(messageAffichable);
 		}

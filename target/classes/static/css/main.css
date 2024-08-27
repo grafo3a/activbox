@@ -171,7 +171,7 @@ body {
 }
 
 .editable {
-	/* background-color: rgb(240, 240, 240); */
+	background-color: rgb(250, 255, 250); /* gris verdatre 240 */
 }
 
 .paddings-standard {
@@ -245,4 +245,9 @@ th span {
 
 .icone-alerte {
 	padding-left: 5px;
+}
+
+.note {
+	font-style: italic;
+	margin-right: 15px;
 }

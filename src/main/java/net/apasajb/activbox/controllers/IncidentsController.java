@@ -62,7 +62,6 @@ public class IncidentsController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		
 		if (isincidentValid) {
 			/* Si l'incident est valide */
 			
@@ -95,10 +94,12 @@ public class IncidentsController {
 			
 			IncidentNote incidentNote = new IncidentNote(numeroIncident, momentCreation, auteurNote, messageNoteInitial);
 			incidentNotesService.ajouterNoteIncident(incidentNote);
+			
+			/* On recupere toutes les notes disponibles pour l'incident */
 			List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(numeroIncident);
 			modelAndView.addObject("listeNotes", listeNotes);
 			
-			/* On informe l'utilisateur */
+			/* On repond à l'utilisateur */
 			String titreTicket = "Ticket créé: incident " + incidentEnBdd.getCol02NumeroTicket();
 			String messageSucces = "Incident créé correctement";
 			
@@ -270,30 +271,43 @@ public class IncidentsController {
 		modelAndView.setViewName("details-incident.html");
 		
 		String messageNote = "Modifications:";
+		boolean isPrioritehNew = false;
+		boolean isEtatNew = false;
+		boolean isEquipeEnChargeNew = false;
+		boolean isAgentEnChargeNew = false;
+		boolean isAgentEnChargeValid = true;
 		
 		try {
 			Incident incident = incidentRepository.findByCol02NumeroTicket(paramNumeroIncident).get(0);
 			
-			if (!paramPrioriteh.isBlank() && !incident.getCol10Prioriteh().equals(paramPrioriteh)) {
+			if (!incident.getCol10Prioriteh().equals(paramPrioriteh)) {
+				// Si la valeur de la prioriteh change
 				
+				isPrioritehNew = true;
 				messageNote = messageNote + " Priorité [" + incident.getCol10Prioriteh() + " -> " + paramPrioriteh + "];";
 				incident.setCol10Prioriteh(paramPrioriteh);
 			}
 			
-			if (!paramEtat.isBlank() && !incident.getCol11Etat().equals(paramEtat)) {
+			if (!incident.getCol11Etat().equals(paramEtat)) {
+				// Si la valeur de l'Etat change
 				
+				isEtatNew = true;
 				messageNote = messageNote + " Etat [" + incident.getCol11Etat() + " -> " + paramEtat + "];";
 				incident.setCol11Etat(paramEtat);
 			}
 			
-			if (!paramEquipeEnCharge.isBlank() && !incident.getCol12EquipeEnCharge().equals(paramEquipeEnCharge)) {
+			if (!incident.getCol12EquipeEnCharge().equals(paramEquipeEnCharge)) {
+				// Si la valeur de l'Equipe en charge change
 				
+				isEquipeEnChargeNew = true;
 				messageNote = messageNote + " Equipe en Charge [" + incident.getCol12EquipeEnCharge() + " -> " + paramEquipeEnCharge + "];";
 				incident.setCol12EquipeEnCharge(paramEquipeEnCharge);
 			}
 			
-			if (!paramAgentEnCharge.isBlank() & incident.getCol13AgentEnCharge() != paramAgentEnCharge) {
+			if (incident.getCol13AgentEnCharge() != paramAgentEnCharge) {
+				// Si la valeur de l'Agent en charge change
 				
+				isAgentEnChargeNew = true;
 				messageNote = messageNote + " Agent en charge [" + incident.getCol13AgentEnCharge() + " -> " + paramAgentEnCharge + "];";
 				incident.setCol13AgentEnCharge(paramAgentEnCharge);
 			}
@@ -301,21 +315,35 @@ public class IncidentsController {
 			/* Si au moins une donnée change, on enregistre la modification
 			 * et on ajoute une note en BDD.
 			 */
-			if (!paramPrioriteh.isBlank() || !paramEquipeEnCharge.isBlank() ||
-					!paramAgentEnCharge.isBlank() || !paramEtat.isBlank()) {
+			if (isPrioritehNew || isEquipeEnChargeNew || isAgentEnChargeNew || isEtatNew) {
 				
-				incidentRepository.save(incident);
-				LocalDateTime momentActuel = ticketService.getMomentActuel();
-				String utilisateurActuel = ticketService.getUtilisateurActuel();
+				if (paramAgentEnCharge.isBlank()) {
+					modelAndView.addObject("messageErreur", "ERREUR. Valeur vide pour l'agent en charge.");
+					isAgentEnChargeValid = false;
+					
+				} else {
+					
+					incidentRepository.save(incident);
+					LocalDateTime momentActuel = ticketService.getMomentActuel();
+					String utilisateurActuel = ticketService.getUtilisateurActuel();
+					IncidentNote incidentNote = new IncidentNote(paramNumeroIncident,
+							momentActuel, utilisateurActuel, messageNote);
+					incidentNotesService.ajouterNoteIncident(incidentNote);
+					
+					modelAndView.addObject("messageSucces", "Données modifiées correctement.");
+				}
 				
-				IncidentNote incidentNote = new IncidentNote(paramNumeroIncident, momentActuel, utilisateurActuel, messageNote);
-				incidentNotesService.ajouterNoteIncident(incidentNote);
+			} else {
+				modelAndView.addObject("messageErreur", "ERREUR. Aucune valeur ne change, rien à sauvegarder.");
 			}
 			
 			modelAndView.addObject("objetIncident", incident);
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageErreur", "ERREUR: " + ex.getMessage());
+		
+		} finally {
+			modelAndView.addObject("isAgentEnChargeValid", isAgentEnChargeValid);
 		}
 		
 		/* On affiche toutes les notes du ticket actuel */
