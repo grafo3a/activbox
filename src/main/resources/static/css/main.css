@@ -167,11 +167,10 @@ body {
 }
 
 .cadre {
-	border-bottom: 1px solid green;
 }
 
 .editable {
-	background-color: rgb(250, 255, 250); /* gris verdatre 240 */
+	background-color: rgb(250, 255, 250); /* gris verdatre */
 }
 
 .paddings-standard {
