@@ -167,6 +167,16 @@ body {
 }
 
 .cadre {
+	background-color: rgb(245, 245, 245); /* gris 245 */
+	border-bottom: 1px solid lightGrey;
+	border-radius: 5px;
+	margin-top: 2px;
+	min-height: 30px;
+	
+	/* Centrage vertical */
+	display: flex;
+	justify-content: left;
+	align-items: center;
 }
 
 .editable {
