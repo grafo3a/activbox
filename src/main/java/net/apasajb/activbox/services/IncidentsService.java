@@ -1,13 +1,26 @@
 package net.apasajb.activbox.services;
 
-import org.springframework.stereotype.Component;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 
 /**
  * Comporte des methodes pour les incidents.
  */
-@Component
+@Service
 public class IncidentsService {
+	
+	@PersistenceContext
+    private EntityManager em;
+	
+	@Autowired
+	DataSource dataSource;
+	
 	
 	public String genererNumeroIncident(int idIncidentEnBdd) {
 		

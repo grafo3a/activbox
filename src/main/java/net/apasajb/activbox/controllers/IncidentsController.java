@@ -39,6 +39,7 @@ public class IncidentsController {
 	@Autowired
 	TicketService ticketService;
 	
+	
 	String statutInitial = "Nouveau";
 	
 	/* LES 2 METHODES SUIVANTES CONSTITUENT UNE PAIRE GET & POST */
@@ -66,6 +67,7 @@ public class IncidentsController {
 			/* Si l'incident est valide */
 			
 			modelAndView.setViewName("details-incident.html");
+			newIncident.setCol03TypeTicket("Incident");
 			
 			/* On ajoute la date & l'heure de création */
 			LocalDateTime momentCreation = LocalDateTime.now();
@@ -193,13 +195,13 @@ public class IncidentsController {
 			try {
 				List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(paramMotClef);
 				
-				
 				Incident incidentTrouveh = listeIncidents.get(0);
 				modelAndView.addObject("objetIncident", incidentTrouveh);
 				
 				List<String[]> listeNotes = incidentNotesService.getToutesNotesPourIncident(paramMotClef);
 				modelAndView.addObject("listeNotes", listeNotes);
 				/* A FAIRE EVOLUER */
+				
 				modelAndView.addObject("auteurActuel", "Grafo55");
 				modelAndView.addObject("titreTicket", "Ticket Incident " + incidentTrouveh.getCol02NumeroTicket());
 				
@@ -207,26 +209,14 @@ public class IncidentsController {
 				modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramMotClef + "\"");
 			}
 			
-			
-		/*
-		 * ==== AUTRES CAS A ACTIVER SUR BESOIN ====
-		
-		} else if (paramMotClef.matches(regexDemandeChangement)) {
-			// Cas d'une demande
-			
-		} else if (paramMotClef.matches(regexDemandeInfo)) {
-			// Cas d'une demande d'info
-			
-		} else if (paramMotClef.matches(regexDemandeSolution)) {
-			// Cas d'une demande d'une solution durable
-			
-		} else if (paramMotClef.matches(regexTache)) {
-			// Cas d'une tache
-			
-		} else if (paramMotClef.matches(regexProjet)) {
-			// cas d'un projet
-		*
-		*/
+			/*
+			 * ==== AUTRES CAS A ACTIVER SUR BESOIN ====
+			 * Cas d'une demande
+			 * Cas d'une demande d'info
+			 * Cas d'une demande d'une solution durable
+			 * Cas d'une tache
+			 * cas d'un projet
+			 */
 			
 		} else {
 			// Cas d'un mot-clef quelconque

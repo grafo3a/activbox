@@ -26,7 +26,7 @@ public class Ticket {
 	@Column(name="numero", length=20, unique=true)
 	private String col02NumeroTicket;
 	
-	@Column(name="type", length=20, unique=true)
+	@Column(name="type", length=20)
 	private String col03TypeTicket;
 	
 	@Column(name="agent_initial", length=50, nullable=false)
