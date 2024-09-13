@@ -14,10 +14,6 @@ import net.apasajb.activbox.entities.Incident;
  */
 public interface IncidentRepository extends JpaRepository<Incident, Integer> {
 	
-	/* On ne fait rien ici sauf si necessaire.
-	 * On peut toutefois ajouter des methodes personalisees
-	 */
-	
 	/**
 	 * Recherche un incident sur base d'un numero de ticket.
 	 */

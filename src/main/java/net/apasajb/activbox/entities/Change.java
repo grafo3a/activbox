@@ -1,11 +1,10 @@
 package net.apasajb.activbox.entities;
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Component;
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 
@@ -16,43 +15,21 @@ import jakarta.persistence.Table;
 @Component
 @Entity
 @Table(name="changements")
-public class Change {
+public class Change extends Ticket implements Serializable {
+
+	private static final long serialVersionUID = 892244685273266123L;
 	
-	@Id
-	@Column(name="id_changement")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer idChangement;
-	
-	@Column(name="numero_changement", length=20, nullable=false, unique=true)
-	private String numeroChangement;
-	
-	
-	
-	// Constructeurs par defaut et parametrique
-	
-	
-	// To string
-	
-	
-	//======================================= GETTERS & SETTERS //
-	
-	public Integer getIdChangement() {
-		return idChangement;
+	// ==== CONSTRUCTEURS PAR DEFAUT & PARAMETRIQUE ====
+	public Change() {
+		super();
 	}
 	
 	
-	public void setIdChangement(Integer idChangement) {
-		this.idChangement = idChangement;
-	}
+	/* ==== LA METHODE TOSTRING ====
+	 * pas necessaire ici.
+	 */
 	
 	
-	public String getNumeroChangement() {
-		return numeroChangement;
-	}
-	
-	
-	public void setNumeroChangement(String numeroChangement) {
-		this.numeroChangement = numeroChangement;
-	}
-	//===========================================================//
+	/* ==== GETTERS & SETTERS ====
+	 * Uniquement pour les attributs non présents dans la classe parent */
 }

@@ -25,9 +25,9 @@ public class Incident extends Ticket implements Serializable {
 	}
 	
 	
-	
-	// ==== LA METHODE TOSTRING ====
-	
+	/* ==== LA METHODE TOSTRING ====
+	 * pas necessaire ici.
+	 */
 	
 	
 	/* ==== GETTERS & SETTERS ====
