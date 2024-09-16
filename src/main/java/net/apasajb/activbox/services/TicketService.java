@@ -13,6 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class TicketService {
 	
+	String regexIncident = "^[Ii][Nn][0-9]{8}$";			//=> IN00000000
+	String regexChangement = "^[Dd][Cc][0-9]{8}$";			//=> CH00000000
+	/*
+	String regexDemandeInfo = "^[Dd][Ii][0-9]{8}$";			//=> DI00000000
+	String regexDemandeSolution = "^[Dd][Ss][0-9]{8}$";		//=> DS00000000
+	String regexTache = "^[Tt][Aa][0-9]{8}$";				//=> TA00000000
+	String regexProjet = "^[Pp][Rr][0-9]{8}$";				//=> PR00000000
+	*/
+	
 	public LocalDateTime getMomentActuel() {
 		
 		LocalDateTime momentActuel = LocalDateTime.now();
@@ -29,6 +38,18 @@ public class TicketService {
 		
 		return momentCompact;
 	}
+	
+	public String getRegexIncident() {
+		return regexIncident;
+	}
+	
+	public String getRegexChangement() {
+		return regexChangement;
+	}
+	
+	/*
+	 * Quand ce sera necessaire, ajouter d'autres methodes getRegex ici.
+	 */
 	
 	public String getUtilisateurActuel() {
 		// A adapter

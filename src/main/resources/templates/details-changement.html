@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8"></meta>
-<title>[ActivBox] Détails incident</title>
+<title>[ActivBox] Détails changement</title>
 
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/bootstrap-icons.css" />
@@ -32,11 +32,11 @@
 
 <!-- Si ticket absent -->
 <div th:if="${titreTicket} == null" class="text-end pt-2 pb-2">
-	<span class="titre-page h4">Détails d'un incident</span>
+	<span class="titre-page h4">Détails d'un changement</span>
 </div>
 
-<!--
-// Les détails du ticket
+<!--//
+Les détails du ticket 
 <div th:replace="fragments/details-ticket.html">
 </div>
 //-->
@@ -146,7 +146,7 @@
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-4"></div>
 	
 	<!-- Colonne B -->
-	<form action="modif-incident" method="post" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	<form action="modif-changement" method="post" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 		
 			<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
 					th:value="${objetTicket.col02NumeroTicket}">
@@ -213,7 +213,7 @@
 						th:if="${objetTicket.col18MessageResolution} != null" class="cadre ml-2"></div>
 			</div>
 			
-			<form action="cloture-incident" method="post"
+			<form action="cloture-changement" method="post"
 					th:if="${objetTicket.col18MessageResolution} == null">
 				
 				<div class="form-group">
@@ -279,7 +279,7 @@
 		
 		<!-- AJOUT D'UNE NOTE -->
 		
-		<form action="new-note-incident" method="post" class="mt-4">
+		<form action="new-note-changement" method="post" class="mt-4">
 			
 			<div class="form-group">
 			

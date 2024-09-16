@@ -14,15 +14,15 @@ import jakarta.persistence.Table;
 
 
 /**
- * Entité qui représente une note d'incident en BDD
+ * Entité qui représente une note de changement en BDD
  * @author ApasaJB
  */
 @Component
 @Entity
-@Table(name="incident_notes")
-public class IncidentNote implements Serializable {
+@Table(name="change_notes")
+public class ChangeNote implements Serializable {
 	
-	private static final long serialVersionUID = -7625636603025445168L;
+	private static final long serialVersionUID = 4919243768827341366L;
 	
 	@Id
 	@Column(name="id")
@@ -44,15 +44,14 @@ public class IncidentNote implements Serializable {
 	@Column(name="message", length=1000, nullable=false)
 	private String col05Message;
 	
-	
 	// ==== CONSTRUCTEURS PAR DEFAUT & PARAMETRIQUE ====
-	public IncidentNote() {
+	
+	public ChangeNote() {
 		super();
 	}
 	
-	public IncidentNote(String col02NumeroTicket, LocalDateTime col03MomentCreation, String col04Auteur,
+	public ChangeNote(String col02NumeroTicket, LocalDateTime col03MomentCreation, String col04Auteur,
 			String col05Message) {
-		
 		super();
 		this.col02NumeroTicket = col02NumeroTicket;
 		this.col03MomentCreation = col03MomentCreation;
@@ -61,12 +60,13 @@ public class IncidentNote implements Serializable {
 	}
 	
 	// ==== LA METHODE TOSTRING ====
+	
 	@Override
 	public String toString() {
-		return "IncidentNote [col01IdNoteIncident=" + col01IdNote + ", col02NumeroTicket="
-				+ col02NumeroTicket + ", col03MomentCreation=" + col03MomentCreation
-				+ ", col031MomentCreationPourAffichage=" + col031MomentCreationPourAffichage + ", col04Auteur="
-				+ col04Auteur + ", col05Message=" + col05Message + "]";
+		return "ChangeNote [col01IdNote=" + col01IdNote + ", col02NumeroTicket=" + col02NumeroTicket
+				+ ", col03MomentCreation=" + col03MomentCreation + ", col031MomentCreationPourAffichage="
+				+ col031MomentCreationPourAffichage + ", col04Auteur=" + col04Auteur + ", col05Message=" + col05Message
+				+ "]";
 	}
 	
 	// ==== GETTERS & SETTERS ====

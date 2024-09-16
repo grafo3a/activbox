@@ -38,10 +38,10 @@
 		<!--// FORMULAIRE NOUVEAU TICKET //-->
 		
 		<!-- On precise l'objet qui sera constituee par les donnees du formulaire.
-			Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "objetIncident" du modele.
+			Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "objetTicket" du modele.
 			Ici le modele envoyeh par la methode get est present. -->
 			
-		<form action="#" th:action="@{/nouvel-incident}" th:object="${objetIncident}" method="post"
+		<form action="#" th:action="@{/nouvel-incident}" th:object="${objetTicket}" method="post"
 				xmlns:th="http://www.thymeleaf.org">
 			
 			<div th:insert="fragments/formulaire-nouveau-ticket.html"></div>

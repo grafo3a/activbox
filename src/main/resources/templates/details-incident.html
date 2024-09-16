@@ -20,7 +20,6 @@
 <div class="contenu border-top-radius-10px border-bottom-radius-10px">
 
 <header th:insert="fragments/entete.html">
-<!-- <div th:replace="fragments/entete.html :: header"></div> -->
 </header>
 
 
@@ -33,11 +32,20 @@
 
 <!-- Si ticket absent -->
 <div th:if="${titreTicket} == null" class="text-end pt-2 pb-2">
-	<span class="titre-page h4">Recherche de tickets</span>
+	<span class="titre-page h4">Détails d'un incident</span>
 </div>
 
-<div class="zone-infos">
-	
+<!--
+// Les détails du ticket
+<div th:replace="fragments/details-ticket.html">
+</div>
+//-->
+
+<!--// Le contenu générique d'un ticket //-->
+
+<div xmlns:th="http://www.thymeleaf.org"
+		class="zone-infos" >
+		
 	<!-- Si infos non valid -->
 	<div th:if="${messageSucces} != null"
 			class="alert alert-success text-center p-1 message-alert" th:text="${messageSucces}">
@@ -58,11 +66,11 @@
 			class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
 	</div>
 	
-	<!--==== AFFICHAGE DES DETAILS D'UN INCIDENT ====-->
-	<div th:if="${objetIncident} != null" class="m-4">
+	<!--==== AFFICHAGE DES DETAILS D'UN TICKET ====-->
+	<div th:if="${objetTicket} != null" class="m-4">
 	
 	<!--==== ZONE DETAILS ====-->
-	<div class="h4">Détails de l'incident</div>
+	<div class="h4">Détails du ticket</div>
 	
 	<div class="row mt-4">
 		
@@ -71,28 +79,28 @@
 		
 			<div class="row">
 			<span class="col-5 text-end"><i>Numéro de ticket</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col02NumeroTicket}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col02NumeroTicket}"></span>
 			
 			<span class="col-5 text-end"><i>Type de ticket</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col03TypeTicket}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col03TypeTicket}"></span>
 			
 			<span class="col-5 text-end"><i>Agent initial</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col04AgentInitial}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col04AgentInitial}"></span>
 			
 			<span class="col-5 text-end"><i>Demandeur</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col05Demandeur}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col05Demandeur}"></span>
 			
 			<span class="col-5 text-end"><i>Entreprise</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col06Entreprise}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col06Entreprise}"></span>
 			
 			<span class="col-5 text-end"><i>Catégorie</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col07Categorie}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col07Categorie}"></span>
 			
 			<span class="col-5 text-end"><i>Code-produit</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col08Produit}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col08Produit}"></span>
 			
 			<span class="col-5 text-end"><i>Moment-de-création</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col091MomentCreationPourAffichage}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col091MomentCreationPourAffichage}"></span>
 			</div>
 			</div>
 			
@@ -103,16 +111,16 @@
 			<div class="row">
 			
 			<span class="col-5 text-end"><i>Priorité</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col10Prioriteh}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col10Prioriteh}"></span>
 			
 			<span class="col-5 text-end"><i>Etat</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col11Etat}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col11Etat}"></span>
 			
 			<span class="col-5 text-end"><i>Equipe-en-charge</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col12EquipeEnCharge}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col12EquipeEnCharge}"></span>
 			
 			<span class="col-5 text-end"><i>Agent-en-charge</i></span>
-			<span class="col-5 cadre" th:text="${objetIncident.col13AgentEnCharge}"></span>
+			<span class="col-5 cadre" th:text="${objetTicket.col13AgentEnCharge}"></span>
 			
 			</div>
 		</div>
@@ -120,12 +128,12 @@
 	
 	<div class="row mt-4">
 		<div class="col-5"><i>Sujet</i></div>
-		<div class="col-12 cadre" th:text="${objetIncident.col15Sujet}"></div>
+		<div class="col-12 cadre" th:text="${objetTicket.col15Sujet}"></div>
 	</div>
 	
 	<div class="row mt-4">
 		<div class="col-5"><i>Description</i></div>
-		<div class="col-12 cadre" th:text="${objetIncident.col16Description}"></div>
+		<div class="col-12 cadre" th:text="${objetTicket.col16Description}"></div>
 	</div>
 	
 	<!--==== ZONE MODIFICATIONS ====-->
@@ -140,18 +148,15 @@
 	<!-- Colonne B -->
 	<form action="modif-incident" method="post" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 		
-			<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
-					th:value="${objetIncident.col02NumeroTicket}">
-				
-			<input type="hidden" id="col04Auteur" name="col04Auteur"
-					th:value="${auteurActuel}">
-				
+			<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
+					th:value="${objetTicket.col02NumeroTicket}">
+					
 		<div class="form-group row">
 			<label for="col10Prioriteh" class="col-5 col-form-label text-end"><i>Priorité</i></label>
 			
 			<div class="col-6 p-0">
 				<input type="text" id="col10Prioriteh" name="col10Prioriteh"
-						th:value="${objetIncident.col10Prioriteh}" class="form-control form-control-sm editable" />
+						th:value="${objetTicket.col10Prioriteh}" class="form-control form-control-sm editable" />
 			</div>
 		</div>
 		
@@ -160,7 +165,7 @@
 			
 			<div class="col-6 p-0">
 				<input type="text" id="col11Etat" name="col11Etat"
-					th:value="${objetIncident.col11Etat}" class="form-control form-control-sm editable" />
+					th:value="${objetTicket.col11Etat}" class="form-control form-control-sm editable" />
 			</div>
 		</div>
 		
@@ -169,7 +174,7 @@
 			
 			<div class="col-6 p-0">
 				<input type="text" id="col12EquipeEnCharge" name="col12EquipeEnCharge"
-					th:value="${objetIncident.col12EquipeEnCharge}" class="col-5 form-control form-control-sm editable" />
+					th:value="${objetTicket.col12EquipeEnCharge}" class="col-5 form-control form-control-sm editable" />
 			</div>
 		</div>
 		
@@ -178,7 +183,7 @@
 			
 			<div class="col-6 p-0">
 				<input type="text" id="col13AgentEnCharge" name="col13AgentEnCharge"
-					th:value="${objetIncident.col13AgentEnCharge}" class="col-5 form-control form-control-sm editable" />
+					th:value="${objetTicket.col13AgentEnCharge}" class="col-5 form-control form-control-sm editable" />
 			</div>
 			
 			<div th:if="${isAgentEnChargeValid} == false" class="col-1 icone-alerte">
@@ -204,22 +209,19 @@
 			
 			<div class="row m-0">
 				<div class="col p-0"><i>Message de résolution</i></div>
-				<div th:text="${objetIncident.col18MessageResolution}"
-						th:if="${objetIncident.col18MessageResolution} != null" class="cadre ml-2"></div>
+				<div th:text="${objetTicket.col18MessageResolution}"
+						th:if="${objetTicket.col18MessageResolution} != null" class="cadre ml-2"></div>
 			</div>
 			
 			<form action="cloture-incident" method="post"
-					th:if="${objetIncident.col18MessageResolution} == null">
+					th:if="${objetTicket.col18MessageResolution} == null">
 				
 				<div class="form-group">
 					<!--
 					<label for="col05Message">Message-de-résolution</label>
 					 -->
-					<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
-							th:value="${objetIncident.col02NumeroTicket}">
-							
-					<input type="hidden" id="col04Auteur" name="col04Auteur"
-							th:value="${auteurActuel}">
+					<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
+							th:value="${objetTicket.col02NumeroTicket}">
 							
 					<textarea rows="1" id="col05Message" name="col05Message" class="form-control editable"></textarea>
 					
@@ -240,11 +242,11 @@
 			
 			<div class="row">
 				<span class="col-5 text-end"><i>Moment-fin</i></span>
-				<span class="col-5 cadre" th:text="${objetIncident.col17MomentFin}"></span>
+				<span class="col-5 cadre" th:text="${objetTicket.col17MomentFin}"></span>
 			</div>
 			<div class="row">
 				<span class="col-5 text-end"><i>Moment-SLA</i></span>
-				<span class="col-5 cadre" th:text="${objetIncident.col14MomentSLA}"></span>
+				<span class="col-5 cadre" th:text="${objetTicket.col14MomentSLA}"></span>
 			</div>
 			<div class="row">
 				<span class="col-5 text-end"><i>Temps-restant-SLA</i></span>
@@ -283,11 +285,8 @@
 			
 				<label for="col05Message"><i>Ajoutez une note</i></label>
 				
-				<input type="hidden" id="col02NumeroIncident" name="col02NumeroIncident"
-						th:value="${objetIncident.col02NumeroTicket}">
-						
-				<input type="hidden" id="col04Auteur" name="col04Auteur"
-						th:value="${auteurActuel}">
+				<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
+						th:value="${objetTicket.col02NumeroTicket}">
 						
 				<textarea rows="2" id="col05Message" name="col05Message" class="form-control editable" ></textarea>
 				
@@ -306,6 +305,7 @@
 	
 </div>
 </div>
+
 </main>
 
 

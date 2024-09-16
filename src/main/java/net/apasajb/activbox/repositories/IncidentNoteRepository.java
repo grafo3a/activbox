@@ -13,12 +13,8 @@ import net.apasajb.activbox.entities.IncidentNote;
  */
 public interface IncidentNoteRepository extends JpaRepository<IncidentNote, Integer> {
 	
-	/* On ne fait rien ici sauf si necessaire.
-	 * On peut toutefois ajouter des methodes personalisees
-	 */
-	
 	/**
 	 * Recherche de toutes les notes d'incident sur base d'un numero de ticket.
 	 */
-	List<IncidentNote> findByCol02NumeroIncidentIgnoreCase(String numeroIncident);
+	List<IncidentNote> findByCol02NumeroTicketIgnoreCase(String numeroTicket);
 }

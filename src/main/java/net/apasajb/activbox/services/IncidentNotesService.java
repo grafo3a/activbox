@@ -13,7 +13,7 @@ import net.apasajb.activbox.repositories.IncidentNoteRepository;
 
 
 /**
- * Comporte des methodes pour manipuler les notes d'incident.
+ * Comporte des methodes permettant de manipuler les notes d'incident.
  */
 @Component
 public class IncidentNotesService {
@@ -39,7 +39,7 @@ public class IncidentNotesService {
 	public List<String[]> getToutesNotesPourIncident(String numeroIncident){
 		
 		List<String[]> listeMessagesAffichables = new ArrayList<String[]>();
-		List<IncidentNote> listeNotesIncident = incidentNoteRepository.findByCol02NumeroIncidentIgnoreCase(numeroIncident);
+		List<IncidentNote> listeNotesIncident = incidentNoteRepository.findByCol02NumeroTicketIgnoreCase(numeroIncident);
 		
 		/* Formattage des notes dans un message exploitable */
 		for (IncidentNote incidentNote : listeNotesIncident) {
