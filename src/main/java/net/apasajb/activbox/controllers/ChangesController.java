@@ -107,7 +107,7 @@ public class ChangesController {
 			modelAndView.addObject("listeNotes", listeNotes);
 			
 			/* On repond à l'utilisateur */
-			String titreTicket = "Ticket créé: changement " + changementEnBdd.getCol02NumeroTicket();
+			String titreTicket = "Ticket " + changementEnBdd.getCol02NumeroTicket() + " (changement)";
 			String messageSucces = "Changement créé correctement";
 			
 			modelAndView.addObject("titreTicket", titreTicket);

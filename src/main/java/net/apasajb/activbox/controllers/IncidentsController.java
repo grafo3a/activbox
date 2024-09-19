@@ -107,7 +107,7 @@ public class IncidentsController {
 			modelAndView.addObject("listeNotes", listeNotes);
 			
 			/* On repond à l'utilisateur */
-			String titreTicket = "Ticket créé: incident " + incidentEnBdd.getCol02NumeroTicket();
+			String titreTicket = "Ticket " + incidentEnBdd.getCol02NumeroTicket() + " (incident)";
 			String messageSucces = "Incident créé correctement";
 			
 			modelAndView.addObject("titreTicket", titreTicket);
@@ -166,7 +166,7 @@ public class IncidentsController {
 			
 			// A FAIRE EVOLUER
 			modelAndView.addObject("auteurActuel", "Grafo55");
-			modelAndView.addObject("titreTicket", "Ticket " + incidentTrouveh.getCol02NumeroTicket() + " (Incident)");
+			modelAndView.addObject("titreTicket", "Ticket " + incidentTrouveh.getCol02NumeroTicket() + " (incident)");
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramNumero + "\"");
@@ -261,7 +261,7 @@ public class IncidentsController {
 			}
 			
 			modelAndView.addObject("objetTicket", incident);
-			modelAndView.addObject("titreTicket", "Ticket " + paramNumeroIncident + " (Incident)");
+			modelAndView.addObject("titreTicket", "Ticket " + paramNumeroIncident + " (incident)");
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageErreur", "ERREUR: " + ex.getMessage());
@@ -319,7 +319,7 @@ public class IncidentsController {
 			modelAndView.addObject("listeNotes", listeNotes);
 			
 			// On repond à l'utilisateur
-			modelAndView.addObject("titreTicket", "Ticket " + paramNumeroIncident + " (Incident)");
+			modelAndView.addObject("titreTicket", "Ticket " + paramNumeroIncident + " (incident)");
 			
 		} catch (Exception ex) {
 			modelAndView.addObject("messageErreur", "ERREUR: " + ex.getMessage());
@@ -361,7 +361,7 @@ public class IncidentsController {
 			List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(numeroIncident);
 			Incident incidentTrouveh = listeIncidents.get(0);
 			modelAndView.addObject("objetTicket", incidentTrouveh);
-			modelAndView.addObject("titreTicket", "Ticket " + numeroIncident + " (Incident)");
+			modelAndView.addObject("titreTicket", "Ticket " + numeroIncident + " (incident)");
 			
 		} else {
 			modelAndView.addObject("messageErreur", "INFO: Aucun ticket trouvé pour " + numeroIncident);
