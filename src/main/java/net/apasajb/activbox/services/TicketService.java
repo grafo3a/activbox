@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class TicketService {
 	
 	String regexIncident = "^[Ii][Nn][0-9]{8}$";			//=> IN00000000
-	String regexChangement = "^[Dd][Cc][0-9]{8}$";			//=> CH00000000
+	String regexChangement = "^[Cc][Hh][0-9]{8}$";			//=> CH00000000
 	/*
 	String regexDemandeInfo = "^[Dd][Ii][0-9]{8}$";			//=> DI00000000
 	String regexDemandeSolution = "^[Dd][Ss][0-9]{8}$";		//=> DS00000000

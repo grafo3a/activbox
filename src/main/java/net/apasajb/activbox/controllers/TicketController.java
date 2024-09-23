@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.apasajb.activbox.entities.Change;
 import net.apasajb.activbox.entities.Incident;
+import net.apasajb.activbox.repositories.ChangeRepository;
 import net.apasajb.activbox.repositories.IncidentRepository;
+import net.apasajb.activbox.services.ChangeNotesService;
 import net.apasajb.activbox.services.IncidentNotesService;
 import net.apasajb.activbox.services.TicketService;
 
@@ -22,10 +25,16 @@ public class TicketController {
 	IncidentRepository incidentRepository;
 	
 	@Autowired
+	ChangeRepository changeRepository;
+	
+	@Autowired
 	TicketService ticketService;
 	
 	@Autowired
 	IncidentNotesService incidentNotesService;
+	
+	@Autowired
+	ChangeNotesService changeNotesService;
 	
 	String equipeUtilisateur;
 	
@@ -44,9 +53,14 @@ public class TicketController {
 		 */
 		
 		List<Incident> listeIncidentsOuverts = incidentRepository.findListeIncidentsEtatOuvert();
+		List<Change> listeChangementsOuverts = changeRepository.findListeChangementsEtatOuvert();
 		
 		if (listeIncidentsOuverts.size() > 0) {
 			modelAndView.addObject("listeIncidents", listeIncidentsOuverts);
+		}
+		
+		if (listeChangementsOuverts.size() > 0) {
+			modelAndView.addObject("listeChangements", listeChangementsOuverts);
 		}
 		
 		return modelAndView;
@@ -55,12 +69,13 @@ public class TicketController {
 	/**
 	 * Gère la recherche de tickets.
 	 */
-	@PostMapping("/recherche-incident")
+	@PostMapping("/recherche-ticket")
 	public ModelAndView rechercherTicket(
 			@RequestParam("motClef") String paramMotClef) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		String regexIncident = ticketService.getRegexIncident();    //=> IN00000000
+		String regexChangement = ticketService.getRegexChangement();    //=> CH00000000
 		
 		if (paramMotClef.isBlank()) {
 			// Cas d'un mot-clef vide
@@ -69,7 +84,7 @@ public class TicketController {
 			modelAndView.addObject("messageWarning", "Avertissement: Aucun numero ou mot-clef fourni!");
 			
 		} else if (paramMotClef.matches(regexIncident)) {
-			// Cas d'un numero de ticket valide
+			// Cas d'un incident (numero de ticket valide)
 			
 			modelAndView.setViewName("details-incident.html");
 			
@@ -83,8 +98,30 @@ public class TicketController {
 				modelAndView.addObject("listeNotes", listeNotes);
 				/* A FAIRE EVOLUER */
 				
-				modelAndView.addObject("auteurActuel", "Grafo55");
+				//modelAndView.addObject("auteurActuel", "Grafo55");
 				modelAndView.addObject("titreTicket", "Ticket " + incidentTrouveh.getCol02NumeroTicket() + " (Incident)");
+				
+			} catch (Exception ex) {
+				modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramMotClef + "\"");
+			}
+			
+		} else if (paramMotClef.matches(regexChangement)) {
+			// Cas d'un changement (numero de ticket valide)
+			
+			modelAndView.setViewName("details-changement.html");
+			
+			try {
+				List<Change> listeChangements = changeRepository.findByCol02NumeroTicket(paramMotClef);
+				
+				Change changementTrouveh = listeChangements.get(0);
+				modelAndView.addObject("objetTicket", changementTrouveh);
+				
+				List<String[]> listeNotes = changeNotesService.getToutesNotesPourChangement(paramMotClef);
+				modelAndView.addObject("listeNotes", listeNotes);
+				/* A FAIRE EVOLUER */
+				
+				//modelAndView.addObject("auteurActuel", "Grafo55");
+				modelAndView.addObject("titreTicket", "Ticket " + changementTrouveh.getCol02NumeroTicket() + " (changement)");
 				
 			} catch (Exception ex) {
 				modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramMotClef + "\"");
@@ -102,17 +139,30 @@ public class TicketController {
 		} else {
 			// Cas d'un mot-clef quelconque
 			
-			modelAndView.setViewName("liste-incidents.html");
+			modelAndView.setViewName("liste-tickets.html");
 			String messageInfo;
 			List<Incident> listeIncidents = null;
+			List<Change> listeChangements = null;
+			boolean isTicketListEmpty = true;
 			
 			try {
 				listeIncidents = incidentRepository.findByCol15SujetContaining(paramMotClef);
+				listeChangements = changeRepository.findByCol15SujetContaining(paramMotClef);
 				
-				if (listeIncidents.isEmpty() == false) {
+				if (listeIncidents.size() > 0) {
+					
 					modelAndView.addObject("listeIncidents", listeIncidents);
+					isTicketListEmpty = false;
+				}
 				
-				} else {
+				if (listeChangements.size() > 0) {
+					
+					modelAndView.addObject("listeChangements", listeChangements);
+					isTicketListEmpty = false;
+				}
+				
+				if (isTicketListEmpty) {
+					
 					messageInfo = "Info: Aucun ticket trouvé pour le mot \"" + paramMotClef + "\"";
 					modelAndView.addObject("messageInfo", messageInfo);
 				}

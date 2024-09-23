@@ -12,9 +12,10 @@ The following technologies are used in this project:
 - Spring Data JPA
 - SQLite
 - Thymeleaf
-- HTML, CSS & Bootstrap
-- JavaScript (expected)
-- JUnit 5 (expected)
+- HTML & CSS
+- Bootstrap 5.2.0
+- JavaScript
+- JUnit 5
 - Maven
 
 ### Build & run procedure
