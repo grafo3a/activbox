@@ -98,7 +98,6 @@ public class TicketController {
 				modelAndView.addObject("listeNotes", listeNotes);
 				/* A FAIRE EVOLUER */
 				
-				//modelAndView.addObject("auteurActuel", "Grafo55");
 				modelAndView.addObject("titreTicket", "Ticket " + incidentTrouveh.getCol02NumeroTicket() + " (Incident)");
 				
 			} catch (Exception ex) {
@@ -120,7 +119,6 @@ public class TicketController {
 				modelAndView.addObject("listeNotes", listeNotes);
 				/* A FAIRE EVOLUER */
 				
-				//modelAndView.addObject("auteurActuel", "Grafo55");
 				modelAndView.addObject("titreTicket", "Ticket " + changementTrouveh.getCol02NumeroTicket() + " (changement)");
 				
 			} catch (Exception ex) {
