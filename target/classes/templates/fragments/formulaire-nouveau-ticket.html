@@ -4,35 +4,20 @@
 	<label th:text="#{msg_Prioriteh}"></label>
 	-->
 	
-	<!--// LE TYPE DU TICKET
-	<div class="form-group row">
-		<label for="col03TypeTicket" th:text="Type"
-				class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label text-end italique"></label>
-				
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 info-fournie">
-			<select id="col03TypeTicket" name="col03TypeTicket"
-						class="form-select form-select-sm editable" aria-label=".form-select-sm example">
-				<option selected>Choisir</option>
-				<option value="Incident">Incident</option>
-				<option value="Changement">Changement</option>
-				
-			</select>
-		</div>
-		
-		<div th:if="${isTypeValid} == false" class="col-1 icone-alerte">
-			<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
-		</div>
-	</div>
-	//-->
-	
 	<!--// LA PRIORITE //-->
 	<div class="form-group row">
-		<label for="col10Prioriteh" th:text="Prioriteh"
+		<label for="col10Prioriteh" th:text="Priorité"
 				class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label text-end italique"></label>
 				
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 info-fournie">
-			<input type="text" th:field="*{col10Prioriteh}"
-					id="col10Prioriteh" name="col10Prioriteh" class="form-control form-control-sm editable"></input>
+			<select id="col10Prioriteh" name="col10Prioriteh"
+						class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+				<option selected>Choisir</option>
+				<option value="4">4</option>
+				<option value="3">3</option>
+				<option value="2">2</option>
+				<option value="1">1</option>
+			</select>
 		</div>
 		
 		<div th:if="${isPrioritehValid} == false" class="col-1 icone-alerte">
@@ -71,13 +56,18 @@
 	</div>
 	
 	<!--// L'ENTREPRISE DU DEMANDEUR (= LE CLIENT) //-->
+	
 	<div class="form-group row">
 		<label for="col06Entreprise" th:text="Entreprise"
 				class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label text-end italique"></label>
 				
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 info-fournie">
-			<input type="text" th:field="*{col06Entreprise}"
-					id="col06Entreprise" name="col06Entreprise" class="form-control form-control-sm editable"></input>
+			<select id="col06Entreprise" name="col06Entreprise"
+						class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+				<option selected>Choisir</option>
+				<option value="YellowTech">YellowTech</option>
+				<option value="GreySoft">GreySoft</option>
+			</select>
 		</div>
 		
 		<div th:if="${isEntrepriseValid} == false" class="col-1 icone-alerte">
@@ -87,12 +77,22 @@
 	
 	<!--// LA CATEGORIE DU TICKET //-->
 	<div class="form-group row">
-		<label for="col07Categorie" th:text="Categorie"
+		<label for="col07Categorie" th:text="Catégorie"
 				class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label text-end italique"></label>
 				
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 info-fournie">
-			<input type="text" th:field="*{col07Categorie}"
-					id="col07Categorie" name="col07Categorie" class="form-control form-control-sm editable"></input>
+			<select id="col07Categorie" name="col07Categorie"
+						class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+				<option selected>Choisir</option>
+				<option value="Applications">Applications</option>
+				<option value="BDD">BDD</option>
+				<option value="Cloud">Cloud</option>
+				<option value="Comptes">Comptes</option>
+				<option value="ERP.SAP">ERP.SAP</option>
+				<option value="Réseaux">Réseaux</option>
+				<option value="Système.Linux">Systeme.Linux</option>
+				<option value="Système.Windows">Systeme.Windows</option>
+			</select>
 		</div>
 		
 		<div th:if="${isCategorieValid} == false" class="col-1 icone-alerte">
@@ -106,11 +106,21 @@
 				class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-form-label text-end italique"></label>
 				
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 info-fournie">
-			<input type="text" th:field="*{col12EquipeEnCharge}"
-					id="col12EquipeEnCharge" name="col12EquipeEnCharge" class="form-control form-control-sm editable"></input>
+			<select id="col12EquipeEnCharge" name="col12EquipeEnCharge"
+						class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+				<option selected>Choisir</option>
+				<option value="Applications">Applications</option>
+				<option value="BDD">BDD</option>
+				<option value="Dev">Dev</option>
+				<option value="SAP">SAP</option>
+				<option value="Service Desk">Service Desk</option>
+				<option value="Réseaux">Réseaux</option>
+				<option value="Linux">Linux</option>
+				<option value="Windows">Windows</option>
+			</select>
 		</div>
 		
-		<div th:if="${isEquipeEnChargeValid} == false" class="col-1 icone-alerte">
+		<div th:if="${col12EquipeEnCharge} == false" class="col-1 icone-alerte">
 			<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
 		</div>
 	</div>
