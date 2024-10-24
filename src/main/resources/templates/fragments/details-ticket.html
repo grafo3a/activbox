@@ -113,8 +113,18 @@
 			<label for="col10Prioriteh" class="col-5 col-form-label text-end"><i>Priorité</i></label>
 			
 			<div class="col-6 p-0">
+				<!--
 				<input type="text" id="col10Prioriteh" name="col10Prioriteh"
 						th:value="${objetTicket.col10Prioriteh}" class="form-control form-control-sm editable" />
+				 -->
+				<select id="col10Prioriteh" name="col10Prioriteh"
+					class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+					<option selected>Choisir</option>
+					<option value="4">4</option>
+					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+				</select>
 			</div>
 		</div>
 		
@@ -122,8 +132,17 @@
 			<label for="col11Etat" class="col-5 col-form-label text-end"><i>Etat</i></label>
 			
 			<div class="col-6 p-0">
+				<!--
 				<input type="text" id="col11Etat" name="col11Etat"
 					th:value="${objetTicket.col11Etat}" class="form-control form-control-sm editable" />
+				 -->
+				<select id="col11Etat" name="col11Etat"
+					class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+					<option selected>Choisir</option>
+					<option value="Nouveau">Nouveau</option>
+					<option value="En cours">En cours</option>
+					<option value="Terminé">Terminé</option>
+				</select>
 			</div>
 		</div>
 		
@@ -131,8 +150,22 @@
 			<label for="col12EquipeEnCharge" class="col-5 col-form-label text-end"><i>Equipe-en-charge</i></label>
 			
 			<div class="col-6 p-0">
+				<!--
 				<input type="text" id="col12EquipeEnCharge" name="col12EquipeEnCharge"
 					th:value="${objetTicket.col12EquipeEnCharge}" class="col-5 form-control form-control-sm editable" />
+				 -->
+				<select id="col12EquipeEnCharge" name="col12EquipeEnCharge"
+					class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+					<option selected>Choisir</option>
+					<option value="Applications">Applications</option>
+					<option value="BDD">BDD</option>
+					<option value="DEV">DEV</option>
+					<option value="SAP">SAP</option>
+					<option value="Service Desk">Service Desk</option>
+					<option value="Réseaux">Réseaux</option>
+					<option value="Linux">Linux</option>
+					<option value="Windows">Windows</option>
+				</select>
 			</div>
 		</div>
 		
