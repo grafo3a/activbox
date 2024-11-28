@@ -1,5 +1,7 @@
 package net.apasajb.activbox.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import net.apasajb.activbox.entities.Incident;
@@ -11,6 +13,7 @@ import net.apasajb.activbox.entities.Incident;
 @Component
 public class IncidentValidation {
 	
+	private static final Logger logger = LoggerFactory.getLogger(IncidentValidation.class);
 	String messageErreurValidation;
 	boolean isIncidentValid = false;
 	boolean isPrioritehValid = false;    // choix multiple
@@ -112,7 +115,7 @@ public class IncidentValidation {
 			
 		} else {
 			messageErreurValidation = "Erreur. Infos non valides: " + infosIncorrectes + ".";
-			System.out.println("\n" + messageErreurValidation);
+			logger.error(messageErreurValidation);
 		}
 		
 		return isIncidentValid;

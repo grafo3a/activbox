@@ -1,5 +1,7 @@
 package net.apasajb.activbox.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ public class RegistrationController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+	
 	@GetMapping("/login")
 	public String tryLogin() {
 		return "authentification.html";
@@ -41,11 +45,16 @@ public class RegistrationController {
 	@ResponseBody
 	public ModelAndView creerCompte(Compte compte) {
 		
+		/* Tous les comptes d'utilisateurs sont creeh avec le role USER.
+		 * Seul le compte admin creeh automatiquement au demarrage de l'appli a le role ADMIN.
+		 */
+		String roleParDefaut = "USER";
+		compte.setRole(roleParDefaut);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		boolean isCompteValid = false;
 		String messageSucces;
 		String messageErreur;
-		
 		String paramPassword = compte.getPassword();
 		String paramPasswordx2 = compte.getPasswordx2();
 		
@@ -56,15 +65,25 @@ public class RegistrationController {
 		
 		if (isCompteValid) {
 			
-			compte.setPassword(passwordEncoder.encode(compte.getPassword()));
-			Compte newUser = compteRepository.save(compte);
-			messageSucces = "New user added successfully: " + newUser.getUsername() + " (" + newUser.getRole() + ")";
-			
-			modelAndView.addObject("messageSucces", messageSucces);
+			try {
+				compte.setPassword(passwordEncoder.encode(compte.getPassword()));
+				Compte newUser = compteRepository.save(compte);
+				messageSucces = "Nouvel utilisateur créé avec succes: " + newUser.getUsername()
+				+ " (avec le role: " + newUser.getRole() + ")";
+				logger.info(messageSucces);
+				modelAndView.addObject("messageSucces", messageSucces);
+				
+			} catch (Exception ex) {
+				
+				messageErreur = "Erreur: quelconque. Message Java: " + ex.getMessage();
+				logger.info(messageErreur);
+				modelAndView.addObject("messageErreur", messageErreur);
+			}
 			
 		} else {
 			
-			messageErreur = "Password 1 & password 2 are different";
+			messageErreur = "Erreur: les 2 mots de passe sont differents!";
+			logger.info(messageErreur);
 			modelAndView.addObject("messageErreur", messageErreur);
 		}
 		

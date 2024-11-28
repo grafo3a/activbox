@@ -1,5 +1,6 @@
 package net.apasajb.activbox.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,18 +8,33 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
 
 
+/**
+ * Entiteh representant un compte en BDD.
+ */
 @Entity
 public class Compte {
 	
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
+	
+	@Column(name="username", length=50, nullable=false, unique=true)
 	String username;
+	
+	@Column(name="password", length=50, nullable=false, unique=true)
 	String password;
 	
 	@Transient
 	String passwordx2;
+	
+	@Column(name="role", length=50, nullable=false, unique=false)
 	String role;    // Ex. "ADMIN, USER"
+	
+	// ==== CONSTRUCTEURS PAR DEFAUT & PARAMETRIQUE ====
+	public Compte() {
+		super();
+	}
 	
 	//==== METHODE TOSTRING ====
 	@Override
