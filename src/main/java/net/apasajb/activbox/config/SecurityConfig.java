@@ -36,7 +36,6 @@ public class SecurityConfig {
 					
 					// Les URLs accessibles sans authentification
 					registry.requestMatchers(
-							"/inscription",
 							"/nouveau-compte",
 							"/h2-console/**",
 							"/css/**",
@@ -45,7 +44,9 @@ public class SecurityConfig {
 							).permitAll();
 					
 					// Les URLs accessibles avec authentification
-					registry.requestMatchers("/admin/**").hasRole("ADMIN");
+					registry.requestMatchers(
+							"/admin/**",
+							"/inscription/**").hasRole("ADMIN");
 					registry.anyRequest().authenticated();
 				})
 				

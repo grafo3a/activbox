@@ -38,7 +38,9 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		// On redirige la requete selon le role de l'utilisateur
 		// A AMELIORER
 		if (isAdmin) {
-			nextUrl = "/admin";
+			
+			//nextUrl = "/admin";
+			nextUrl = "/";
 			
 		} else {
 			nextUrl = "/";
