@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<title>[ActivBox] Zone admin</title>
+
+<link th:replace="fragments/head.html" />
+</head>
+
+
+<body>
+<div class="contenu border-top-radius-10px border-bottom-radius-10px">
+
+<header th:insert="fragments/entete.html">
+</header>
+
+
+<main class="paddings-standard">
+	
+	<div class="text-end pt-2 pb-2">
+		<span class="titre-page h3">Zone Admin</span>
+	</div>
+	
+	<div class="zone-infos">
+		
+		<!--// CREATION D'UN NOUVEAU COMPTE //-->
+		<div class="rubrique">
+			
+			<div class="pb-2">
+				<span class="titre-rubrique">UTILISATEURS</span>
+			</div>
+			
+			<div><a href="/inscription">Créer un nouveau compte</a></div>
+			<div><a href="">Liste d'utilisateurs</a> (En construction)</div>
+		</div>
+		
+		
+		<!--// AFFICHAGE D'UNE LISTE D'INCIDENTS OUVERTS //-->
+		<div class="rubrique">
+			
+			<div class="pb-2">
+				<span class="titre-rubrique">TEST CONNEXION BDD</span>
+			</div>
+			
+			<div><a href="">Tester la connexion à la base de données</a> (En construction)</div>
+		</div>
+		
+	</div>
+</main>
+
+<footer th:insert="fragments/pied-de-page.html"></footer>
+
+</div>
+</body>
+</html>

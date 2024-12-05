@@ -76,7 +76,7 @@ public class AppStartupListenerBean {
 			compteAdminEnBDD.setUsername(adminUsername);
 			compteAdminEnBDD.setRole(adminRole);
 			compteAdminEnBDD = compteRepository.save(compteAdminEnBDD);
-			logger.info("Compte créé avec succes: " + compteAdminEnBDD.getUsername());
+			logger.info("Compte créé avec succès: " + compteAdminEnBDD.getUsername());
 			
 		} else {
 			// Le compte admin est deja present en BDD, on met à jour le mot de passe seulement
@@ -84,7 +84,7 @@ public class AppStartupListenerBean {
 			logger.info("Le compte admin est deja present en BDD, on met à jour le mot de passe seulement.");
 			compteAdminEnBDD = compteRepository.save(compteAdminEnBDD);
 			compteAdminEnBDD.setPassword(adminPassword);
-			logger.info("Mot de passe mis à jour avec succes pour le compte: " + compteAdminEnBDD.getUsername());
+			logger.info("Mot de passe mis à jour avec succès pour le compte: " + compteAdminEnBDD.getUsername());
 		}
 		
 		return compteAdminEnBDD;

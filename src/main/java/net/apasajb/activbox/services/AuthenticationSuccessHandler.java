@@ -36,18 +36,15 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		httpSession.setAttribute("authentication", authentication);
 		
 		// On redirige la requete selon le role de l'utilisateur
-		// A AMELIORER
 		if (isAdmin) {
-			
-			//nextUrl = "/admin";
-			nextUrl = "/";
+			nextUrl = "/admin";
 			
 		} else {
 			nextUrl = "/";
 		}
 		
 		String currentUserName = authentication.getName();
-		logger.info("User logged in: " + currentUserName);
+		logger.info("Utilisateur connecté avec succès: " + currentUserName);
 		
 		response.sendRedirect(nextUrl);
 	}

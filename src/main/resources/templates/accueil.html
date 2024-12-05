@@ -25,6 +25,13 @@
 	
 	<div class="zone-infos">
 		
+		<!-- Si l'utilisateur actuel est admin -->
+		<div th:if="${#authentication.name} == 'admin'"
+				class="lien-admin-zone text-end message-alert">
+				
+				<a href="/admin">Aller sur Admin-zone</a>
+		</div>
+		
 		<!--// AFFICHAGE D'UNE LISTE D'INCIDENTS OUVERTS //-->
 		<div class="rubrique">
 			
