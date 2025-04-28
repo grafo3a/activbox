@@ -19,14 +19,16 @@
 
 <main class="paddings-standard">
 	
+	<div class="zone-infos">
+	
 	<!-- Si ticket present -->
-	<div th:if="${titreTicket} != null" class="text-end pt-2 pb-2">
+	<div th:if="${titreTicket} != null" class="text-center">
 		<span class="titre-page h3" th:text="${titreTicket}"></span>
 	</div>
 	
 	<!-- Si ticket absent -->
-	<div th:if="${titreTicket} == null" class="text-end pt-2 pb-2">
-		<span class="titre-page h4">Détails d'un changement</span>
+	<div th:if="${titreTicket} == null" class="text-center">
+		<span class="titre-page h3">Détails d'un changement</span>
 	</div>
 	
 	<!--// Les détails du ticket //-->
@@ -34,6 +36,8 @@
 					:: formField(url_modif='/modif-changement',
 						url_cloture='/cloture-changement',
 						url_new_note='/new-note-changement') }">
+	</div>
+	
 	</div>
 </main>
 

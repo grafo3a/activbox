@@ -19,25 +19,26 @@
 
 <main class="paddings-standard">
 	
-	<div class="text-end pt-2 pb-2">
-		<span class="titre-page h3">Authentification</span>
-	</div>
-	
 	<div class="zone-infos">
 		
-		<!-- En cas d'erreur -->
+		<!--// Le titre de la page //-->
+		<div class="text-center">
+			<span class="titre-page h3">Authentification</span>
+		</div>
+		
+		<!--// Les cas d'erreur //-->
 		<div th:if="${param.error}"
-				class="alert alert-danger text-center p-1 message-alert" th:text="#{login.error}">
+				class="alert alert-danger p-1 mt-3 message-alert" th:text="#{login.error}">
 		</div>
 		
 		<!--// FORMULAIRE DE CONNEXION //-->
 		
-		<div class="row mt-4">
-			<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 border border-warning">
+		<div class="row rubrique">
+			<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
 				
 				<form action="/login" method="post">
 					
-					<div class="form-group row">
+					<div class="row">
 						<label for="username" class="col-6 col-form-label text-end">Nom d'utilisateur</label>
 						
 						<div class="col-6 p-0">
@@ -46,7 +47,7 @@
 						</div>
 					</div>
 					
-					<div class="form-group row">
+					<div class="row">
 						<label for="password" class="col-6 col-form-label text-end">Mot de passe</label>
 						
 						<div class="col-6 p-0">
@@ -61,12 +62,13 @@
 					</div>
 				</form>
 			</div>
-			
-			<div class="m-4 p-4" style="font-family:calibri">
-				<i>Aide pour tests:<br/>
-				Le mot de passe admin se trouve dans /activbox/src/main/resources/admin_zone.properties.<br/>
-				Si le mot de passe change, il faudra redemarrer l'application pour que le changement prenne effet.</i>
-			</div>
+		</div>
+		
+		<!--// A SUPPRIMER //-->
+		<div class="m-4 p-4" style="font-family:calibri">
+			<i>Aide pour tests:<br/>
+			Le mot de passe admin se trouve dans /activbox/src/main/resources/admin_zone.properties.<br/>
+			Si le mot de passe change, il faudra redemarrer l'application pour que le changement prenne effet.</i>
 		</div>
 	</div>
 </main>

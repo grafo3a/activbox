@@ -19,21 +19,24 @@
 
 <main class="paddings-standard">
 	
-	<!-- Si ticket present -->
-	<div th:if="${titreTicket} != null" class="text-end pt-2 pb-2">
-		<span class="titre-page h3" th:text="${titreTicket}"></span>
-	</div>
-	
-	<!-- Si ticket absent -->
-	<div th:if="${titreTicket} == null" class="text-end pt-2 pb-2">
-		<span class="titre-page h4">Détails d'un incident</span>
-	</div>
-	
-	<!--// Les détails du ticket //-->
-	<div th:replace="~{fragments/details-ticket.html
-					:: formField(url_modif='/modif-incident',
-						url_cloture='/cloture-incident',
-						url_new_note='/new-note-incident') }">
+	<div class="zone-infos">
+		
+		<!-- Si ticket present -->
+		<div th:if="${titreTicket} != null" class="text-center">
+			<span class="titre-page h3" th:text="${titreTicket}"></span>
+		</div>
+		
+		<!-- Si ticket absent -->
+		<div th:if="${titreTicket} == null" class="text-center">
+			<span class="titre-page h3">Détails d'un incident</span>
+		</div>
+		
+		<!--// Les détails du ticket //-->
+		<div th:replace="~{fragments/details-ticket.html
+						:: formField(url_modif='/modif-incident',
+							url_cloture='/cloture-incident',
+							url_new_note='/new-note-incident') }">
+		</div>
 	</div>
 </main>
 

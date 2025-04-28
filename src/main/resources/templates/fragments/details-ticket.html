@@ -1,286 +1,289 @@
 <!--// Le contenu générique d'un ticket //-->
 
 <div xmlns:th="http://www.thymeleaf.org"
-		th:fragment="formField (url_modif, url_cloture, url_new_note)"
-		class="zone-infos" >
+		th:fragment="formField (url_modif, url_cloture, url_new_note)">
 		
 	<!-- Si infos valides -->
 	<div th:if="${messageSucces} != null"
-			class="alert alert-success text-center p-1 message-alert" th:text="${messageSucces}">
+			class="alert alert-success p-1 mt-3 message-alert" th:text="${messageSucces}">
 	</div>
 	
 	<!-- Si infos non valid -->
 	<div th:if="${messageInfo} != null"
-			class="alert alert-info text-center p-1 message-alert" th:text="${messageInfo}">
+			class="alert alert-info p-1 mt-3 message-alert" th:text="${messageInfo}">
 	</div>
 	
 	<!-- Si mot-clef vide -->
 	<div th:if="${messageWarning} != null"
-			class="alert alert-warning text-center p-1 message-alert" th:text="${messageWarning}">
+			class="alert alert-warning p-1 mt-3 message-alert" th:text="${messageWarning}">
 	</div>
 	
 	<!-- En cas de message d'erreur -->
 	<div th:if="${messageErreur} != null"
-			class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
+			class="alert alert-danger p-1 mt-3 message-alert" th:text="${messageErreur}">
 	</div>
 	
 	<!--// AFFICHAGE DES DETAILS D'UN TICKET //-->
-	<div th:if="${objetTicket} != null" class="m-4">
-	
-	<!--// ZONE DETAILS //-->
-	<div class="h4">Détails du ticket</div>
-	
-	<div class="row mt-4">
+	<div th:if="${objetTicket} != null">
 		
-		<!--// Colonne A //-->
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-		
-			<div class="row">
-			<span class="col-5 text-end"><i>Numéro de ticket</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col02NumeroTicket}"></span>
+		<!--// ZONE DETAILS //-->
+		<div class="rubrique">
 			
-			<span class="col-5 text-end"><i>Type de ticket</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col03TypeTicket}"></span>
+			<div class="h4">Détails du ticket</div>
 			
-			<span class="col-5 text-end"><i>Agent initial</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col04AgentInitial}"></span>
-			
-			<span class="col-5 text-end"><i>Demandeur</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col05Demandeur}"></span>
-			
-			<span class="col-5 text-end"><i>Entreprise</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col06Entreprise}"></span>
-			
-			<span class="col-5 text-end"><i>Catégorie</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col07Categorie}"></span>
-			
-			<span class="col-5 text-end"><i>Code-produit</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col08Produit}"></span>
-			
-			<span class="col-5 text-end"><i>Moment-de-création</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col091MomentCreationPourAffichage}"></span>
+			<div class="row mt-4">
+				
+				<!--// Colonne A //-->
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				
+					<div class="row">
+						<span class="col-5 text-end"><i>Numéro de ticket</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col02NumeroTicket}"></span>
+						
+						<span class="col-5 text-end"><i>Type de ticket</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col03TypeTicket}"></span>
+						
+						<span class="col-5 text-end"><i>Agent initial</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col04AgentInitial}"></span>
+						
+						<span class="col-5 text-end"><i>Demandeur</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col05Demandeur}"></span>
+						
+						<span class="col-5 text-end"><i>Entreprise</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col06Entreprise}"></span>
+						
+						<span class="col-5 text-end"><i>Catégorie</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col07Categorie}"></span>
+						
+						<span class="col-5 text-end"><i>Code-produit</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col08Produit}"></span>
+						
+						<span class="col-5 text-end"><i>Moment-de-création</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col091MomentCreationPourAffichage}"></span>
+					</div>
+				</div>
+				
+				<!--// Colonne B //-->
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				
+					<div class="row">
+						<span class="col-5 text-end"><i>Priorité</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col10Prioriteh}"></span>
+						
+						<span class="col-5 text-end"><i>Etat</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col11Etat}"></span>
+						
+						<span class="col-5 text-end"><i>Equipe-en-charge</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col12EquipeEnCharge}"></span>
+						
+						<span class="col-5 text-end"><i>Agent-en-charge</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col13AgentEnCharge}"></span>
+					</div>
+				</div>
 			</div>
+			
+			<div class="row mt-4 m-0">
+				<div class="col-5"><i>Sujet</i></div>
+				
+				<div class="col-12 cadre" th:text="${objetTicket.col15Sujet}"></div>
 			</div>
 			
-			
-			<!--// Colonne B //-->
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-			
-			<div class="row">
-			
-			<span class="col-5 text-end"><i>Priorité</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col10Prioriteh}"></span>
-			
-			<span class="col-5 text-end"><i>Etat</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col11Etat}"></span>
-			
-			<span class="col-5 text-end"><i>Equipe-en-charge</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col12EquipeEnCharge}"></span>
-			
-			<span class="col-5 text-end"><i>Agent-en-charge</i></span>
-			<span class="col-5 cadre" th:text="${objetTicket.col13AgentEnCharge}"></span>
-			
+			<div class="row mt-4 m-0">
+				<div class="col-5"><i>Description</i></div>
+				<div class="col-12 cadre" th:text="${objetTicket.col16Description}"></div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="row mt-4">
-		<div class="col-5"><i>Sujet</i></div>
-		<div class="col-12 cadre" th:text="${objetTicket.col15Sujet}"></div>
-	</div>
-	
-	<div class="row mt-4">
-		<div class="col-5"><i>Description</i></div>
-		<div class="col-12 cadre" th:text="${objetTicket.col16Description}"></div>
-	</div>
-	
-	<!--// ZONE MODIFICATIONS //-->
-	
-	<div class="row mt-4">
-	
-	<div class="h4">Modifications</div>
-	
-	<!-- Colonne A -->
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-4"></div>
-	
-	<!-- Colonne B -->
-	<form th:action="${url_modif}" method="post" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 		
-		<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
-					th:value="${objetTicket.col02NumeroTicket}">
+		<!--// ZONE MODIFICATIONS //-->
+		<div class="rubrique">
+			<div class="row mt-4">
+			
+				<div class="h4">Modifications</div>
+				
+				<!-- Colonne A -->
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-4"></div>
+				
+				<!-- Colonne B -->
+				<form th:action="${url_modif}" method="post" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 					
-		<div class="form-group row">
-			<label for="col10Prioriteh" class="col-5 col-form-label text-end"><i>Priorité</i></label>
-			
-			<div class="col-6 p-0">
-				<select id="col10Prioriteh" name="col10Prioriteh"
-					class="form-select form-select-sm editable" aria-label=".form-select-sm example">
-					<option selected>Choisir</option>
-					<option value="4">4</option>
-					<option value="3">3</option>
-					<option value="2">2</option>
-					<option value="1">1</option>
-				</select>
+					<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
+								th:value="${objetTicket.col02NumeroTicket}">
+								
+					<div class="form-group row">
+						<label for="col10Prioriteh" class="col-5 col-form-label text-end"><i>Priorité</i></label>
+						
+						<div class="col-6 p-0">
+							<select id="col10Prioriteh" name="col10Prioriteh"
+								class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+								<option selected>Choisir</option>
+								<option value="4">4</option>
+								<option value="3">3</option>
+								<option value="2">2</option>
+								<option value="1">1</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="col11Etat" class="col-5 col-form-label text-end"><i>Etat</i></label>
+						
+						<div class="col-6 p-0">
+							<select id="col11Etat" name="col11Etat"
+								class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+								<option selected>Choisir</option>
+								<option value="Nouveau">Nouveau</option>
+								<option value="En cours">En cours</option>
+								<option value="Terminé">Terminé</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="col12EquipeEnCharge" class="col-5 col-form-label text-end"><i>Equipe-en-charge</i></label>
+						
+						<div class="col-6 p-0">
+							<select id="col12EquipeEnCharge" name="col12EquipeEnCharge"
+								class="form-select form-select-sm editable" aria-label=".form-select-sm example">
+								<option selected>Choisir</option>
+								<option value="Applications">Applications</option>
+								<option value="BDD">BDD</option>
+								<option value="DEV">DEV</option>
+								<option value="SAP">SAP</option>
+								<option value="Service Desk">Service Desk</option>
+								<option value="Réseaux">Réseaux</option>
+								<option value="Linux">Linux</option>
+								<option value="Windows">Windows</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="col13AgentEnCharge" class="col-5 col-form-label text-end"><i>Agent-en-charge</i></label>
+						
+						<div class="col-6 p-0">
+							<input type="text" id="col13AgentEnCharge" name="col13AgentEnCharge"
+								th:value="${objetTicket.col13AgentEnCharge}" class="col-5 form-control form-control-sm editable" />
+						</div>
+						
+						<div th:if="${isAgentEnChargeValid} == false" class="col-1 icone-alerte">
+							<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
+						</div>
+					</div>
+					
+					<div class="row">
+						<span class="col-5"></span>
+						<input type="submit" value="Valider" class="col-6 btn btn-sm btn-success" />
+					</div>
+					
+				</form>
 			</div>
 		</div>
 		
-		<div class="form-group row">
-			<label for="col11Etat" class="col-5 col-form-label text-end"><i>Etat</i></label>
+		
+		<!--// ZONE RESOLUTION //-->
+		
+		<div class="rubrique">
+			<div class="h4">Résolution</div>
 			
-			<div class="col-6 p-0">
-				<select id="col11Etat" name="col11Etat"
-					class="form-select form-select-sm editable" aria-label=".form-select-sm example">
-					<option selected>Choisir</option>
-					<option value="Nouveau">Nouveau</option>
-					<option value="En cours">En cours</option>
-					<option value="Terminé">Terminé</option>
-				</select>
+			<div class="row mt-4">
+			
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					
+					<div class="row m-0">
+						<div class="col p-0"><i>Message de résolution</i></div>
+						<div th:text="${objetTicket.col18MessageResolution}"
+								th:if="${objetTicket.col18MessageResolution} != null" class="cadre ml-2"></div>
+					</div>
+					
+					<form th:action="${url_cloture}" method="post"
+							th:if="${objetTicket.col18MessageResolution} == null">
+						
+						<div class="form-group">
+							<!--
+							<label for="col05Message">Message-de-résolution</label>
+							 -->
+							<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
+									th:value="${objetTicket.col02NumeroTicket}">
+									
+							<textarea rows="1" id="col05Message" name="col05Message" class="form-control editable"></textarea>
+							
+							<div class="row">
+								<span class="col-6">
+									<input type="submit" value="Valider" class="width100pc btn btn-sm btn-success" />
+								</span>
+							</div>
+						</div>
+					</form>
+					
+					<div th:if="${messageErreurCloture} != null" class="text-end">
+						<span class="text-danger" th:text="${messageErreurCloture}"></span>
+					</div>
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					
+					<div class="row">
+						<span class="col-5 text-end"><i>Moment-fin</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col17MomentFin}"></span>
+					</div>
+					<div class="row">
+						<span class="col-5 text-end"><i>Moment-SLA</i></span>
+						<span class="col-5 cadre" th:text="${objetTicket.col14MomentSLA}"></span>
+					</div>
+					<div class="row">
+						<span class="col-5 text-end"><i>Temps-restant-SLA</i></span>
+						<span class="col-5 cadre" th:text="${tempsSlaRestant}">Xh Ymin</span>
+					</div>
+				</div>
 			</div>
 		</div>
 		
-		<div class="form-group row">
-			<label for="col12EquipeEnCharge" class="col-5 col-form-label text-end"><i>Equipe-en-charge</i></label>
+		<!--// LES NOTES //-->
+		<div class="rubrique">
 			
-			<div class="col-6 p-0">
-				<select id="col12EquipeEnCharge" name="col12EquipeEnCharge"
-					class="form-select form-select-sm editable" aria-label=".form-select-sm example">
-					<option selected>Choisir</option>
-					<option value="Applications">Applications</option>
-					<option value="BDD">BDD</option>
-					<option value="DEV">DEV</option>
-					<option value="SAP">SAP</option>
-					<option value="Service Desk">Service Desk</option>
-					<option value="Réseaux">Réseaux</option>
-					<option value="Linux">Linux</option>
-					<option value="Windows">Windows</option>
-				</select>
-			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label for="col13AgentEnCharge" class="col-5 col-form-label text-end"><i>Agent-en-charge</i></label>
+			<div class="h4">Notes</div>
 			
-			<div class="col-6 p-0">
-				<input type="text" id="col13AgentEnCharge" name="col13AgentEnCharge"
-					th:value="${objetTicket.col13AgentEnCharge}" class="col-5 form-control form-control-sm editable" />
-			</div>
+			<!-- AFFICHAGE DE NOTES -->
 			
-			<div th:if="${isAgentEnChargeValid} == false" class="col-1 icone-alerte">
-				<img src="images/icons8-wrong-48.png" alt="images/icons8-wrong-48.png" style="width:20px" />
-			</div>
-		</div>
-		
-		<div class="row">
-			<span class="col-5"></span>
-			<input type="submit" value="Valider" class="col-6 btn btn-sm btn-success" />
-		</div>
-		
-	</form>
-	</div>
-	
-	<!--// ZONE RESOLUTION //-->
-	
-	<div class="h4">Résolution</div>
-	
-	<div class="row mt-4">
-		
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<table class="table table-striped table-sm mt-4">
+				<tbody>
+				    <tr th:each="tableauNote: ${listeNotes}">
+						
+						<td class="col-4">
+							<span th:text="${tableauNote[0]}" class="note"></span>
+							<span th:text="${tableauNote[1]}" class="note"></span>
+						</td>
+						<td class="col-8">
+							<span th:text="${tableauNote[2]}" class="note"></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			
-			<div class="row m-0">
-				<div class="col p-0"><i>Message de résolution</i></div>
-				<div th:text="${objetTicket.col18MessageResolution}"
-						th:if="${objetTicket.col18MessageResolution} != null" class="cadre ml-2"></div>
-			</div>
+			<!--// AJOUT D'UNE NOTE //-->
 			
-			<form th:action="${url_cloture}" method="post"
-					th:if="${objetTicket.col18MessageResolution} == null">
+			<form th:action="${url_new_note}" method="post" class="mt-4">
 				
 				<div class="form-group">
-					<!--
-					<label for="col05Message">Message-de-résolution</label>
-					 -->
+				
+					<label for="col05Message"><i>Ajoutez une note</i></label>
+					
 					<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
 							th:value="${objetTicket.col02NumeroTicket}">
 							
-					<textarea rows="1" id="col05Message" name="col05Message" class="form-control editable"></textarea>
+					<textarea rows="2" id="col05Message" name="col05Message" class="form-control editable" ></textarea>
 					
 					<div class="row">
-						<span class="col-6">
-							<input type="submit" value="Valider" class="width100pc btn btn-sm btn-success" />
-						</span>
-					</div>
-				</div>
-			</form>
-			
-			<div th:if="${messageErreurCloture} != null" class="text-end">
-				<span class="text-danger" th:text="${messageErreurCloture}"></span>
-			</div>
-		</div>
-		
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-			
-			<div class="row">
-				<span class="col-5 text-end"><i>Moment-fin</i></span>
-				<span class="col-5 cadre" th:text="${objetTicket.col17MomentFin}"></span>
-			</div>
-			<div class="row">
-				<span class="col-5 text-end"><i>Moment-SLA</i></span>
-				<span class="col-5 cadre" th:text="${objetTicket.col14MomentSLA}"></span>
-			</div>
-			<div class="row">
-				<span class="col-5 text-end"><i>Temps-restant-SLA</i></span>
-				<span class="col-5 cadre" th:text="${tempsSlaRestant}">Xh Ymin</span>
-			</div>
-		</div>
-	</div>
-	
-	
-	<!--// LES NOTES //-->
-	<div class="mt-4">
-		<div class="h4">Notes</div>
-		
-		<!-- AFFICHAGE DE NOTES -->
-		
-		<table class="table table-striped table-sm mt-4">
-			<tbody>
-			    <tr th:each="tableauNote: ${listeNotes}">
-					
-					<td class="col-4">
-						<span th:text="${tableauNote[0]}" class="note"></span>
-						<span th:text="${tableauNote[1]}" class="note"></span>
-					</td>
-					<td class="col-8">
-						<span th:text="${tableauNote[2]}" class="note"></span>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<!--// AJOUT D'UNE NOTE //-->
-		
-		<form th:action="${url_new_note}" method="post" class="mt-4">
-			
-			<div class="form-group">
-			
-				<label for="col05Message"><i>Ajoutez une note</i></label>
-				
-				<input type="hidden" id="col02NumeroTicket" name="col02NumeroTicket"
-						th:value="${objetTicket.col02NumeroTicket}">
-						
-				<textarea rows="2" id="col05Message" name="col05Message" class="form-control editable" ></textarea>
-				
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<div class="row">
-							<span class="col-6">
-								<input type="submit" value="Valider" class="width100pc btn btn-sm btn-success" />
-							</span>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+							<div class="row">
+								<span class="col-6">
+									<input type="submit" value="Valider" class="width100pc btn btn-sm btn-success" />
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
-	
-</div>
 </div>

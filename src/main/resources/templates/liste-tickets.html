@@ -18,24 +18,30 @@
 
 
 <main class="paddings-standard">
-
-	<div class="text-end pt-2 pb-2">
-		<span class="titre-page h3">Liste de tickets</span>
-	</div>
 	
 	<div class="zone-infos">
 		
-		<!-- En cas d'erreur -->
+		<!--// Le titre de la page //-->
+		<div class="text-center">
+			<span class="titre-page h3">Liste de tickets</span>
+		</div>
+		
+		<!--// Les cas d'erreur //-->
 		<div th:if="${messageErreur} != null"
-			class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
+			class="alert alert-danger p-1 mt-3 message-alert" th:text="${messageErreur}">
 		</div>
 		
-		<!-- En cas de liste vide -->
+		<!--// Les cas de liste vide //-->
 		<div th:if="${messageInfo} != null"
-			class="alert alert-info text-center p-1 message-alert" th:text="${messageInfo}">
+			class="alert alert-info p-1 mt-3 message-alert" th:text="${messageInfo}">
 		</div>
 		
-		<div th:if="${listeIncidents} != null">
+		<!--// Les cas de mot-clef vide //-->
+		<div th:if="${messageWarning} != null"
+			class="alert alert-warning p-1 mt-3 message-alert" th:text="${messageWarning}">
+		</div>
+		
+		<div class="rubrique" th:if="${listeIncidents} != null">
 			
 			<div>INCIDENTS</div>
 			
@@ -67,9 +73,7 @@
 			</table>
 		</div>
 		
-		<div th:if="${listeChangements} != null">
-			
-			<div th:if="${listeIncidents} != null" class="p-4"></div>
+		<div class="rubrique" th:if="${listeChangements} != null">
 			
 			<div>CHANGEMENTS</div>
 			

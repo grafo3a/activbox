@@ -19,17 +19,10 @@
 
 <main class="paddings-standard">
 	
-	<div class="text-end pt-2 pb-2">
-		<span class="titre-page h3">Les tickets ouverts</span>
-	</div>
-	
 	<div class="zone-infos">
 		
-		<!-- Si l'utilisateur actuel est admin -->
-		<div th:if="${#authentication.name} == 'admin'"
-				class="lien-admin-zone text-end message-alert">
-				
-				<a href="/admin">Aller sur Admin-zone</a>
+		<div class="text-center">
+			<span class="titre-page h3">Les tickets ouverts</span>
 		</div>
 		
 		<!--// AFFICHAGE D'UNE LISTE D'INCIDENTS OUVERTS //-->

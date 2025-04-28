@@ -17,30 +17,34 @@
 
 
 <main class="paddings-standard">
-
-	<div class="text-end pt-2 pb-2">
-		<span class="titre-page h3">Création d'un changement</span>
-	</div>
 	
 	<div class="zone-infos">
-	
-		<!-- Si infos non valides -->
-		<div th:if="${messageErreur} != null"
-				class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
+		
+		<!--// Le titre de la page //-->
+		<div class="text-center">
+			<span class="titre-page h3">Création d'un changement</span>
 		</div>
 		
-		<!--// FORMULAIRE NOUVEAU TICKET //-->
+		<!--// Les cas d'erreur //-->
+		<div th:if="${messageErreur} != null"
+				class="alert alert-danger p-1 mt-3 message-alert" th:text="${messageErreur}">
+		</div>
 		
-		<!-- On precise l'objet qui sera constitueh par les donnees du formulaire.
-			Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "objetTicket" du modele.
-			Ici le modele envoyeh par la methode get est present. -->
+		<div class="rubrique">
 			
-		<form action="#" th:action="@{/nouveau-changement}" th:object="${objetTicket}" method="post"
-				xmlns:th="http://www.thymeleaf.org">
+			<!--// FORMULAIRE NOUVEAU TICKET //-->
 			
-			<div th:insert="fragments/formulaire-nouveau-ticket.html"></div>
-			
-		</form>
+			<!-- On precise l'objet qui sera constitueh par les donnees du formulaire.
+				Cet objet doit exister d'avance, ici c'est le contenu de l'attribut "objetTicket" du modele.
+				Ici le modele envoyeh par la methode get est present. -->
+				
+			<form action="#" th:action="@{/nouveau-changement}" th:object="${objetTicket}" method="post"
+					xmlns:th="http://www.thymeleaf.org">
+				
+				<div th:insert="fragments/formulaire-nouveau-ticket.html"></div>
+				
+			</form>
+		</div>
 	</div>
 </main>
 

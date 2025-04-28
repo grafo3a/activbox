@@ -80,15 +80,14 @@ public class TicketController {
 		if (paramMotClef.isBlank()) {
 			// Cas d'un mot-clef vide
 			
-			modelAndView.setViewName("accueil.html");
+			modelAndView.setViewName("liste-tickets.html");
 			modelAndView.addObject("messageWarning", "Avertissement: Aucun numero ou mot-clef fourni!");
 			
 		} else if (paramMotClef.matches(regexIncident)) {
 			// Cas d'un incident (numero de ticket valide)
 			
-			modelAndView.setViewName("details-incident.html");
-			
 			try {
+				modelAndView.setViewName("details-incident.html");
 				List<Incident> listeIncidents = incidentRepository.findByCol02NumeroTicket(paramMotClef);
 				
 				Incident incidentTrouveh = listeIncidents.get(0);
@@ -101,15 +100,16 @@ public class TicketController {
 				modelAndView.addObject("titreTicket", "Ticket " + incidentTrouveh.getCol02NumeroTicket() + " (Incident)");
 				
 			} catch (Exception ex) {
+				
+				modelAndView.setViewName("liste-tickets.html");
 				modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramMotClef + "\"");
 			}
 			
 		} else if (paramMotClef.matches(regexChangement)) {
 			// Cas d'un changement (numero de ticket valide)
 			
-			modelAndView.setViewName("details-changement.html");
-			
 			try {
+				modelAndView.setViewName("details-changement.html");
 				List<Change> listeChangements = changeRepository.findByCol02NumeroTicket(paramMotClef);
 				
 				Change changementTrouveh = listeChangements.get(0);
@@ -122,6 +122,8 @@ public class TicketController {
 				modelAndView.addObject("titreTicket", "Ticket " + changementTrouveh.getCol02NumeroTicket() + " (changement)");
 				
 			} catch (Exception ex) {
+				
+				modelAndView.setViewName("liste-tickets.html");
 				modelAndView.addObject("messageInfo", "Info: Aucun ticket trouvé pour le numéro \"" + paramMotClef + "\"");
 			}
 			

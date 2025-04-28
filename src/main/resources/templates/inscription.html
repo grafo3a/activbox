@@ -19,68 +19,71 @@
 
 <main class="paddings-standard">
 	
-	<div class="text-end pt-2 pb-2">
-		<span class="titre-page h3">Inscription</span>
-	</div>
-	
 	<div class="zone-infos">
+		 
+		 <!--// Le titre de la page //-->
+		<div class="text-center">
+			<span class="titre-page h3">Inscription</span>
+		</div>
 		
-		<!-- Si un compte vient d'etre creeh avec succes -->
+		<!-- Si un message de succes est present -->
 		<div th:if="${messageSucces} != null"
-				class="alert alert-success text-center p-1 message-alert" th:text="${messageSucces}">
+				class="alert alert-success p-1 mt-3 message-alert" th:text="${messageSucces}">
 		</div>
 		
 		<!-- Si un message d'erreur est present -->
 		<div th:if="${messageErreur} != null"
-				class="alert alert-danger text-center p-1 message-alert" th:text="${messageErreur}">
+				class="alert alert-danger p-1 mt-3 message-alert" th:text="${messageErreur}">
 		</div>
 		
-		<!--// FORMULAIRE D'INSCRIPTION //-->
+		<div class="row rubrique">
 		
-		<div class="row mt-4">
-			<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 border border-warning">
-				
-				<form action="/nouveau-compte" method="post">
+			<!--// FORMULAIRE D'INSCRIPTION //-->
+			
+			<div class="row mt-4">
+				<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 border border-warning">
 					
-					<div class="form-group row">
-						<label for="username" class="col-6 col-form-label text-end">Nom d'utilisateur</label>
+					<form action="/nouveau-compte" method="post">
 						
-						<div class="col-6 p-0">
-							<input type="text" id="username" name="username"
-								class="col-6 form-control form-control-sm editable" required />
+						<div class="form-group row">
+							<label for="username" class="col-6 col-form-label text-end">Nom d'utilisateur</label>
+							
+							<div class="col-6 p-0">
+								<input type="text" id="username" name="username"
+									class="col-6 form-control form-control-sm editable" required />
+							</div>
 						</div>
-					</div>
-					
-					<div class="form-group row">
-						<label for="password" class="col-6 col-form-label text-end">Mot de passe</label>
 						
-						<div class="col-6 p-0">
-							<input type="text" id="password" name="password"
-								class="col-6 form-control form-control-sm editable" required />
+						<div class="form-group row">
+							<label for="password" class="col-6 col-form-label text-end">Mot de passe</label>
+							
+							<div class="col-6 p-0">
+								<input type="text" id="password" name="password"
+									class="col-6 form-control form-control-sm editable" required />
+							</div>
 						</div>
-					</div>
-					
-					<div class="form-group row">
-						<label for="passwordx2" class="col-6 col-form-label text-end">Confirmation mot de passe</label>
 						
-						<div class="col-6 p-0">
-							<input type="text" id="passwordx2" name="passwordx2"
-								class="col-6 form-control form-control-sm editable" required />
+						<div class="form-group row">
+							<label for="passwordx2" class="col-6 col-form-label text-end">Confirmation mot de passe</label>
+							
+							<div class="col-6 p-0">
+								<input type="text" id="passwordx2" name="passwordx2"
+									class="col-6 form-control form-control-sm editable" required />
+							</div>
 						</div>
-					</div>
+						
+						<div class="row">
+							<span class="col-6"></span>
+							<input type="submit" value="Valider" class="col-6 btn btn-sm btn-success" />
+						</div>
+					</form>
 					
-					<div class="row">
-						<span class="col-6"></span>
-						<input type="submit" value="Valider" class="col-6 btn btn-sm btn-success" />
+					<div class="row mt-4">
+						<div class="col-6"></div>
+						<a href="/login" role="button"
+							class="col-6 btn btn-outline-primary btn-sm">Se connecter</a>
 					</div>
-				</form>
-				
-				<div class="row mt-4">
-					<div class="col-6"></div>
-					<a href="/login" role="button"
-						class="col-6 btn btn-outline-primary btn-sm">Se connecter</a>
 				</div>
-				
 			</div>
 		</div>
 	</div>
