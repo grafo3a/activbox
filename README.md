@@ -1,7 +1,7 @@
 # ActivBox
 
 ## Presentation
-When completed, this app will be a user-friendly open-source IT service ticketing tool.
+When completed, this app will be a modern open-source IT service ticketing tool.
 
 ## Technical aspects
 ### Tech stack
@@ -19,7 +19,7 @@ The following technologies are used in this project:
 - Maven
 
 ### Build & run procedure
-To build & run the app with Maven, use commands as explained below.
+To build & run the app with Maven, use commands as explained below.  
 Nota bene: you need Java 17+.
 
 #### On Windows
@@ -31,4 +31,7 @@ Type the following command: "mvnw spring-boot:run".
 Open a terminal;  
 Go to the root directory of the app: "cd activbox";  
 Type the following command: "./mvnw spring-boot:run".
+
+### Test procedure
+To test the app, in your favourite browser, visit: http://localhost:8080/
 
