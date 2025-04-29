@@ -20,6 +20,7 @@ The following technologies are used in this project:
 
 ### Build & run procedure
 To build & run the app with Maven, use commands as explained below.
+Nota bene: you need Java 17+.
 
 #### On Windows
 Open a command line interface (cmd);  
@@ -30,3 +31,4 @@ Type the following command: "mvnw spring-boot:run".
 Open a terminal;  
 Go to the root directory of the app: "cd activbox";  
 Type the following command: "./mvnw spring-boot:run".
+

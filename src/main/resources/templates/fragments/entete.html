@@ -33,20 +33,21 @@
 	
 	
 	<!--//==== LIGNE ENTETE 02 ====//-->
-	<div class="row m-2">
+	
+	<!--// Visible si connecteh seulement //-->
+	<div class="row m-2"
+		th:if="${#authentication.name} != 'anonymousUser'">
 		
 		<!--// Colonne A (zone recherche) //-->
 		<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
-			
 			<form action="/recherche-ticket" method="post">
 				<div class="row">
-					
 					<div class="col-9 p-0">
 						<input type="text" id="motClef" name="motClef" placeholder="Ticket number or key-word"
 								class="form-control editable not-rounded-right left-rounded border border-success"
 										required />
 					</div>
-					
+						
 					<div class="col-3 p-0">
 						<button type="submit"
 								class="btn btn-outline-success form-control not-rounded-left right-rounded">
@@ -59,35 +60,28 @@
 		
 		<!--// Colonne B (Zone menus) //-->
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+			
 			<!--// Zone menus Ligne 02 //-->
-								<div id="parallelo_parent" class="vert-leger menu-principal">
-									
-									<div id="rectangle_enfant" class="row">
-									
-										<a href="/" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">Home</a>
-										
-										<a href="/" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">Filters</a>
-										
-										<div class="nav-item dropdown col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">
-											<a href="#"
-												class="nav-link dropdown-toggle text-primary"
-												data-bs-toggle="dropdown">Create</a>
-												
-											<div class="dropdown-menu">
-												<a href="/nouvel-incident" class="dropdown-item">Incident</a>
-												<a href="/nouveau-changement" class="dropdown-item">Change</a>
-											</div>
-										</div>
-										
-										<!-- Visible par Admin seulement -->
-										<a href="/admin" th:if="${#authentication.name} == 'admin'"
-											class="col-xs-12 col-sm-12 col-md-3 col-lg-3 menu-top">Admin Zone</a>
-										
-											 
-								</div>
+			<div id="parallelo_parent" class="vert-leger menu-principal">					
+				<div id="rectangle_enfant" class="row">
+					<a href="/" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">Home</a>	
+					<a href="/" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">Filters</a>					
+					
+					<div class="nav-item dropdown col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">
+						<a href="#" class="nav-link dropdown-toggle text-primary"
+							data-bs-toggle="dropdown">Create</a>
+							
+							<div class="dropdown-menu">
+								<a href="/nouvel-incident" class="dropdown-item">Incident</a>
+								<a href="/nouveau-changement" class="dropdown-item">Change</a>
 							</div>
+					</div>
+					
+					<!-- Visible par Admin seulement -->
+					<a href="/admin" th:if="${#authentication.name} == 'admin'"
+						class="col-xs-12 col-sm-12 col-md-3 col-lg-3 menu-top">Admin Zone</a>
 				</div>
 			</div>
-			
-			</div>
-	
+		</div>
+	</div>
+</div>

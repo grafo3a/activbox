@@ -29,8 +29,6 @@ header {
 
 .element-menu {
 	text-decoration: none;
-	
-	
 }
 
 
@@ -72,11 +70,11 @@ main {}
 	min-height: 50%;
 	margin: 0px;
 	padding-top: 10px;
-	background-color: #a0dde5;    /* Crystal +25% */
+	/* background-color: #a0dde5;    // Crystal +25% */
 }
 
 .zone-signature {
-	margin: 0px;
+	margin: 20px;
 }
 
 .zone10px {
@@ -93,10 +91,15 @@ html {
 }
 
 body {
-	position: relative;
+	position: absolute;
+	width: 100%;
 	min-height: 100%;
 	/* padding-bottom: 160px;    // La hauteur du pied-de-page */
 	background-color: white;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden; /* Prevent horizontal scrolling */
+	box-sizing: border-box; /* Ensure box-sizing includes padding and borders */
 }
 
 .contenu {
@@ -272,15 +275,6 @@ th span {
 .vert-moyen {
 	background-color: rgb(220, 240, 220);    /* vert moyen */
 }
-
-/*
-.Chartreuse {
-	//background-color: #eee0b1;//
-	background-color: rgb(240, 240, 240);
-}
-*/
-
-
 
 #rectangle_enfant {
 	width: 100%;

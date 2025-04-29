@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8"></meta>
-<title>[ActivBox] Authentification</title>
+<title>[ActivBox] Authentication</title>
 
 <link th:replace="fragments/head.html" />
 </head>
@@ -23,7 +23,7 @@
 		
 		<!--// Le titre de la page //-->
 		<div class="text-center">
-			<span class="titre-page h3">Authentification</span>
+			<span class="titre-page h3">Authentication</span>
 		</div>
 		
 		<!--// Les cas d'erreur //-->
@@ -39,7 +39,7 @@
 				<form action="/login" method="post">
 					
 					<div class="row">
-						<label for="username" class="col-6 col-form-label text-end">Nom d'utilisateur</label>
+						<label for="username" class="col-6 col-form-label text-end">Username</label>
 						
 						<div class="col-6 p-0">
 							<input type="text" id="username" name="username"
@@ -48,10 +48,10 @@
 					</div>
 					
 					<div class="row">
-						<label for="password" class="col-6 col-form-label text-end">Mot de passe</label>
+						<label for="password" class="col-6 col-form-label text-end">Password</label>
 						
 						<div class="col-6 p-0">
-							<input type="text" id="password" name="password"
+							<input type="password" id="password" name="password"
 								class="col-5 form-control form-control-sm editable" required />
 						</div>
 					</div>
@@ -64,11 +64,11 @@
 			</div>
 		</div>
 		
-		<!--// A SUPPRIMER //-->
+		<!--// A SUPPRIMER EN PROD //-->
 		<div class="m-4 p-4" style="font-family:calibri">
-			<i>Aide pour tests:<br/>
-			Le mot de passe admin se trouve dans /activbox/src/main/resources/admin_zone.properties.<br/>
-			Si le mot de passe change, il faudra redemarrer l'application pour que le changement prenne effet.</i>
+			<i>Help for tests:<br/>
+			The initial password for "admin" is in the file /activbox/src/main/resources/admin_zone.properties.<br/>
+			If the password changes, the app must be restarted for the change to take effect.</i>
 		</div>
 	</div>
 </main>
