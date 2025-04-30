@@ -10,6 +10,7 @@ The following technologies are used in this project:
 - Java 17
 - Spring Boot 3.2
 - Spring Data JPA
+- Spring Security
 - SQLite
 - Thymeleaf
 - HTML & CSS
