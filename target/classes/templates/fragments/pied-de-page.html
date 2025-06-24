@@ -3,19 +3,25 @@
 <!--// Le menu du pied de page //-->
 <div class="row menu-footer bg-bleu-clair text-center border">
 	
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	<!--// Visible si connecteh seulement //-->
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+			th:if="${#authentication.name} != 'anonymousUser'"
+			xmlns:th="http://www.thymeleaf.org">
 		<div class="row">
 			<div class="col">
-				<a href="/nouvel-incident">New Incident</a>
+				<a href="/nouvel-incident">Nouvel Incident</a>
 			</div>
 			
 			<div class="col">
-				<a href="/nouveau-changement">New Change</a>
+				<a href="/nouveau-changement">Nouveau Changement</a>
 			</div>
 		</div>
 	</div>
 	
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	<!--// Visible si connecteh seulement //-->
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+			th:if="${#authentication.name} != 'anonymousUser'"
+			xmlns:th="http://www.thymeleaf.org">
 		<div class="row">
 			<div class="col">
 				<a href="/">Contact</a>
