@@ -4,7 +4,7 @@
 
 <head>
 <meta charset="UTF-8"></meta>
-<title>[ActivBox] Authentication</title>
+<title>[ActivBox] Authentification</title>
 
 <link th:replace="fragments/head.html" />
 </head>
@@ -23,7 +23,7 @@
 		
 		<!--// Le titre de la page //-->
 		<div class="text-center">
-			<span class="titre-page h3">Authentication</span>
+			<span class="titre-page h3">Authentification</span>
 		</div>
 		
 		<!--// Les cas d'erreur //-->
@@ -39,7 +39,7 @@
 				<form action="/login" method="post">
 					
 					<div class="row">
-						<label for="username" class="col-6 col-form-label text-end">Username</label>
+						<label for="username" class="col-6 col-form-label text-end">Nom d'utilisateur</label>
 						
 						<div class="col-6 p-0">
 							<input type="text" id="username" name="username"
@@ -48,7 +48,7 @@
 					</div>
 					
 					<div class="row">
-						<label for="password" class="col-6 col-form-label text-end">Password</label>
+						<label for="password" class="col-6 col-form-label text-end">Mot de passe</label>
 						
 						<div class="col-6 p-0">
 							<input type="password" id="password" name="password"
@@ -66,7 +66,7 @@
 		
 		<!--// A SUPPRIMER EN PROD //-->
 		<div class="m-4 p-4" style="font-family:calibri">
-			<i>Help for tests:<br/>
+			<i><span class="pt-2 pb-2 bg-warning rounded">Help for tests:</span><br/>
 			The initial password for "admin" is in the file /activbox/src/main/resources/admin_zone.properties.<br/>
 			If the password changes, the app must be restarted for the change to take effect.</i>
 		</div>
