@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<title>[ActivBox] 403</title>
+
+<link th:replace="fragments/head.html" />
+</head>
+
+
+<body>
+<div class="contenu border-top-radius-10px border-bottom-radius-10px">
+
+<header th:insert="fragments/entete.html">
+</header>
+
+
+<main class="paddings-standard">
+	
+	<div class="zone-infos">
+		
+		<!--// Le titre de la page //-->
+		<div class="text-center">
+			<span class="titre-page h3">Erreur 403</span>
+		</div>
+		
+		<!--// CREATION D'UN NOUVEAU COMPTE //-->
+		<div class="rubrique">
+			
+			<div>
+			Ohhh!<br/>
+			Vous n'avez pas droit d'accéder à la page ou la ressource.<br/>
+			Veuillez réessayer plus tard.
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer th:insert="fragments/pied-de-page.html"></footer>
+
+</div>
+</body>
+</html>
