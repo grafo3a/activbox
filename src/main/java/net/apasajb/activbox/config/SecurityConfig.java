@@ -26,6 +26,9 @@ public class SecurityConfig {
 	@Autowired
 	UserDetailsService userDetailsService;
 	
+	//@Autowired
+	//PasswordEncoder passwordEncoder;
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		
@@ -71,12 +74,14 @@ public class SecurityConfig {
 		
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		provider.setUserDetailsService(userDetailsService);
-		provider.setPasswordEncoder(passwordEncoder());
+		provider.setPasswordEncoder(new BCryptPasswordEncoder());
 		return provider;
 	}
 	
+	/*
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	*/
 }
