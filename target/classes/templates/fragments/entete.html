@@ -19,19 +19,16 @@
 			<div class="row m-2 border border-warning"
 					th:if="${#authentication.name} != 'anonymousUser'">
 					
-					<span class="col-2 p-1 text-end border">
-						<i><span th:text="#{language}">Language</span></i>
-					</span>
-					
 					<form method="get" action="/" class="col-2 p-1 border">
 						<select name="lang" onchange="this.form.submit()">
-							<option value="en" th:text="#{english}">English</option>
-							<option value="fr" th:text="#{french}">French</option>
-							<option value="pl" th:text="#{polish}">Polish</option>
+							<option value="" th:text="#{language}" selected>language</option>
+							<option value="en" th:text="EN">language01</option>
+							<option value="fr" th:text="FR">language02</option>
+							<option value="pl" th:text="PL">language03</option>
 						</select>
 					</form>
 					
-					<span class="col-7 p-1 text-end text-success border">
+					<span class="col-9 p-1 text-end text-success border">
 						<i>Bonjour, <span th:text="${#authentication.name}"></span>!</i>
 					</span>
 					
