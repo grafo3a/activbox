@@ -4,7 +4,7 @@
 	<div class="row">
 		
 		<!--// ZONE LOGO (gauche) //-->
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 			
 			<!-- A remplacer par un logo -->
 			<div class="h1 text-success">
@@ -13,26 +13,34 @@
 		</div>
 		
 		<!--// ZONE INFOS COMPTE (droite) -->
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 			
 			<!--// Visible si connecteh seulement //-->
-			<div class="row m-2 border border-warning"
+			<div class="row m-2"
 					th:if="${#authentication.name} != 'anonymousUser'">
 					
-					<form method="get" action="/" class="col-2 p-1 border">
-						<select name="lang" onchange="this.form.submit()">
-							<option value="" th:text="#{language}" selected>language</option>
-							<option value="en" th:text="EN">language01</option>
-							<option value="fr" th:text="FR">language02</option>
-							<option value="pl" th:text="PL">language03</option>
+					<div class="col-1 p-1">
+						
+						<div class="border border-success rounded p-0 text-center">
+						<img th:src="@{#{lang_flag}}" alt="drapeau_*.jpg" title="by icons8.com"
+							style="width:25px" />
+						</div>
+						
+					</div>
+					
+					<form method="get" th:action="@{/}" class="col-3 p-1">
+						<select name="lang" onchange="this.form.submit()" class="border border-0 bg-white">
+							<option th:value="#{lang_code01}" th:text="#{lang_name01}" selected>language_01</option>
+							<option th:value="#{lang_code02}" th:text="#{lang_name02}">language_02</option>
+							<option th:value="#{lang_code03}" th:text="#{lang_name03}">language_03</option>
 						</select>
 					</form>
 					
-					<span class="col-9 p-1 text-end text-success border">
+					<span class="col-7 p-1 text-end text-success">
 						<i>Bonjour, <span th:text="${#authentication.name}"></span>!</i>
 					</span>
 					
-				<a href="/logout" class="col-1 p-0">
+				<a href="/logout" class="col-1 p-0 text-center">
 					<img src="images/icons8-logout-96.png" alt="icons8-logout-96.png" title="logout"
 							style="width:35px" />
 				</a>
@@ -48,7 +56,7 @@
 		th:if="${#authentication.name} != 'anonymousUser'">
 		
 		<!--// Colonne A (zone recherche) //-->
-		<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-2">
+		<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6 pt-2 pb-2">
 			<form action="/recherche-ticket" method="post">
 				<div class="row">
 					<div class="col-9 p-0">
@@ -68,7 +76,7 @@
 		</div>
 		
 		<!--// Colonne B (Zone menus) //-->
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" >
 			
 			<!--// Zone menus Ligne 02 //-->
 			<div id="parallelo_parent" class="vert-leger menu-principal">					
