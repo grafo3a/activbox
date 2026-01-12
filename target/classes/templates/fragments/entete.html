@@ -81,22 +81,28 @@
 			<!--// Zone menus Ligne 02 //-->
 			<div id="parallelo_parent" class="vert-leger menu-principal">					
 				<div id="rectangle_enfant" class="row">
-					<a href="/" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">Accueil</a>
-					<a href="/filtres" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">Filtres</a>
-					
+					<a href="/"
+						class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu"
+							th:text="#{home}">Accueil</a>
+						
+					<a href="/filtres"
+						class="col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu"
+							th:text="#{filters}">Filtres</a>
+						
 					<div class="nav-item dropdown col-xs-12 col-sm-12 col-md-3 col-lg-3 element-menu">
-						<a href="#" class="nav-link dropdown-toggle text-primary"
-							data-bs-toggle="dropdown">Créer</a>
+						<a href="#"
+							class="nav-link dropdown-toggle text-primary" data-bs-toggle="dropdown"
+								th:text="#{new}">Nouveau</a>
 							
 							<div class="dropdown-menu">
-								<a href="/nouvel-incident" class="dropdown-item">Incident</a>
-								<a href="/nouveau-changement" class="dropdown-item">Changement</a>
+								<a href="/nouvel-incident" class="dropdown-item" th:text="#{incident}">Incident</a>
+								<a href="/nouveau-changement" class="dropdown-item" th:text="#{change}">Changement</a>
 							</div>
 					</div>
 					
 					<!-- Visible par Admin seulement -->
 					<a href="/admin" th:if="${#authentication.name} == 'admin'"
-						class="col-xs-12 col-sm-12 col-md-3 col-lg-3 menu-top">Zone Admin</a>
+						class="col-xs-12 col-sm-12 col-md-3 col-lg-3 menu-top" th:text="#{admin_zone}">Zone Admin</a>
 				</div>
 			</div>
 		</div>
