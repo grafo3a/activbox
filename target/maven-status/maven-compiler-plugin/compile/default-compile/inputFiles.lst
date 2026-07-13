@@ -7,10 +7,12 @@ C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apa
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\services\CompteDetailsService.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\ActivboxApplication.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\repositories\package-info.java
+C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\config\PasswordEncoderConfig.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\repositories\ChangeNoteRepository.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\controllers\RegistrationController.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\services\IncidentsService.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\services\DataSourceConfig.java
+C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\controllers\CustomErrorController.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\entities\Incident.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\repositories\CompteRepository.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\entities\ChangeNote.java
@@ -34,6 +36,7 @@ C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apa
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\services\package-info.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\entities\IncidentNote.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\services\ChangeNotesService.java
+C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\config\I18nConfig.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\controllers\TicketController.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\entities\package-info.java
 C:\Users\ApasaJB\Logitheque\JEE\eclipse-workspace\activbox\src\main\java\net\apasajb\activbox\repositories\BoiteJDBC.java
